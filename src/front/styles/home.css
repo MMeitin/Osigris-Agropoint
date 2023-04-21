@@ -5,3 +5,74 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+/*Navbar*/
+.navbar-brand {
+    color: green;
+
+  }
+.navbar-brand:hover{
+
+    
+    
+    transform : translateY(-0px);
+    
+    color: #e9c46a;
+}
+.btn{
+
+font-family: Roboto, sans-serif;
+font-weight: 0;
+font-size: 14px;
+color: #fff;
+background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
+padding: 10px 30px;
+border: none;
+box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+border-radius: 50px;
+transition : 0ms;
+transform: translateY(0);
+display: flex;
+flex-direction: row;
+align-items: center;
+cursor: pointer;
+}
+
+.btn:hover{
+
+transition : 0ms;
+padding: 0px 35px;
+font-size: 100%;
+background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
+color: #e9c46a;
+border: none;
+}
+
+
+
+
+.textos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    margin-left: 15%;
+  }
+  
+  .textos p {
+    margin: 5px 0;
+    margin-left: 5%;
+    width:60%;
+    word-wrap: break-word;
+
+  }
+
+  .img1 {
+    
+    
+    position: absolute;
+    width: 554px;
+    height: 554px;
+    left: 60%;
+    top: 300px;
+  }
