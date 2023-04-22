@@ -11,17 +11,13 @@
 
   }
 .navbar-brand:hover{
-
-    
-    
-    transform : translateY(-0px);
-    
+    transform : translateY(-0px);  
     color: #e9c46a;
 }
 .btn{
 
 font-family: Roboto, sans-serif;
-font-weight: 0;
+font-weight: 3;
 font-size: 14px;
 color: #fff;
 background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
@@ -47,15 +43,18 @@ color: #e9c46a;
 border: none;
 }
 
-
-
+.titulo h1{
+  font-size:100px;
+}
+.titulo h1 span{
+  color:#237320;
+  font-weight: 900;
+}
 
 .textos {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 80vh;
     margin-left: 15%;
   }
   
@@ -67,7 +66,7 @@ border: none;
 
   }
 
-  .img1 {
+  /*.img1 {
     
     
     position: absolute;
@@ -75,4 +74,4 @@ border: none;
     height: 554px;
     left: 60%;
     top: 300px;
-  }
+  }*/
