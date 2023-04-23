@@ -118,4 +118,7 @@ border: none;
   p {
     margin: 10px 0;
   }
+  .section3 p{
+    font-size: small;
+  }
 
