@@ -32,6 +32,13 @@
   text-decoration: none;
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-self: center;
+}
+
 .btn:hover {
   background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
   color: #e9c46a;

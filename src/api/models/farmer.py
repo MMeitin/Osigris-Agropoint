@@ -5,16 +5,14 @@ class Farmer(db.Model):
     country = db.Column(db.String(50), unique=False, nullable=False)
     ccaa = db.Column(db.String(50), nullable=False, unique=False)
     company = db.Column(db.String(50),nullable=True, unique=False)
-    pac = db.Column(db.Boolean, nullable=True, unique=False)
-    pac_num = db.Column(db.Integer, nullable=True, unique=True)
+    pac_num = db.Column(db.String(150), nullable=True, unique=True)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 
-    def __init__(self, country, ccaa, company, pac, pac_num, user_id):
+    def __init__(self, country, ccaa, company, pac_num, user_id):
         self.country = country
         self.ccaa = ccaa
         self.company = company
-        self.pac = pac
         self.pac_num = pac_num
         self.user_owner = user_id
 

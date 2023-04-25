@@ -22,9 +22,51 @@ export const Home = () => {
           <a className="navbar-brand mb-0 h1 p-2 px-5" href="#questions">
             Preguntas frecuentes
           </a>
-          <Link to="/register">
-            <button className="btn">Inicio de sesión</button>
-          </Link>
+          <button
+            className="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#registerModal"
+          >
+            Inicio de sesión
+          </button>
+          {/* MODAL */}
+          <div
+            className="modal fade"
+            id="registerModal"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h1 className="modal-title fs-5" id="exampleModalLabel">
+                    Registrate segun tu rol
+                  </h1>
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div className="modal-body">
+                  <Link to={"/register"}>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Soy Agricultor
+                    </button>
+                  </Link>
+                  <button type="button" className="btn btn-primary">
+                    Soy Técnico
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
 

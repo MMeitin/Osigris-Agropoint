@@ -1,7 +1,28 @@
 import React from "react";
+import { useState } from "react";
+import { registerFarmer } from "../service/service";
 import "../../styles/register.css";
 
 export const Register = () => {
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+    country: "",
+    ccaa: "",
+    company: "",
+    pac_num: "",
+  });
+
+  const handleChange = ({ target }) => {
+    setState({ ...state, [target.name]: target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("From handleSubmit --> ", state);
+    registerFarmer(state);
+  };
+
   return (
     <div className="container-fluid register">
       <div className="logoRegister">
@@ -11,35 +32,41 @@ export const Register = () => {
           alt="logo_Osigris"
         />
       </div>
-      <form className="formulario">
+      <form
+        className="formulario"
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      >
         <div className="form-group">
-          <label for="email">Email</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             className="form-control"
             id="email"
             placeholder="Introduce tu email"
+            name="email"
           />
         </div>
         <div className="form-group">
-          <label for="password">Contraseña</label>
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             className="form-control"
             id="password"
             placeholder="Introduce tu contraseña"
+            name="password"
           />
         </div>
         <div className="form-group">
-          <label for="country">País</label>
-          <select className="form-control" id="country">
+          <label htmlFor="country">País</label>
+          <select className="form-control" id="country" name="country">
             <option>Selecciona un país...</option>
             <option>España</option>
           </select>
         </div>
         <div className="form-group">
-          <label for="ccaa">Comunidad Autónoma</label>
-          <select className="form-control" id="ccaa">
+          <label htmlFor="ccaa">Comunidad Autónoma</label>
+          <select className="form-control" id="ccaa" name="ccaa">
             <option>Selecciona una comunidad autónoma...</option>
             <option>Andalucía</option>
             <option>Aragón</option>
@@ -61,29 +88,23 @@ export const Register = () => {
           </select>
         </div>
         <div className="form-group">
-          <label for="company">Compañía</label>
+          <label htmlFor="company">Compañía</label>
           <input
             type="text"
             className="form-control"
             id="company"
             placeholder="Introduce el nombre de tu compañía"
+            name="company"
           />
         </div>
         <div className="form-group">
-          <label for="pac">PAC</label>
-          <select className="form-control" id="pac">
-            <option>...Elige una opción</option>
-            <option>True</option>
-            <option>False</option>
-          </select>
-        </div>
-        <div className="form-group">
-          <label for="pac_num">Número de PAC</label>
+          <label htmlFor="pac_num">Número de PAC</label>
           <input
             type="number"
             className="form-control"
             id="pac_num"
             placeholder="Introduce el número de tu PAC"
+            name="pac_num"
           />
         </div>
         <button type="submit" className="btn btn-register">
