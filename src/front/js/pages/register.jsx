@@ -12,34 +12,34 @@ export const Register = () => {
         />
       </div>
       <form className="formulario">
-        <div class="form-group">
+        <div className="form-group">
           <label for="email">Email</label>
           <input
             type="email"
-            class="form-control"
+            className="form-control"
             id="email"
             placeholder="Introduce tu email"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="password">Contraseña</label>
           <input
             type="password"
-            class="form-control"
+            className="form-control"
             id="password"
             placeholder="Introduce tu contraseña"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="country">País</label>
-          <select class="form-control" id="country">
+          <select className="form-control" id="country">
             <option>Selecciona un país...</option>
             <option>España</option>
           </select>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="ccaa">Comunidad Autónoma</label>
-          <select class="form-control" id="ccaa">
+          <select className="form-control" id="ccaa">
             <option>Selecciona una comunidad autónoma...</option>
             <option>Andalucía</option>
             <option>Aragón</option>
@@ -60,34 +60,33 @@ export const Register = () => {
             <option>Valencia</option>
           </select>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="company">Compañía</label>
           <input
             type="text"
-            class="form-control"
+            className="form-control"
             id="company"
             placeholder="Introduce el nombre de tu compañía"
           />
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="pac">PAC</label>
-          <input
-            type="text"
-            class="form-control"
-            id="pac"
-            placeholder="Introduce el nombre de tu PAC"
-          />
+          <select className="form-control" id="pac">
+            <option>...Elige una opción</option>
+            <option>True</option>
+            <option>False</option>
+          </select>
         </div>
-        <div class="form-group">
+        <div className="form-group">
           <label for="pac_num">Número de PAC</label>
           <input
-            type="text"
-            class="form-control"
+            type="number"
+            className="form-control"
             id="pac_num"
             placeholder="Introduce el número de tu PAC"
           />
         </div>
-        <button type="submit" class="btn btn-register">
+        <button type="submit" className="btn btn-register">
           Enviar
         </button>
       </form>
