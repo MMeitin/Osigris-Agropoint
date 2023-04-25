@@ -1,0 +1,20 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d2e0d2;
+}
+.logoRegister {
+  width: 33%;
+}
+.formulario {
+  width: 33%;
+}
+.formulario label {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.btn-register {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
