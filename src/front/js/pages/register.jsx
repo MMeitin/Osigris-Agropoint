@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { registerFarmer } from "../service/service";
 import "../../styles/register.css";
+import { Link } from "react-router-dom";
 
 export const Register = () => {
   const [state, setState] = useState({
@@ -107,9 +108,11 @@ export const Register = () => {
             name="pac_num"
           />
         </div>
-        <button type="submit" className="btn btn-register">
-          Enviar
-        </button>
+        <Link to={"/profile"}>
+          <button type="submit" className="btn btn-register">
+            Enviar
+          </button>
+        </Link>
       </form>
     </div>
   );

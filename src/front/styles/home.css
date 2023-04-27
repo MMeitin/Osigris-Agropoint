@@ -121,3 +121,26 @@ p {
 .section3 p {
   font-size: small;
 }
+
+/*SECCION DE FARMER VIEW*/
+.nav-farmer-view {
+  background-color: #efdab7;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.aside {
+  width: 20%;
+  background-color: #d2e0d2;
+}
+
+.main-body {
+  width: 80%;
+  background-color: #eef2cd;
+}
+
+
