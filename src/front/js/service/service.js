@@ -1,5 +1,5 @@
 const URL =
-  "https://3001-mmeitin-osigrisagropoin-ud5t2tj9qb1.ws-eu95.gitpod.io/api/user";
+  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu96.gitpod.io/api/user";
 
 export const registerFarmer = async (newUser) => {
   const raw = JSON.stringify(newUser);

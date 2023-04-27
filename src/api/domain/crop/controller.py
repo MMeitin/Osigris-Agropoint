@@ -13,7 +13,7 @@ def post_crop(body):
 
 def get_farmer_crops(farmer_id):
     
-    farmer_crops = Crop.query.filter_by(property=farmer_id[property]).all()
+    farmer_crops = Crop.query.filter_by(farmer_id=farmer_id).all()
     
     print(farmer_crops)
     crops_data = []
