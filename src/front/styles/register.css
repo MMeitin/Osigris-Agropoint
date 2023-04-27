@@ -1,0 +1,38 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #d2e0d2;
+}
+.logoRegister {
+  width: 33%;
+}
+.formulario {
+  width: 33%;
+}
+.formulario label {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.btn-register {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  .formulario {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .formulario {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 414px) {
+  .formulario {
+    width: 90%;
+  }
+}
+/*Tablet styles (max-width: 768px)
+Mobile styles (max-width: 414px)*/

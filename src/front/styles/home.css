@@ -7,80 +7,80 @@
 */
 /*Navbar*/
 .navbar-brand {
-    color: green;
-
-  }
-.navbar-brand:hover{
-    transform : translateY(-0px);  
-    color: #e9c46a;
+  color: green;
 }
-.btn{
-
-font-family: Roboto, sans-serif;
-font-weight: 3;
-font-size: 14px;
-color: #fff;
-background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
-padding: 10px 30px;
-border: none;
-box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
-border-radius: 50px;
-transition : 0ms;
-transform: translateY(0);
-display: flex;
-flex-direction: row;
-align-items: center;
-cursor: pointer;
+.navbar-brand:hover {
+  transform: translateY(-0px);
+  color: #e9c46a;
 }
-
-.btn:hover{
-
-
-
-
-background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
-color: #e9c46a;
-border: none;
+.btn {
+  font-family: Roboto, sans-serif;
+  font-weight: 3;
+  font-size: 14px;
+  color: #fff;
+  background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
+  padding: 10px 30px;
+  border: none;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  transition: 0ms;
+  transform: translateY(0);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.titulo h1{
-  font-size:100px;
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-self: center;
 }
-.titulo h1 span{
-  color:#237320;
+
+.btn:hover {
+  background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
+  color: #e9c46a;
+  border: none;
+}
+
+.titulo h1 {
+  font-size: 100px;
+}
+.titulo h1 span {
+  color: #237320;
   font-weight: 900;
 }
 
-.titulo2 span{
-  color:#e9c46a;
+.titulo2 span {
+  color: #e9c46a;
   font-weight: 900;
 }
 .textos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 15%;
-  }
-  
-  .textos p {
-    
-    word-wrap: break-word;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 15%;
+}
 
-  }
-  .titulo1 span{
-    color:#237320;
-    font-weight: 900;
-  }
-  .fixed-size-card {
-    width: 300px;
-    height: 400px;
-  }
-  .card-img-top {
-    max-height: 200px;
-    object-fit: cover;
-  }
-  
-  /*.img1 {
+.textos p {
+  word-wrap: break-word;
+}
+.titulo1 span {
+  color: #237320;
+  font-weight: 900;
+}
+.fixed-size-card {
+  width: 300px;
+  height: 400px;
+}
+.card-img-top {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+/*.img1 {
     
     
     position: absolute;
@@ -90,35 +90,34 @@ border: none;
     top: 300px;
   }*/
 
-  .faq-section {
-    text-align: left;
-    margin-top: 50px;
-  }
-  
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-  
-  li {
-    margin-bottom: 20px;
-  }
-  
-  i {
-    margin-right: 10px;
-    color: #4CAF50;
-    cursor: pointer;
-  }
-  
-  span {
-    font-weight: bold;
-  }
-  
-  p {
-    margin: 10px 0;
-  }
-  .section3 p{
-    font-size: small;
-  }
+.faq-section {
+  text-align: left;
+  margin-top: 50px;
+}
 
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 20px;
+}
+
+i {
+  margin-right: 10px;
+  color: #4caf50;
+  cursor: pointer;
+}
+
+span {
+  font-weight: bold;
+}
+
+p {
+  margin: 10px 0;
+}
+.section3 p {
+  font-size: small;
+}

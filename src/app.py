@@ -8,7 +8,6 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models.index import db
-from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 import api.domain.user.router as user_router
@@ -21,6 +20,7 @@ static_file_dir = os.path.join(
 )
 app = Flask(__name__)
 jwt = JWTManager(app)
+app.config["JWT_SECRET_KEY"] = "super-secret"
 app.url_map.strict_slashes = False
 
 # database condiguration
