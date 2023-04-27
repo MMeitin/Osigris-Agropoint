@@ -9,8 +9,8 @@ class Crop(db.Model):
     description = db.Column(db.String(250), nullable=True)
     property = db.Column(db.Integer, ForeignKey('farmer.id'))
     technician_agr = db.Column(db.Integer, ForeignKey('technician.id'))
-    farmer = relationship(Farmer)
-    technician = relationship(Technician)
+    farmer = db.relationship('Farmer')
+    technician = db.relationship('Technician')
 
     def __init__(self, dimension_ha, crop_type, description):
         self.dimension_ha = dimension_ha
