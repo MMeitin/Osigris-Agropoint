@@ -1,12 +1,17 @@
 import React from "react";
 import "../../styles/home.css";
+import logo from "../../img/logo.png";
+import campo1 from "../../img/campo1.jpg";
+import campo2 from "../../img/campo2.jpeg";
+import campo3 from "../../img/campo3.jpeg";
+import campo4 from "../../img/campo4.jpeg";
 
 export const FarmerView = () => {
   return (
     <div className="container-fluid farmerViewContainer">
       <nav className="navbar navbar-expand-lg bg-body-tertiary nav-farmer-view">
         <div className="col2 ms-5">
-          <img className="logo" src={"../img/logo.png"} />
+          <img className="logo" src={logo} />
         </div>
         <div className="d-flex col justify-content-end mb-3 p-4 px-5">
           <div class="dropdown">
@@ -48,7 +53,7 @@ export const FarmerView = () => {
 
       <div className="main-container">
         <aside className="aside">
-          <h5>Aside para filtrar tecnico</h5>
+          <h5>Filtra y encuentra tu técnico</h5>
           <form className="formulario">
             <label>Por Nombre</label>
             <input type="text"></input>
@@ -61,23 +66,25 @@ export const FarmerView = () => {
 
             <label>Tipo</label>
             <input type="text"></input>
+            <button className="btn btnFiltrar">Filtrar</button>
           </form>
+          
         </aside>
 
         <section className="main-body">
           <div class="slider">
             <ul>
               <li>
-                <img src="https://i.pinimg.com/originals/74/52/db/7452db2aafa89196801ef4fe680137e0.jpg" />
+                <img src={campo1} />
               </li>
               <li>
-                <img src="https://s1.1zoom.me/big0/160/354276-admin.jpg" />
+                <img src={campo2} />
               </li>
               <li>
-                <img src="https://mobimg.b-cdn.net/pic/v2/gallery/preview/goroda-pejzazh-ulicy-22228.jpg" />
+                <img src={campo3} />
               </li>
               <li>
-                <img src="http://2.bp.blogspot.com/-dNtt1v-HAOE/UFdRpT_pY9I/AAAAAAAABXw/gBzxja1td3Y/s1600/fondos-escritorio-ciudades-1280.jpg" />
+                <img src={campo4} />
               </li>
             </ul>
           </div>

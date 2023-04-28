@@ -129,6 +129,12 @@ p {
   background-color: #efdab7;
 }
 
+.logo {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
+
 .main-container {
   display: flex;
   flex-direction: row;
@@ -138,11 +144,21 @@ p {
 .aside {
   height: 100vh;
   width: 20%;
-  border-right: #d2e0d2 15px solid;
+  background-color: #d2e0d2;
 }
 
 .aside h5 {
+  display: flex;
+  justify-content: center;
   height: fit-content;
+  margin-top: .5em;
+}
+
+.formulario{
+  margin-left: 1em;
+}
+.btnFiltrar{
+  margin-top: .5em;
 }
 
 .main-body {
