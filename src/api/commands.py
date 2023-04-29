@@ -1,5 +1,5 @@
 import click
-from api.models.index import db, Technician, Service, User, Farmer
+from api.models.index import db
 
 
 """
