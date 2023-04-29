@@ -27,17 +27,12 @@ export const FarmerView = () => {
             <ul class="dropdown-menu">
               <li>
                 <button class="dropdown-item" type="button">
-                  Calendario Riego
+                  Añadir Campos
                 </button>
               </li>
               <li>
                 <button class="dropdown-item" type="button">
-                  Abonos y fertilizantes
-                </button>
-              </li>
-              <li>
-                <button class="dropdown-item" type="button">
-                  Plagas
+                  Ver Campos
                 </button>
               </li>
             </ul>
@@ -68,7 +63,6 @@ export const FarmerView = () => {
             <input type="text"></input>
             <button className="btn btnFiltrar">Filtrar</button>
           </form>
-          
         </aside>
 
         <section className="main-body">
@@ -87,6 +81,10 @@ export const FarmerView = () => {
                 <img src={campo4} />
               </li>
             </ul>
+          </div>
+
+          <div className="myCrops">
+              
           </div>
         </section>
       </div>
