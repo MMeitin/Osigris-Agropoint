@@ -21,5 +21,6 @@ class Crop(db.Model):
             "id": self.id,
             "dimension_ha": self.dimension_ha,
             "crop_type":self.crop_type,
-            "farmer_id":self.farmer_id
+            "farmer_id":self.farmer_id,
+            "description":self.description
         }

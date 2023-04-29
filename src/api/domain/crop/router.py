@@ -22,3 +22,17 @@ def post_crop():
 def get_farmer_crops(farmer_id):
     farmer_crops = Controller.get_farmer_crops(farmer_id)       
     return jsonify(farmer_crops)
+
+#Delete Crop from an ID
+@api.route('/<int:crop_id>', methods=['DELETE'])
+def delete_crop(crop_id):
+    crop = Crop.query.get(crop_id)
+    crop = Controller.delete_crop(crop)
+    return jsonify("crop deleted succesfully",200)
+
+#Modify Crop from an ID
+@api.route('/<int:crop_id>', methods=['PUT'])
+def modify_planet(crop_id):
+    crop = Crop.query.get(crop_id)
+    modified_crop=Controller.modify_crop(crop)
+    return jsonify(modified_crop)
