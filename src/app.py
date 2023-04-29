@@ -8,10 +8,10 @@ from flask_swagger import swagger
 from flask_cors import CORS
 from api.utils import APIException, generate_sitemap
 from api.models.index import db
-from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
 import api.domain.user.router as user_router
+import api.domain.crop.router as crop_router
 from flask_jwt_extended import JWTManager
 
 
@@ -21,6 +21,7 @@ static_file_dir = os.path.join(
 )
 app = Flask(__name__)
 jwt = JWTManager(app)
+app.config["JWT_SECRET_KEY"] = "super-secret"
 app.url_map.strict_slashes = False
 
 # database condiguration
@@ -47,7 +48,7 @@ setup_commands(app)
 
 # Add all endpoints form the API with a "api" prefix
 app.register_blueprint(user_router.api, url_prefix="/api/user")
-
+app.register_blueprint(crop_router.api, url_prefix="/api/crop")
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
@@ -81,5 +82,6 @@ def serve_any_other_file(path):
 
 # this only runs if `$ python src/main.py` is executed
 if __name__ == "__main__":
+    
     PORT = int(os.environ.get("PORT", 3001))
     app.run(host="0.0.0.0", port=PORT, debug=True)
