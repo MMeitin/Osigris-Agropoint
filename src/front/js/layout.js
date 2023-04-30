@@ -6,6 +6,7 @@ import { BackendURL } from "./component/backendURL";
 import { Home } from "./pages/home.jsx";
 import { Register } from "./pages/register.jsx";
 import {FarmerView} from "./pages/farmerView.jsx"
+import {FarmerServices} from "./pages/farmerServices.jsx"
 import injectContext from "./store/appContext";
 
 //create your first component
@@ -26,6 +27,7 @@ const Layout = () => {
             {/* Falta la ruta de login y registro */}
             <Route element={<Register />} path="/register" />
             <Route element={<FarmerView/>} path="/profile" />
+            <Route element={<FarmerServices/>} path="/profileServices" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>

@@ -1,0 +1,36 @@
+.navbar {
+  font-weight: bold;
+}
+
+.aside {
+  margin-top: 1em;
+}
+
+.aside {
+  height: 15%;
+  width: 100%;
+  background-color: #d2e0d2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.aside h5 {
+  height: fit-content;
+  margin-top: 0.5em;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-left: 1em;
+}
+.formulario input {
+  height: fit-content;
+  margin-top: 0.5em;
+}
+.btnFiltrar {
+  height: fit-content;
+  margin-left: 0.5em;
+}

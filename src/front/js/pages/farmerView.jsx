@@ -1,5 +1,6 @@
 import React from "react";
-import "../../styles/home.css";
+import { Link } from "react-router-dom";
+import "../../styles/farmerView.css";
 import logo from "../../img/logo.png";
 import campo1 from "../../img/campo1.jpg";
 import campo2 from "../../img/campo2.jpeg";
@@ -37,57 +38,36 @@ export const FarmerView = () => {
               </li>
             </ul>
           </div>
-          <a className="navbar-brand mb-0 h1 p-2 px-5" href="#services">
-            Servicios
-          </a>
+          <Link to={"/profileServices"}>
+            <a className="navbar-brand mb-0 h1 p-2 px-5" href="#services">
+              Servicios
+            </a>
+          </Link>
           <a className="navbar-brand mb-0 h1 p-2 px-5" href="#questions">
             Consultas
           </a>
         </div>
       </nav>
+      <section className="main-body">
+        <div class="slider">
+          <ul>
+            <li>
+              <img src={campo1} />
+            </li>
+            <li>
+              <img src={campo2} />
+            </li>
+            <li>
+              <img src={campo3} />
+            </li>
+            <li>
+              <img src={campo4} />
+            </li>
+          </ul>
+        </div>
 
-      <div className="main-container">
-        <aside className="aside">
-          <h5>Filtra y encuentra tu técnico</h5>
-          <form className="formulario">
-            <label>Por Nombre</label>
-            <input type="text"></input>
-
-            <label>Por comunidad</label>
-            <input type="text"></input>
-
-            <label>Por identificación</label>
-            <input type="text"></input>
-
-            <label>Tipo</label>
-            <input type="text"></input>
-            <button className="btn btnFiltrar">Filtrar</button>
-          </form>
-        </aside>
-
-        <section className="main-body">
-          <div class="slider">
-            <ul>
-              <li>
-                <img src={campo1} />
-              </li>
-              <li>
-                <img src={campo2} />
-              </li>
-              <li>
-                <img src={campo3} />
-              </li>
-              <li>
-                <img src={campo4} />
-              </li>
-            </ul>
-          </div>
-
-          <div className="myCrops">
-              
-          </div>
-        </section>
-      </div>
+        <div className="myCrops"></div>
+      </section>
     </div>
   );
 };
