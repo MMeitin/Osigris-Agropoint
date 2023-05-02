@@ -1,6 +1,7 @@
 import api.domain.user.repository as Repository
 from api.models.index import User
 import api.domain.farmer.repository as FarmerRepository
+import api.domain.technician.repository as TechRepository
 from flask import jsonify
 import bcrypt
 from flask_jwt_extended import create_access_token
@@ -18,9 +19,17 @@ def post_user(body, role):
         return jsonify({ "msg": 'User not found', "error": True, "status": 404 })
 
     hashed = bcrypt.hashpw(body['password'].encode(), bcrypt.gensalt(14)) # encode convierte en bytes
-    new_user = Repository.sign_in_user(body['email'], hashed.decode(), role)
-    new_farmer = FarmerRepository.add_farmer(body, new_user.id)
+    body['password'] = hashed.decode()
+    new_user = Repository.sign_in_user(body['email'], body['password'], role)
+    print("holaaaaaaaaaaaaaaaa", new_user)
+    if role == 'farmer':
+        new_farmer = FarmerRepository.add_farmer(body, new_user.id)
+        print(new_farmer)
+    elif role == 'tech':
+        new_tech = TechRepository.add_tech(body, new_user.id)
+        print(new_tech)
     return new_user
+
 
 def login(body):
     user_verify = verify_user_email_and_pass(body)

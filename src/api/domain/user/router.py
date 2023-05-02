@@ -7,9 +7,16 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt
 
 api = Blueprint("api/user", __name__)
 
-# SIGNUP USER
+# SIGNUP USER TECH
+@api.route('/signup/tech', methods=['POST'])
+def register_tech():
+    body = request.get_json()
+    user = Controller.post_user(body, "tech")
+    return jsonify(user.serialize())
+
+# SIGNUP USER FARMER
 @api.route('/signup/farmer', methods=['POST'])
-def register():
+def register_farmer():
     body = request.get_json()
     user = Controller.post_user(body, "farmer")
     return jsonify(user.serialize())
