@@ -7,10 +7,7 @@ import api.domain.crop.controller as Controller
 
 api = Blueprint("api/crop", __name__)
 
-
-
-
-@api.route('/', methods=['POST'])
+@api.route('/addFarm', methods=['POST'])
 def post_crop():
     body = request.get_json()
     crop = Controller.post_crop(body)

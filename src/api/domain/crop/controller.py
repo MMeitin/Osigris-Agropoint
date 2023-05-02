@@ -4,7 +4,6 @@ from api.models.crops import Crop
 
 #  Create Crop
 def post_crop(body):
-    print(body)
     if body['dimension_ha'] is None:
         return ('dimension_ha is empty', 400)
     if body['crop_type'] is None:

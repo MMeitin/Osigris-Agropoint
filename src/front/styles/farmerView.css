@@ -47,9 +47,10 @@
   }
   
   .btnProfile {
-    color: #237320;
+    color: hsl(118, 56%, 29%);
   }
   
+  /*backdrop-filter: blur(3px);*/
   @keyframes cambio {
     0% {
       margin-left: 0;
