@@ -12,6 +12,6 @@ def delete_crop(crop):
         db.session.commit()
         
 
-#def modify_crop():   
-#    db.session.commit()
-#    return ('crop modified successfully'), 200
+def modify_crop():   
+    db.session.commit()
+    return ('crop modified successfully'), 200
