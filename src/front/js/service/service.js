@@ -30,7 +30,7 @@ export const loginUser = async (user) => {
     }
     );
     const data = await res.json();
-    console.log(data)
+    
     localStorage.setItem("token", data.token)
     
     localStorage.setItem("role", data.role);
@@ -50,8 +50,8 @@ export const getInfoUser = async () => {
       },
       });
     const data = await res.json();
-    console.log(data);
     
+    return data 
 
   }catch (err){
     console.log("ERROR GET USER", err)
