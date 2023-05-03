@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
 
 import "../../styles/home.css";
 
@@ -33,7 +32,7 @@ export const Home = () => {
           <div
             className="modal fade"
             id="registerModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
@@ -51,7 +50,7 @@ export const Home = () => {
                   ></button>
                 </div>
                 <div className="modal-body">
-                  <Link to={"/register"}>
+                  <Link to={"/registerFarmer"}>
                     <button
                       type="button"
                       className="btn btn-secondary"
@@ -60,9 +59,15 @@ export const Home = () => {
                       Soy Agricultor
                     </button>
                   </Link>
-                  <button type="button" className="btn btn-primary">
-                    Soy Técnico
-                  </button>
+                  <Link to={"/registerTech"}>
+                    <button
+                      type="button"
+                      className="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Soy Técnico
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
