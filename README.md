@@ -1,4 +1,16 @@
 # GranjeroBuscaTecnico
+
+# Osigris
+
+A brief description of what this project does and who it's for:
+
+The idea is to create an online directory for farmers and agricultural technicians. In this directory, relevant information about farmers will be included, such as their name, surname, telephone number, province and type of farm. It will also ask for information about technicians, such as their specialisation and the company or cooperative they work for.
+
+The main objective is to help farmers find agricultural technicians in their province who can help them comply with CAP (Common Agricultural Policy) requirements, Global Gap standards and other specific requirements, such as the organic label.
+
+# Relationship models
+![Models](https://i.ibb.co/LrxCns2/modelos.png)
+
 # Project done with React JS and Flask API
 
 Build web applications using React.js for the front end and python/flask for your backend API.
@@ -58,19 +70,6 @@ To update with all yours tables you can edit the file app.py and go to the line 
 
 1. Install the packages: `$ npm install`
 2. Start coding! start the webpack dev server `$ npm run start`
-
-
-
-# Osigris
-
-A brief description of what this project does and who it's for:
-
-The idea is to create an online directory for farmers and agricultural technicians. In this directory, relevant information about farmers will be included, such as their name, surname, telephone number, province and type of farm. It will also ask for information about technicians, such as their specialisation and the company or cooperative they work for.
-
-The main objective is to help farmers find agricultural technicians in their province who can help them comply with CAP (Common Agricultural Policy) requirements, Global Gap standards and other specific requirements, such as the organic label.
-
-# Relationship models
-![Models](https://i.ibb.co/LrxCns2/modelos.png)
 
 
 ## 🚀 About Us

@@ -8,9 +8,8 @@ const HEADERS = {
 export const registerFarmer = async (newUser) => {
   const raw = JSON.stringify(newUser);
   try {
-    console.log("in Create contact on service", newUser);
     const resp = await fetch(`${URL}/signup/farmer`, {
-      method: 'POST',
+      method: "POST",
       headers: { "Content-Type": "application/json" },
       body: raw,
       redirect: "follow",
