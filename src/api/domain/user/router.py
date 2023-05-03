@@ -34,12 +34,10 @@ def get_user_id(id):
 @api.route('/login', methods=['POST'])
 def login():
     body = request.get_json()
-    token = Controller.login(body)
-
-    if token.get('token'):
-        return jsonify(token), 200
-    return jsonify(token), token['status']
-
+    user = Controller.login(body)
+    print(user)
+    return user
+    
 @api.route('/', methods=['GET'])
 @jwt_required()
 def get_user():

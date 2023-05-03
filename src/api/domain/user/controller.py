@@ -34,15 +34,15 @@ def post_user(body, role):
 def login(body):
     user_verify = verify_user_email_and_pass(body)
     user = User.query.filter_by(email=body['email']).first()
-    if user_verify.get('error') is not None:
-        return user_verify
+    
+    
 
     if user is None:
         return {"msg": "User not found", "error": True, "status": 404}
 
     if bcrypt.checkpw(body['password'].encode(), user.password.encode()):
         new_token = create_access_token(identity=user.serialize())
-        return{"token": new_token}
+        return{"token": new_token, "role": user.role}
 
     return {"msg": "User not found", "error": True, "status": 404}
 

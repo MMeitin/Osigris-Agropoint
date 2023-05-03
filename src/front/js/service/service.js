@@ -1,5 +1,9 @@
-const URL =
+export const URL =
   "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu96.gitpod.io/api/user";
+
+const HEADERS = {
+  "Content-Type": "application/json",
+};
 
 export const registerFarmer = async (newUser) => {
   const raw = JSON.stringify(newUser);
@@ -16,3 +20,40 @@ export const registerFarmer = async (newUser) => {
     console.log("Error al crear nuevo User_Farmer", err);
   }
 };
+
+export const loginUser = async (user) => {
+  try{
+    const res = await fetch(`${URL}/login`,{
+      method: "POST",
+      headers: HEADERS,
+      body:JSON.stringify(user),
+    }
+    );
+    const data = await res.json();
+    console.log(data)
+    localStorage.setItem("token", data.token)
+    
+    localStorage.setItem("role", data.role);
+    return data.role
+  }catch (err){
+    console.log("ERROR LOGIN USER", err)
+  }
+}
+
+export const getInfoUser = async () => {
+  try{
+    const res = await fetch(`${URL}`,{
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        ...HEADERS,
+      },
+      });
+    const data = await res.json();
+    console.log(data);
+    
+
+  }catch (err){
+    console.log("ERROR GET USER", err)
+  }
+}
