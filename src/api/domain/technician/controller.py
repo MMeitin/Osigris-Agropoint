@@ -1,4 +1,4 @@
-import domain.technician.repository as Repository
+import api.domain.technician.repository as Repository
 from flask import jsonify
 
 ##GET ALL TECH
@@ -16,7 +16,7 @@ def get_one_tech(id):
     return one_tech
 
 ##POST TECH  --> FALTA USER_ID
-def post_tech(body):
+def post_tech(body, user_id):
     if body["description"] is None:
         return jsonify("Missing description", 400)
     if body["phone_number"] is None:
@@ -27,4 +27,4 @@ def post_tech(body):
         return jsonify("Missing ccaa", 400)
     if body["speciality"] is None:
         return jsonify("Missing speciality", 400)
-    return Repository.post_tech(body), 201
+    return Repository.post_tech(body,user_id), 201

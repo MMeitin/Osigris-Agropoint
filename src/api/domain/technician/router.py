@@ -1,20 +1,22 @@
-from flask import request
-from models.index import Technician
-import domain.technician.controller as Controller
+from flask import request,Blueprint
+from api.models.index import Technician
+import api.domain.technician.controller as Controller
+
+api = Blueprint("api/tech", __name__)
 
 def tech_router(app):
     #GET ALL TECHNICIAN
-    @app.route('/tech', methods=['GET'])
+    @app.route('/', methods=['GET'])
     def get_all_tech():
         return Controller.get_all_tech
     
     #GET ONE TECHNICIAN
-    @app.route('/tech/<int:id>', methods=['GET'])
+    @app.route('/<int:id>', methods=['GET'])
     def get_one_tech(id):
         return Controller.get_one_tech(id)
     
     #POST TECHNICIAN --> FALTA USER_ID
-    @app.route("/tech", methods=['POST'])
+    @app.route("/", methods=['POST'])
     def post_tech():
         body = request.get_json()
-        return Controller.post_tech(body)
+        return Controller.post_tech(body, user_id)
