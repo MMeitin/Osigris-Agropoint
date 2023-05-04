@@ -2,10 +2,10 @@ from api.models.db import db
 
 class Farmer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    country = db.Column(db.String(50), unique=False, nullable=False)
-    ccaa = db.Column(db.String(50), nullable=False, unique=False)
-    company = db.Column(db.String(50),nullable=True, unique=False)
-    pac_num = db.Column(db.String(150), nullable=True, unique=True)
+    country = db.Column(db.String(40), nullable=False)
+    ccaa = db.Column(db.String(40), nullable=False)
+    company = db.Column(db.String(50))
+    pac_num = db.Column(db.String(150), unique=True)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 

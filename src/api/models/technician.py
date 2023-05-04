@@ -3,12 +3,12 @@ from api.models.db import db
 class Technician(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
-    description = db.Column(db.String(300), unique=True, nullable=False)
+    description = db.Column(db.String(300), nullable=False)
     phone_number = db.Column(db.Integer, unique=True, nullable=False)
-    country = db.Column(db.String(40), unique=True, nullable=False)
-    ccaa = db.Column(db.String(40), unique=True, nullable=False)
-    speciality = db.Column(db.String(120), unique=True, nullable=False)
-    num_ropo = db.Column(db.Integer, unique=True, nullable=False)
+    country = db.Column(db.String(40), nullable=False)
+    ccaa = db.Column(db.String(40), nullable=False)
+    speciality = db.Column(db.String(120), nullable=False)
+    num_ropo = db.Column(db.Integer, unique=True)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
     

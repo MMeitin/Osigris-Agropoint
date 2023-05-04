@@ -13,6 +13,28 @@
   transform: translateY(-0px);
   color: #e9c46a;
 }
+.BotLink{
+  font-family: Roboto, sans-serif;
+  font-weight: 9;
+  
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 25px;
+  padding: 0;
+  color: green;
+}
+.form-group label{
+  font-family: Roboto, sans-serif;
+  font-size: 15px;
+}
+.BotLink:hover{
+  
+  font-size: 160%;
+ 
+  color: #e9c46a;
+}
 .btn {
   font-family: Roboto, sans-serif;
   font-weight: 3;
@@ -32,13 +54,19 @@
   text-decoration: none;
 }
 
-.modal-body {
+/* .modal-body {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   justify-self: center;
-}
+} */
 
+.modal{
+  backdrop-filter: blur(3px);
+}
+.modal-body h6{
+  background-color: blur;
+}
 .btn:hover {
   background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
   color: #e9c46a;
@@ -80,15 +108,7 @@
   object-fit: cover;
 }
 
-/*.img1 {
-    
-    
-    position: absolute;
-    width: 554px;
-    height: 554px;
-    left: 60%;
-    top: 300px;
-  }*/
+
 
 .faq-section {
   text-align: left;

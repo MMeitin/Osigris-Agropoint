@@ -1,10 +1,29 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useState,useContext } from "react";
+import { Link, navigate  } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import "../../styles/home.css";
+import { loginUser } from "../service/service";
 
 export const Home = () => {
+
+  const {store, actions} = useContext(Context);
+  
+  const[state, setState] = useState({email:"", password:""});
+  
+  const handleChange = ({target}) => {
+    setState({...state, [target.name]: target.value})
+    
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const userRedirect = await loginUser(state)
+    if (userRedirect === "farmer"){
+      console.log("A granjero")
+    }
+  }
+
   return (
     <div>
       {/* Navbar*/}
@@ -33,40 +52,82 @@ export const Home = () => {
           <div
             className="modal fade"
             id="registerModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
           >
             <div className="modal-dialog">
               <div className="modal-content">
-                <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="exampleModalLabel">
-                    Registrate segun tu rol
+                <div className="modal-header ">
+                  <h1 className="modal-title fs-5 text-center" id="exampleModalLabel">
+                    Login
                   </h1>
+
                   <button
                     type="button"
                     className="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
+
                 </div>
-                <div className="modal-body">
-                  <Link to={"/register"}>
-                    <button
-                      type="button"
-                      className="btn btn-secondary"
-                      data-bs-dismiss="modal"
-                    >
-                      Soy Agricultor
-                    </button>
-                  </Link>
-                  <button type="button" className="btn btn-primary">
-                    Soy Técnico
-                  </button>
+
+                {/*login usuario */}
+                <div className="modal-body align-items-center">
+
+                  <form  onChange={handleChange} onSubmit={handleSubmit} className=" ">
+
+                    <div className="form-group pb-3">
+                      <label htmlFor="email">Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        id="email"
+                        placeholder="Introduce tu email"
+                        name="email"
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <div className="form-group pb-3">
+                      <label htmlFor="password">Contraseña</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        placeholder="Introduce tu contraseña"
+                        name="password"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="form-group pb-3 d-flex justify-content-center">
+                      <input type="submit" value="ENVIAR" className="btn mb-3"/>
+                    </div>
+
+                  </form>
+                  <div className="modal-register  px-5   text-center" >
+                    <h6 className="pb-1">¿No tienes usuario todavía? Registrate</h6>
+                    <div className="registerlinks d-flex justify-content-around">
+                      <Link to={"/register"}>
+                        
+                        <button
+                          type="button"
+                          className="BotLink"
+                          data-bs-dismiss="modal"
+                        >
+                          Soy Agricultor
+                        </button>
+                      </Link>
+                      <button type="button" className="BotLink">
+                        Soy Técnico
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          
         </div>
       </nav>
 
