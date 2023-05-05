@@ -45,15 +45,15 @@ export const Technician = () => {
             </nav>
 
             {/*Perfil*/}
-            <div className="section1 container  row" id="section1">
-              <div className="card h-500 col-4 d-flex  ">
+            <div className="section1 container " id="section1">
+              <div className="card_img h-500 col-4 d-flex  ">
               <img
                 className="img1  w-100 h-100 object-fit-cover"
                 src="https://agriculturaweb.es/wp-content/uploads/2018/01/productos-ecologicos-agricultura.jpg"
                 alt="Imagen de la sección 1"
               />
               </div>
-              <div className="textos row col-5 d-flex  ">
+              <div className="textos  col-5 d-flex  ">
                 
                 <h1 className="titulo1">
                   Juan Gutierrez
@@ -71,7 +71,7 @@ export const Technician = () => {
             {/*SERVICIOS*/}
             <div className="servicios col-12">
               <h1 className="titulo-servicios col-12  ps-5">Servicios</h1>
-              <div className="service_card  justify-content-center row">
+              <div className="service_card  justify-content-center">
                 <div className="card-servicios col-2 text-center m-5">
                     <div className="card_title">Servicio 1</div>
                 </div>
@@ -89,7 +89,7 @@ export const Technician = () => {
             {/*CONVERSACIONES*/}
             <div className="conversaciones col-12">
               <h1 className="titulo-servicios  ">Conversaciones</h1>
-              <div className=" row  justify-content-center">
+              <div className=" card_container justify-content-center">
           <div className=" card_conver col-3  m-3">
             <img
               src="https://elcamponopara.org/wp-content/uploads/2020/04/oferta-INGENIERO-T%C3%89CNICO-AGR%C3%8DCOLA-E-INDUSTRIAL.jpg"

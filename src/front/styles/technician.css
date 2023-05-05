@@ -44,10 +44,11 @@
     text-decoration: none;
   }
   .user{
-    color: #e9c46a;
+    color: #2c9131;
   }
 
 .textos{
+  margin-left: 5rem;
   
 
 }
@@ -55,21 +56,20 @@
   
   width: 100%;
   max-width: 100%;
+  display: flex; 
+  
+  
 }
 
-.card{
-  
-  width: 250px;
-  height: 250px;
-  border-radius: 10%;
-  margin-top: 25px;
-  border-width: 0px;
-  
+.titulo1{
+  font-size: 5rem;
 }
+  
+
 
  .titulo-tec{
   color: #e9c46a;
-  font-weight:200;
+  font-weight:600;
 
  }
  
@@ -79,6 +79,11 @@
   width: 100%;
   box-sizing: border-box;
   
+  }
+  .service_card{
+    display: flex; 
+    flex-wrap:wrap;
+    justify-content: space-between;
   }
   .card-servicios{
     font-size: 16px;
@@ -93,19 +98,39 @@
     border-radius: 2em;
     
   }
+  .card_img{
+    margin-left: 25rem;
+    margin-top: 3rem;
+    width: 25rem;
+    height: 25rem;
+  }
   .img1{
-    padding-left: 10%;
+    
     border-radius: 10%;
     object-fit: cover;
-    width: 100%;
-    height: 100%;
+    width: 40rem;
+    height: 40rem;
   }
-
+.card_container{
+  display: flex; 
+  flex-wrap:wrap;
+  justify-content: space-between;
+  max-width: 100%;
+  
+}
  .card_conver {
   background-color: transparent;
   border: 2px solid #2c9131;
   width: 16rem;
   height: 16rem;
+  border-radius: 10%;
+  transition: all 0.2s ease-in-out;
+}
+ .card_conver:hover {
+  background-color: #e9c46a;
+  color:white;
+  width: 17rem;
+  height: 17rem;
   border-radius: 10%;
 }
 .card-img-top {
@@ -113,4 +138,13 @@
     object-fit: cover;
     width: 100%;
     height: 100%;
+    filter: grayscale(50%);
+    
+}
+.card-img-top:hover {
+  border-radius: 10%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(0%);
 }
