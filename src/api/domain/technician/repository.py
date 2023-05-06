@@ -1,4 +1,5 @@
 from api.models.index import db, Technician
+from flask import jsonify
 
 ###POST TECHNICIAN - SIGNUP
 
@@ -7,3 +8,20 @@ def add_tech(body, user_id):
     db.session.add(new_tech)
     db.session.commit()
     return new_tech
+
+###GET ALL TECHNICIAN
+
+def get_all_tech():
+   tech = Technician.query.all()
+   print(tech)
+   tech_serialized = list(map(lambda x : x.serialize(), tech))
+   return tech_serialized
+
+
+###GET ONE TECHNICIAN
+
+def get_one_tech(id):
+    tech = Technician.query.get(id)
+    if tech is None:
+        return jsonify("No encontramos al usuario")
+    return tech

@@ -13,6 +13,7 @@ from api.commands import setup_commands
 import api.domain.user.router as user_router
 import api.domain.crop.router as crop_router
 import api.domain.farmer.router as farmer_router
+import api.domain.technician.router as tech_router
 from flask_jwt_extended import JWTManager
 
 
@@ -51,6 +52,8 @@ setup_commands(app)
 app.register_blueprint(user_router.api, url_prefix="/api/user")
 app.register_blueprint(crop_router.api, url_prefix="/api/crop")
 app.register_blueprint(farmer_router.api, url_prefix="/api/farmer")
+app.register_blueprint(tech_router.api, url_prefix="/api/tech")
+
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
