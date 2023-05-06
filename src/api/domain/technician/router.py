@@ -15,8 +15,4 @@ def tech_router(app):
     def get_one_tech(id):
         return Controller.get_one_tech(id)
     
-    #POST TECHNICIAN --> FALTA USER_ID
-    @app.route("/", methods=['POST'])
-    def post_tech():
-        body = request.get_json()
-        return Controller.post_tech(body, user_id)
+  

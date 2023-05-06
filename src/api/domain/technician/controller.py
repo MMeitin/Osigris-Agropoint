@@ -15,16 +15,3 @@ def get_one_tech(id):
         return jsonify("No encontramos el tecnico con id -->", id)
     return one_tech
 
-##POST TECH  --> FALTA USER_ID
-def post_tech(body, user_id):
-    if body["description"] is None:
-        return jsonify("Missing description", 400)
-    if body["phone_number"] is None:
-        return jsonify("Missing phone number", 400)
-    if body["country"] is None:
-        return jsonify("Missing country", 400)
-    if body["ccaa"] is None:
-        return jsonify("Missing ccaa", 400)
-    if body["speciality"] is None:
-        return jsonify("Missing speciality", 400)
-    return Repository.post_tech(body,user_id), 201
