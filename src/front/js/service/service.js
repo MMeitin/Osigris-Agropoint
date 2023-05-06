@@ -73,3 +73,18 @@ export const getInfoUser = async () => {
     console.log("ERROR GET USER", err)
   }
 }
+
+export const registerTech = async (newUser) => {
+  const raw = JSON.stringify(newUser);
+  try {
+    const resp = await fetch(`${URL}/signup/tech`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: raw,
+      redirect: "follow",
+    });
+    return await resp.json();
+  } catch (err) {
+    console.log("Error al crear nuevo User_Tech", err);
+  }
+};

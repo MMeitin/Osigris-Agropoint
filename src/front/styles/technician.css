@@ -1,0 +1,150 @@
+.navbar{
+  border-bottom: 2px solid #2c9131;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 1px;
+
+}
+
+.btn , user{
+    font-family: Roboto, sans-serif;
+    font-weight: 3;
+    font-size: 25px;
+    color: #2c9131;
+    background: transparent;
+    padding: 10px 30px;
+    border: none;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition: 0ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    font-family: Roboto, sans-serif;
+    font-weight: 3;
+    font-size: 25px;
+    color: #e9c46a;
+    background: transparent;
+    padding: 10px 30px;
+    border: none;
+    box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+    border-radius: 50px;
+    transition: 0ms;
+    transform: translateY(0);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .user{
+    color: #2c9131;
+  }
+
+.textos{
+  margin-left: 5rem;
+  
+
+}
+.section1{
+  
+  width: 100%;
+  max-width: 100%;
+  display: flex; 
+  
+  
+}
+
+.titulo1{
+  font-size: 5rem;
+}
+  
+
+
+ .titulo-tec{
+  color: #e9c46a;
+  font-weight:600;
+
+ }
+ 
+  .titulo-servicios{
+  margin-top: 25px;
+  border-bottom: 2px solid #2c9131;
+  width: 100%;
+  box-sizing: border-box;
+  
+  }
+  .service_card{
+    display: flex; 
+    flex-wrap:wrap;
+    justify-content: space-between;
+  }
+  .card-servicios{
+    font-size: 16px;
+    position: relative;
+    margin: auto;
+    padding: 1em 2.5em 1em 2.5em;
+    border: none;
+    background: #e9c46a;
+    font-weight: 900;
+    font-size:1.2em;
+    box-shadow: 0 0.4em 1em rgba(0, 0, 0, 0.1);
+    border-radius: 2em;
+    
+  }
+  .card_img{
+    margin-left: 25rem;
+    margin-top: 3rem;
+    width: 25rem;
+    height: 25rem;
+  }
+  .img1{
+    
+    border-radius: 10%;
+    object-fit: cover;
+    width: 40rem;
+    height: 40rem;
+  }
+.card_container{
+  display: flex; 
+  flex-wrap:wrap;
+  justify-content: space-between;
+  max-width: 100%;
+  
+}
+ .card_conver {
+  background-color: transparent;
+  border: 2px solid #2c9131;
+  width: 16rem;
+  height: 16rem;
+  border-radius: 10%;
+  transition: all 0.2s ease-in-out;
+}
+ .card_conver:hover {
+  background-color: #e9c46a;
+  color:white;
+  width: 17rem;
+  height: 17rem;
+  border-radius: 10%;
+}
+.card-img-top {
+  border-radius: 10%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(50%);
+    
+}
+.card-img-top:hover {
+  border-radius: 10%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(0%);
+}
