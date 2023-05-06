@@ -13,6 +13,7 @@ def add_tech(body, user_id):
 
 def get_all_tech():
    tech = Technician.query.all()
+   print(tech)
    tech_serialized = list(map(lambda x : x.serialize(), tech))
    return tech_serialized
 
@@ -21,6 +22,6 @@ def get_all_tech():
 
 def get_one_tech(id):
     tech = Technician.query.get(id)
-    if data is None:
+    if tech is None:
         return jsonify("No encontramos al usuario")
-    return tech.serialize()
+    return tech
