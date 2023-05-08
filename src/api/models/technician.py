@@ -14,11 +14,11 @@ class Technician(db.Model):
     
     
     def __init__(self, description, phone_number, country, ccaa, speciality, num_ropo, user_id):
-        self.description = description,
-        self.phone_number = phone_number,
-        self.country = country,
-        self.ccaa = ccaa,
-        self.speciality = speciality,
+        self.description = description
+        self.phone_number = phone_number
+        self.country = country
+        self.ccaa = ccaa
+        self.speciality = speciality
         self.num_ropo = num_ropo
         self.user_owner = user_id
 
