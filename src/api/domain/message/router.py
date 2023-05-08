@@ -9,7 +9,7 @@ api = Blueprint("api/message", __name__)
 
 @api.route('/', methods=['POST'])
 def create_message():
-    print("entra")
+    
     body = request.get_json()
     message = Controller.create_message(body)
     
@@ -26,3 +26,8 @@ def get_convers(id):
             return jsonify(technician_convers)
         else:
             return jsonify({'msg': 'No conversations found for this id'})
+
+@api.route('/<int:farmer_id>/<int:technician_id>', methods=['DELETE'])
+def delete_convers(farmer_id, technician_id):
+    deleted_count = Controller.delete_convers(farmer_id, technician_id)
+    

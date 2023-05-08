@@ -24,3 +24,14 @@ def get_technician_convers(id):
     for message in messages:
         convers.append(message.serialize())
     return convers
+
+def delete_convers(farmer_id, technician_id):
+    messages = Message.query.filter_by(farmer_id=farmer_id, technician_id=technician_id).all()
+    if deleted_count > 0:
+        for message in messages:
+            Repository.delete_message(message)
+        return jsonify({'message': 'deleted'})
+    else:
+        return jsonify({'message': 'No messages found '})
+    
+        
