@@ -30,4 +30,4 @@ def get_convers(id):
 @api.route('/<int:farmer_id>/<int:technician_id>', methods=['DELETE'])
 def delete_convers(farmer_id, technician_id):
     deleted_count = Controller.delete_convers(farmer_id, technician_id)
-    
+    return deleted_count
