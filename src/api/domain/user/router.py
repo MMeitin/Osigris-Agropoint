@@ -21,15 +21,6 @@ def register_farmer():
     user = Controller.post_user(body, "farmer")
     return jsonify(user.serialize())
 
-## FOR FUTURE PROPOUSES TODO
-@api.route('/private/<int:id>', methods=['GET'])
-@jwt_required()
-def get_user_id(id):
-    user = User.query.get(id)
-    token = get_jwt()
-    print(token)
-    return jsonify(user.serialize()), 201
-
 ##LOGIN USER
 @api.route('/login', methods=['POST'])
 def login():
@@ -37,7 +28,9 @@ def login():
     user = Controller.login(body)
     print(user)
     return user
-    
+
+
+# GET USER 
 @api.route('/', methods=['GET'])
 @jwt_required()
 def get_user():
