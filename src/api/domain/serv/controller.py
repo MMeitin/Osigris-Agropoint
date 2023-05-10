@@ -1,22 +1,27 @@
-from api.models.index import db, Service
+from api.models.index import db, Service, Technician
 from flask import jsonify
 import api.domain.serv.repository as Repository
+import api.domain.technician.controller as TechController
 
-def create_serv(id_technician, body):
+def create_serv(user_id, body):
     try:
-        # Check if technician ID and service name exist
-        if id_technician is None or body['name'] is None:
-            return jsonify({'error': 'Technician ID or service name not provided.'}), 400
-
-        # Call create_serv function to create new service
-        new_serv = Repository.create_serv(id_technician, body)
-
-        # Return the new service
-        return new_serv, 201
-
+        tech = TechController.get_tech_by_user_owner(user_id)
+        if not isinstance(tech, Technician):
+            return jsonify({'error': 'User is not a technician.'}), 400
+        if body is None or 'name' not in body:
+            return jsonify({'error': 'Name is required.'}), 400
+        return Repository.create_serv(tech.id, body)
     except Exception as e:
-        # Catch any other errors that may occur and return an appropriate error message
         return jsonify({'error': str(e)}), 500
+
+def get_own_serv(user_id):
+    tech = TechController.get_tech_by_user_owner(user_id)
+    return get_own_serv_by_tech(tech.id)
+
+def get_own_serv_by_tech(tech_id):
+    return Repository.get_own_serv(tech_id)
+            
+
 
 
 
