@@ -4,10 +4,10 @@ from api.models.review import Review
 ## GET ALL REVIEW
 def get_all_review():
     reviews = Repository.get_all_review()
-    if review is None:
+    if reviews is None:
         return jsonify("No hay reviews")
-    else
-    return review
+    else:
+        return reviews
 
 ## GET ONE REVIEW BY ID
 def get_one_review(id):
@@ -15,4 +15,12 @@ def get_one_review(id):
     if review is None:
         return jsonify("No encontre la review")
     else:
-    return review
+        return review
+
+# POST REVIEW
+def post_review(body):
+    review = Repository.post_review(body)
+    if body['text'] is None:
+        return jsonify("No hay texto en la review")
+    else:
+        return review

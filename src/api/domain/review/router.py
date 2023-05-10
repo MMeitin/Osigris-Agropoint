@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models.review import Review
-from api.domain.review.controller as Controller
+from flask import request, jsonify, Blueprint
+from flask_jwt_extended import jwt_required, get_jwt_identity
+import api.domain.review.controller as Controller
+
 
 api = Blueprint("api/review", __name__)
 
@@ -11,9 +12,20 @@ def get_all_reviews():
     return jsonify(review), 200
 
 ## GET ONE REVIEW
-@api.route('<int:id>', methods=['GET'])
+@api.route('/<int:id>', methods=['GET'])
 def get_review_by_id(id):
     review = Controller.get_one_review(id)
     return jsonify(review), 200
 
 ## POST REVIEW
+@api.route('/', methods=['POST'])
+@jwt_required()
+def post_review():
+   user = get_jwt_identity()
+   print(user)
+   user_id = user["id"]
+   print(user_id)
+   body = request.get_json()
+   body["id_farmer"] = user_id
+   review = Controller.post_review(body)
+   return jsonify(review)

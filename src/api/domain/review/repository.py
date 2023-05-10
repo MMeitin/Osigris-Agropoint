@@ -15,3 +15,12 @@ def get_one_review(id):
 
 ## POST REVIEW
 def post_review(body):
+    review = Review(body["text"], body["date"], body["id_farmer"], body["id_technician"])
+    print(review)
+    db.session.add(review)
+    db.session.commit()
+    return review.serialize()
+
+
+
+    
