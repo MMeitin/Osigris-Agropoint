@@ -1,5 +1,5 @@
 from flask import request, jsonify, Blueprint
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 import api.domain.review.controller as Controller
 
 
@@ -21,11 +21,15 @@ def get_review_by_id(id):
 @api.route('/', methods=['POST'])
 @jwt_required()
 def post_review():
-   user = get_jwt_identity()
-   print(user)
-   user_id = user["id"]
-   print(user_id)
+   info_token = get_jwt()
+   print(info_token)
+   #user = get_jwt_identity()
+   #print(user)
+   #user_id = user["id"]
+   print("INFO-TOKEN BY ID",info_token['sub'])
+   user = info_token['sub']
+   print("INFO DEL USER --> ", user["id"])
    body = request.get_json()
-   body["id_farmer"] = user_id
+   body["id_farmer"] = user["id"]
    review = Controller.post_review(body)
    return jsonify(review)
