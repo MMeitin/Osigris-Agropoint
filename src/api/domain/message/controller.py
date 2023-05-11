@@ -3,17 +3,26 @@ from flask import jsonify,request
 from api.models.message import Message
 from datetime import datetime
 from flask_jwt_extended import get_jwt_identity , jwt_required, get_jwt
-
-def create_message(body):
+from api.models.farmer import Farmer
+from api.models.technician import Technician
+def create_message(body,user):
     now = datetime.now()
-    user = get_jwt_identity()
-    user_sender = user['id']
+
     
+    user_id = user['id']
+    if user['role'] == "farmer":
+        farmer_id = Farmer.query.filter_by(id=user_id).first().id
+        message = Message(farmer_id=farmer_id, technician_id=body['technician_id'], message=body['message'], date=body.get('date', now), sender=user_id)
+        created_message = Repository.create_message(message)
+        return created_message.serialize()
+    elif user['role'] == "technician":
+        technician_id = Technician.query.filter_by(id=user_id).first().id
+        message = Message(farmer_id=body['farmer_id'], technician_id=technician_id, message=body['message'], date=body.get('date', now), sender=user_id)
+        created_message = Repository.create_message(message)
+        return created_message.serialize()
+    else:
+        return jsonify("no user with this ID")
     
-    
-    message = Message(body['farmer_id'], body['technician_id'], body['message'], body.get('date', now), sender=user_sender)
-    created_message = Repository.create_message(message)
-    return created_message.serialize()
 
 def get_farmer_convers(user_id):
         messages = Message.query.filter_by(sender=user_id).all()
