@@ -8,6 +8,7 @@ import api.domain.crop.controller as Controller
 api = Blueprint("api/crop", __name__)
 
 @api.route('/addFarm', methods=['POST'])
+@jwt_required()
 def post_crop():
     body = request.get_json()
     crop = Controller.post_crop(body)
@@ -16,12 +17,14 @@ def post_crop():
 
 # Get crops from an ID    
 @api.route('/<int:farmer_id>', methods=['GET'])
+@jwt_required()
 def get_farmer_crops(farmer_id):
     farmer_crops = Controller.get_farmer_crops(farmer_id)       
     return jsonify(farmer_crops)
 
 #Delete Crop from an ID
 @api.route('/<int:crop_id>', methods=['DELETE'])
+@jwt_required()
 def delete_crop(crop_id):
     crop = Crop.query.get(crop_id)
     crop = Controller.delete_crop(crop)
@@ -29,7 +32,8 @@ def delete_crop(crop_id):
 
 #Modify Crop from an ID
 @api.route('/<int:crop_id>', methods=['PUT'])
-def modify_planet(crop_id):
+@jwt_required()
+def modify_crop(crop_id):
     crop = Crop.query.get(crop_id)
     modified_crop=Controller.modify_crop(crop)
     return jsonify(modified_crop)

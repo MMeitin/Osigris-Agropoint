@@ -54,7 +54,7 @@ export const RegTech = () => {
         />
       </div>
       <form
-        className="formulario"
+        className="formulario-tech"
         onChange={handleChange}
         onSubmit={handleSubmit}
       >
