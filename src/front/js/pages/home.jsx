@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link, navigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-import "../../styles/home.css";
+import '../../styles/home.css';
 import { loginUser } from "../service/service";
 
 export const Home = () => {
@@ -29,7 +29,7 @@ export const Home = () => {
         <div className="col2 ms-5">
           <h2>LOGO</h2>
         </div>
-        <div className="d-flex col justify-content-end mb-3 p-4 px-5">
+        <div className="d-flex col justify-content-end p-2">
           <a className="navbar-brand mb-0 h1 p-2 px-5" href="#section1">
             Quienes somos
           </a>

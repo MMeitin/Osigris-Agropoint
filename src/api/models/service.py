@@ -7,7 +7,7 @@ class Service(db.Model):
     id_technician = db.Column(db.Integer,db.ForeignKey('technician.id'), unique=True, nullable=False)
     technician = db.relationship('Technician')
     
-    def __init__(self, id_technician, description, name):
+    def __init__(self, id_technician, name):
         self.name = name
         self.id_technician =  id_technician
         
@@ -16,6 +16,5 @@ class Service(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "id_technician": self.id_technician
-            
+            "id_technician": self.id_technician       
         }
