@@ -25,3 +25,8 @@ def get_one_tech(id):
     if tech is None:
         return jsonify("No encontramos al usuario")
     return tech
+
+### GET TECH BY USER_OWNER
+
+def get_tech_by_user_owner(user_id):
+    return Technician.query.filter_by(user_owner=user_id).first()
