@@ -23,13 +23,11 @@ def get_review_by_id(id):
 def post_review():
    info_token = get_jwt()
    print(info_token)
-   #user = get_jwt_identity()
-   #print(user)
-   #user_id = user["id"]
    print("INFO-TOKEN BY ID",info_token['sub'])
    user = info_token['sub']
    print("INFO DEL USER --> ", user["id"])
    body = request.get_json()
    body["id_farmer"] = user["id"]
-   review = Controller.post_review(body)
+   role = user["role"]
+   review = Controller.post_review(body, role)
    return jsonify(review)

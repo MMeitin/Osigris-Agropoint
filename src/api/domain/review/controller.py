@@ -1,4 +1,5 @@
 import api.domain.review.repository as Repository
+from api.models.index import Farmer
 from api.models.review import Review
 
 ## GET ALL REVIEW
@@ -9,7 +10,7 @@ def get_all_review():
     else:
         return reviews
 
-## GET ONE REVIEW BY ID
+## GET ONE REVIEW BY ID "WE MAY NEED THIS FOR FUTURE PROPOUSES"
 def get_one_review(id):
     review = Repository.get_one_review(id)
     if review is None:
@@ -18,9 +19,15 @@ def get_one_review(id):
         return review
 
 # POST REVIEW
-def post_review(body):
-    review = Repository.post_review(body)
-    if body['text'] is None:
-        return jsonify("No hay texto en la review")
+def post_review(body, role):
+    if role == "farmer":
+        id_farmer = Farmer.query.filter_by(user_owner=body["id_farmer"]).first()
+        print("ID FARMER AFTER QUERY",id_farmer)
+        body["id_famer"] = id_farmer
+        review = Repository.post_review(body)
+        if body['text'] is None:
+            return jsonify("No hay texto en la review")
+        else:
+            return review
     else:
-        return review
+        return jsonify("El role no es granjero.")
