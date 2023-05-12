@@ -52,7 +52,7 @@ export const RegFarmer = () => {
         />
       </div>
       <form
-        className="formulario-tech"
+        className="formularioFarm"
         onChange={handleChange}
         onSubmit={handleSubmit}
       >

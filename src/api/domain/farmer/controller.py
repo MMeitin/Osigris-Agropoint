@@ -5,8 +5,7 @@ from api.models.farmer import Farmer
 
 
 
-def get_farmer(id):
-    
+def get_farmer(id):    
     farmer = Farmer.query.get(id)
     if farmer:
         return farmer.serialize()

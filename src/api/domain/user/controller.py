@@ -15,6 +15,7 @@ def verify_user_email_and_pass(user):
 
 def post_user(body, role):
     user_verify = verify_user_email_and_pass(body)
+    
     if user_verify.get('error') is not None:
         return jsonify({ "msg": 'User not found', "error": True, "status": 404 })
 
@@ -22,6 +23,7 @@ def post_user(body, role):
     body['password'] = hashed.decode()
     new_user = Repository.sign_in_user(body['email'], body['password'], role)
     print("holaaaaaaaaaaaaaaaa", new_user)
+   
     if role == 'farmer':
         new_farmer = FarmerRepository.add_farmer(body, new_user.id)
         print(new_farmer)
@@ -35,8 +37,6 @@ def login(body):
     user_verify = verify_user_email_and_pass(body)
     user = User.query.filter_by(email=body['email']).first()
     
-    
-
     if user is None:
         return {"msg": "User not found", "error": True, "status": 404}
 
