@@ -32,8 +32,19 @@ def get_convers():
         else:
             return jsonify({'msg': 'No conversations found for this id'})
 
-@api.route('/<int:farmer_id>/<int:technician_id>', methods=['DELETE'])
+@api.route('/<int:id>', methods=['DELETE'])
 @jwt_required()
-def delete_convers(farmer_id, technician_id):
-    deleted_count = Controller.delete_convers(farmer_id, technician_id)
-    return deleted_count
+def delete_convers(id):
+    user = get_jwt_identity()
+    user_role = user['role']
+    user_id = user['id']
+    if user_role == 'farmer':
+
+        deleted_count = Controller.delete_farmer_convers(user_id, id)
+        return deleted_count
+    elif user_role == 'technician':
+        deleted_count = Controller.delete_technician_convers(user_id, id)
+        return deleted_count
+    else :
+        return jsonify("No messages found for this user")
+   

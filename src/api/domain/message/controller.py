@@ -39,8 +39,8 @@ def get_technician_convers(user_id):
         convers.append(message.serialize())
     return convers
 
-def delete_convers(farmer_id, technician_id):
-    messages = Message.query.filter_by(farmer_id=farmer_id, technician_id=technician_id).all()
+def delete_farmer_convers(user_id,id):
+    messages = Message.query.filter_by(farmer_id=user_id, technician_id=id).all()
     if messages:
         for message in messages:
             deleted_message = Repository.delete_message(message)
@@ -48,4 +48,11 @@ def delete_convers(farmer_id, technician_id):
     else:
         return jsonify({'message': 'No messages found '})
     
-        
+def delete_technician_convers(user_id,id):
+    messages = Message.query.filter_by(farmer_id=id, technician_id=user_id).all()
+    if messages:
+        for message in messages:
+            deleted_message = Repository.delete_message(message)
+        return jsonify({'message': 'messages deleted'})
+    else:
+        return jsonify({'message': 'No messages found '})        

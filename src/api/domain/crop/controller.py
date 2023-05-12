@@ -1,14 +1,14 @@
 import api.domain.crop.repository as Repository
 from flask import jsonify,request
 from api.models.crops import Crop
-
+from flask_jwt_extended import get_jwt_identity , jwt_required, get_jwt
 #  Create Crop
-def post_crop(body):
+def post_crop(body,user_id):
     if body['dimension_ha'] is None:
         return ('dimension_ha is empty', 400)
     if body['crop_type'] is None:
         return Response.response_error('crop_type is empty', 400)
-    return Repository.create_crop(body)
+    return Repository.create_crop(body,user_id)
 
 def get_farmer_crops(farmer_id):
     

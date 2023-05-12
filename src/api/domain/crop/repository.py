@@ -1,7 +1,7 @@
 from api.models.index import db, Crop
 
-def create_crop(body):
-    crop = Crop(body["dimension_ha"], body["crop_type"], body["description"],body["farmer_id"])
+def create_crop(body,user_id):
+    crop = Crop(body["dimension_ha"], body["crop_type"], body["description"],farmer_id=user_id)
     db.session.add(crop)
     db.session.commit()
     return crop
