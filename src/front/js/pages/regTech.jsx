@@ -1,9 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { registerTech } from "../service/service";
+import { useNavigate } from "react-router-dom";
 import "../../styles/register.css";
 
 export const RegTech = () => {
+  const navigate = useNavigate()
   const [state, setState] = useState({
     email: "",
     description: "",
@@ -42,6 +44,7 @@ export const RegTech = () => {
     e.preventDefault();
     console.log("From handleSubmit --> ", state);
     registerTech(state);
+    navigate("/technician")
   };
 
   return (

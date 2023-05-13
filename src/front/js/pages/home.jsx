@@ -23,6 +23,10 @@ export const Home = () => {
       console.log("A granjero");
       navigate("/profile")
     }
+    if (userRedirect === "tech") {
+      console.log("A Tech");
+      navigate("/technician")
+    }
   };
 
   return (

@@ -25,12 +25,16 @@ def post_user(body, role):
    
     if role == 'farmer':
         new_farmer = FarmerRepository.add_farmer(body, new_user.id)
+        print("Hy FARMER")
+        new_token = create_access_token(identity=new_user.serialize())
+        return {"token": new_token, "role": new_user.role}
     elif role == 'tech':
         new_tech = TechRepository.add_tech(body, new_user.id)
+        print("Hy TECH")
+        new_token = create_access_token(identity=new_user.serialize())
+        return {"token": new_token, "role": new_user.role}
         
-    new_token = create_access_token(identity=user.serialize())
-    return {"token": new_token, "role": user.role}
-
+    
 
 def login(body):
     user_verify = verify_user_email_and_pass(body)
