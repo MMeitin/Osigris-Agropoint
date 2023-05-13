@@ -1,11 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Link, navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 import '../../styles/home.css';
 import { loginUser } from "../service/service";
 
 export const Home = () => {
+  const navigate = useNavigate()
+
   const { store, actions } = useContext(Context);
 
   const [state, setState] = useState({ email: "", password: "" });
@@ -19,6 +21,11 @@ export const Home = () => {
     const userRedirect = await loginUser(state);
     if (userRedirect === "farmer") {
       console.log("A granjero");
+      navigate("/profile")
+    }
+    if (userRedirect === "tech") {
+      console.log("A Tech");
+      navigate("/technician")
     }
   };
 

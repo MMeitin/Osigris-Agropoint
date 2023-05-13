@@ -1,10 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { registerFarmer } from "../service/service";
 import "../../styles/register.css";
 
 export const RegFarmer = () => {
+  const navigate = useNavigate();
+
   const [state, setState] = useState({
     email: "",
     country: "España",
@@ -40,6 +42,7 @@ export const RegFarmer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerFarmer(state);
+    navigate("/profile")
   };
 
   return (

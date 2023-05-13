@@ -22,16 +22,19 @@ def post_user(body, role):
     hashed = bcrypt.hashpw(body['password'].encode(), bcrypt.gensalt(14)) # encode convierte en bytes
     body['password'] = hashed.decode()
     new_user = Repository.sign_in_user(body['email'], body['password'], role)
-    print("holaaaaaaaaaaaaaaaa", new_user)
    
     if role == 'farmer':
         new_farmer = FarmerRepository.add_farmer(body, new_user.id)
-        print(new_farmer)
+        print("Hy FARMER")
+        new_token = create_access_token(identity=new_user.serialize())
+        return {"token": new_token, "role": new_user.role}
     elif role == 'tech':
         new_tech = TechRepository.add_tech(body, new_user.id)
-        print(new_tech)
-    return new_user
-
+        print("Hy TECH")
+        new_token = create_access_token(identity=new_user.serialize())
+        return {"token": new_token, "role": new_user.role}
+        
+    
 
 def login(body):
     user_verify = verify_user_email_and_pass(body)
