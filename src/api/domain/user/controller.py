@@ -22,15 +22,14 @@ def post_user(body, role):
     hashed = bcrypt.hashpw(body['password'].encode(), bcrypt.gensalt(14)) # encode convierte en bytes
     body['password'] = hashed.decode()
     new_user = Repository.sign_in_user(body['email'], body['password'], role)
-    print("holaaaaaaaaaaaaaaaa", new_user)
    
     if role == 'farmer':
         new_farmer = FarmerRepository.add_farmer(body, new_user.id)
-        print(new_farmer)
     elif role == 'tech':
         new_tech = TechRepository.add_tech(body, new_user.id)
-        print(new_tech)
-    return new_user
+        
+    new_token = create_access_token(identity=user.serialize())
+    return {"token": new_token, "role": user.role}
 
 
 def login(body):
