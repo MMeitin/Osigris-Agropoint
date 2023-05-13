@@ -1,13 +1,23 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import "../../styles/farmerView.css";
 import logo from "../../img/logo.png";
-import campo1 from "../../img/campo1.jpg";
-import campo2 from "../../img/campo2.jpeg";
-import campo3 from "../../img/campo3.jpeg";
-import campo4 from "../../img/campo4.jpeg";
-
+import Cropcard from "../component/cropCard.jsx";
+import { getInfoCrop } from "../service/service";
 export const FarmerView = () => {
+
+  const [crops, setcrops] = useState([]);
+
+	const getCrops = async () => {
+		const data = await getInfoCrop();
+		setcrops(data)
+		}
+
+  useEffect(()=>{
+    getCrops()
+  },[])
+
+
   return (
     <div className="container-fluid farmerViewContainer">
       <nav className="navbar navbar-expand-lg bg-body-tertiary nav-farmer-view">
@@ -48,25 +58,17 @@ export const FarmerView = () => {
           </a>
         </div>
       </nav>
-      <section className="main-body">
-        <div class="slider">
-          <ul>
-            <li>
-              <img src={campo1} />
-            </li>
-            <li>
-              <img src={campo2} />
-            </li>
-            <li>
-              <img src={campo3} />
-            </li>
-            <li>
-              <img src={campo4} />
-            </li>
-          </ul>
-        </div>
 
-        <div className="myCrops"></div>
+      {/*BODY*/}
+
+      <section className="main-body">
+        {/*My Crops*/}
+        <div className="conversaciones col-12">
+          <h1 className="titulo-servicios  ">Mis Cultivos</h1>
+          <div className=" card_container justify-content-center">
+            {crops.map((todo,index) => <Cropcard key={todo.id} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />)}
+          </div> 
+        </div>
       </section>
     </div>
   );

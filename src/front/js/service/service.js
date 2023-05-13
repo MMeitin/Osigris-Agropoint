@@ -1,7 +1,7 @@
 const URL =
-  "https://3001-mmeitin-osigrisagropoin-967hno4oo42.ws-eu97.gitpod.io/api/user";
+  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/user";
 const URLCROP =
-  "https://3001-mmeitin-osigrisagropoin-ud5t2tj9qb1.ws-eu96.gitpod.io/api/crop";
+  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/crop";
 
 const HEADERS = {
   "Content-Type": "application/json",
@@ -84,5 +84,28 @@ export const registerTech = async (newUser) => {
     return await resp.json();
   } catch (err) {
     console.log("Error al crear nuevo User_Tech", err);
+  }
+};
+
+
+
+
+
+
+
+export const getInfoCrop = async () => {
+  try {
+    const res = await fetch(`${URLCROP}/${crop_id}`.trim(), {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await res.json();
+
+    return data;
+  } catch (err) {
+    console.log("ERROR GET CROP", err);
   }
 };
