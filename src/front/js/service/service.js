@@ -1,5 +1,5 @@
 const URL =
-  "https://3001-mmeitin-osigrisagropoin-hospcjs4382.ws-eu97.gitpod.io/api/user";
+  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/user";
 const URLCROP =
   "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/crop";
 
@@ -94,18 +94,23 @@ export const registerTech = async (newUser) => {
 
 
 export const getInfoCrop = async () => {
+  const token = localStorage.getItem("token")
+  console.log(token)
   try {
-    const res = await fetch(`${URLCROP}/${crop_id}`.trim(), {
+    const res = await fetch(`${URLCROP}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
         ...HEADERS,
       },
     });
+    
+    
     const data = await res.json();
-
+    console.log("la data del fetch",data)
     return data;
-  } catch (err) {
-    console.log("ERROR GET CROP", err);
+  } catch (error) {
+    console.error('Error en getInfoCrop', error);
+    return [""];
   }
 };

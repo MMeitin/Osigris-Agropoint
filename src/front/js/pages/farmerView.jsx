@@ -8,26 +8,27 @@ export const FarmerView = () => {
 
   const [crops, setcrops] = useState([]);
 
-	const getCrops = async () => {
+	const getCrop = async () => {
 		const data = await getInfoCrop();
+    
 		setcrops(data)
 		}
 
   useEffect(()=>{
-    getCrops()
+    getCrop()
   },[])
 
 
   return (
-    <div className="container-fluid farmerViewContainer">
+    <div className="farmerViewContainer">
       <nav className="navbar navbar-expand-lg bg-body-tertiary nav-farmer-view">
         <div className="col2 ms-5">
           <img className="logo" src={logo} />
         </div>
         <div className="d-flex col justify-content-end mb-3 p-4 px-5">
-          <div class="dropdown">
+          <div className="dropdown">
             <button
-              class="btn btn-secondary dropdown-toggle"
+              className="btn btn-secondary dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -35,14 +36,14 @@ export const FarmerView = () => {
             >
               Mis cultivos
             </button>
-            <ul class="dropdown-menu">
+            <ul className="dropdown-menu">
               <li>
-                <button class="dropdown-item" type="button">
+                <button className="dropdown-item" type="button">
                   Añadir Campos
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button className="dropdown-item" type="button">
                   Ver Campos
                 </button>
               </li>
@@ -61,15 +62,15 @@ export const FarmerView = () => {
 
       {/*BODY*/}
 
-      <section className="main-body">
+      <div className="main-body ">
         {/*My Crops*/}
-        <div className="conversaciones col-12">
-          <h1 className="titulo-servicios  ">Mis Cultivos</h1>
-          <div className=" card_container justify-content-center">
-            {crops.map((todo,index) => <Cropcard key={todo.id} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />)}
+        <div className="misCultivos col-12">
+          <h1 className="titulo-miscultivos ">Mis Cultivos</h1>
+          <div className="cropCard_container justify-content-center">
+            {crops ? crops.map((todo,index) => <Cropcard key={index} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />) : <Cropcard  description={"Crea tu primer Cultivo"}   />}
           </div> 
         </div>
-      </section>
+      </div>
     </div>
   );
 };
