@@ -10,13 +10,16 @@ const HEADERS = {
 export const registerFarmer = async (newUser) => {
   const raw = JSON.stringify(newUser);
   try {
-    const resp = await fetch(`${URL}/api/user/signup/farmer`, {
+    const resp = await fetch(`${URL}/api/user/signup/farmer/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: raw,
       redirect: "follow",
     });
-    return await resp.json();
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.role);
+    const data = await resp.json();
+    return data;
   } catch (err) {
     console.log("Error al crear nuevo User_Farmer", err);
   }
@@ -65,12 +68,27 @@ export const getInfoUser = async (token) => {
       },
     });
     const data = await res.json();
-
     return data;
   } catch (err) {
     console.log("ERROR GET USER", err);
   }
 };
+
+export const getInfoFarmer = async (id_user, token) => {
+  try {
+    const res = await fetch(`${URL}/api/farmer/${id_user}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await res.json()
+    return data;
+  }catch(err){
+    console.log("ERROR GET FARMER", err)
+  }
+}
 
 export const getInfoTech = async (id_user, token) => {
   try {
@@ -91,7 +109,7 @@ export const getInfoTech = async (id_user, token) => {
 export const registerTech = async (newUser) => {
   const raw = JSON.stringify(newUser);
   try {
-    const resp = await fetch(`${URL}/api/user/signup/tech`, {
+    const resp = await fetch(`${URL}/api/user/signup/tech/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: raw,
