@@ -9,6 +9,8 @@ export const RegFarmer = () => {
 
   const [state, setState] = useState({
     email: "",
+    name: "",
+    sur_name: "",
     country: "España",
     ccaa: "",
     company: "",
@@ -42,7 +44,7 @@ export const RegFarmer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerFarmer(state);
-    navigate("/profile")
+    navigate("/profile");
   };
 
   return (
@@ -100,6 +102,24 @@ export const RegFarmer = () => {
             Las contraseñas no coinciden
           </div>
         )}
+        <label htmlFor="name">Nombre</label>
+        <input
+          className="form-control"
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Escribre tu nombre..."
+          required
+        />
+        <label htmlFor="sur_name">Apellido</label>
+        <input
+          className="form-control"
+          type="text"
+          id="sur_name"
+          name="sur_name"
+          placeholder="Escribre tu apellido..."
+          required
+        />
         <label htmlFor="country">País</label>
         <select
           defaultValue="ES"

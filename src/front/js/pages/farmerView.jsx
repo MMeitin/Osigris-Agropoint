@@ -3,19 +3,30 @@ import { Link } from "react-router-dom";
 import "../../styles/farmerView.css";
 import logo from "../../img/logo.png";
 import Cropcard from "../component/cropCard.jsx";
-import { getInfoCrop } from "../service/service";
+import { getInfoCrop, getInfoUser, getInfoFarmer } from "../service/service";
+
 export const FarmerView = () => {
 
   const [crops, setcrops] = useState([]);
+  const [name, setName] = useState('');
+
+  const getInfo = async () => {
+    const token = localStorage.getItem("token")
+    const user = await getInfoUser(token)
+    console.log("User",user)
+    const farmer = await getInfoFarmer(user['id'], token)
+    console.log(farmer)
+    setName(farmer['name'] +" "+ farmer['sur_name'])
+  }
 
 	const getCrop = async () => {
 		const data = await getInfoCrop();
-    
 		setcrops(data)
-		}
+	}
 
   useEffect(()=>{
-    getCrop()
+    getCrop();
+    getInfo();
   },[])
 
 
@@ -50,24 +61,26 @@ export const FarmerView = () => {
             </ul>
           </div>
           <Link to={"/profileServices"}>
-            <a className="navbar-brand mb-0 h1 p-2 px-5" href="#services">
+            <div className="navbar-brand mb-0 h1 p-2 px-5" href="#services">
               Servicios
-            </a>
+            </div>
           </Link>
-          <a className="navbar-brand mb-0 h1 p-2 px-5" href="#questions">
+          <div className="navbar-brand mb-0 h1 p-2 px-5" href="#questions">
             Consultas
-          </a>
+          </div>
         </div>
       </nav>
 
       {/*BODY*/}
-
+      <div className="pre-body">
+        <h1>{name}</h1>
+      </div>
       <div className="main-body ">
         {/*My Crops*/}
         <div className="misCultivos col-12">
           <h1 className="titulo-miscultivos ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
-            {crops ? crops.map((todo,index) => <Cropcard key={index} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />) : <Cropcard  description={"Crea tu primer Cultivo"}   />}
+            {crops.size > 0 ? crops.map((todo,index) => <Cropcard key={index} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />) : <Cropcard  description={"Crea tu primer Cultivo"}   />}
           </div> 
         </div>
       </div>

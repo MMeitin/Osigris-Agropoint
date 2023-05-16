@@ -11,15 +11,16 @@ api = Blueprint("api/user", __name__)
 @api.route('/signup/tech', methods=['POST'])
 def register_tech():
     body = request.get_json()
+    print(body)
     user = Controller.post_user(body, "tech")
-    return jsonify(user)
+    return jsonify(user), 200
 
 # SIGNUP USER FARMER
 @api.route('/signup/farmer', methods=['POST'])
 def register_farmer():
     body = request.get_json()
     user = Controller.post_user(body, "farmer")
-    return jsonify(user.serialize())
+    return jsonify(user), 200
 
 ##LOGIN USER
 @api.route('/login', methods=['POST'])
@@ -37,4 +38,4 @@ def get_user():
     info_token = get_jwt()
     user = info_token['sub']
     user_response = Controller.get_user(user)
-    return jsonify(user_response.serialize()), 200
+    return user_response.serialize(), 200

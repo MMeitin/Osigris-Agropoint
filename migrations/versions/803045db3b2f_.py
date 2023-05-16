@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<<< HEAD:migrations/versions/4e34df1e6a12_.py
-Revision ID: 4e34df1e6a12
+Revision ID: 803045db3b2f
 Revises: 
-Create Date: 2023-05-13 09:34:20.901081
-========
-Revision ID: 688c9be63a11
-Revises: 
-Create Date: 2023-05-13 09:37:58.247007
->>>>>>>> main:migrations/versions/688c9be63a11_.py
+Create Date: 2023-05-16 16:09:07.168288
 
 """
 from alembic import op
@@ -16,11 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< HEAD:migrations/versions/4e34df1e6a12_.py
-revision = '4e34df1e6a12'
-========
-revision = '688c9be63a11'
->>>>>>>> main:migrations/versions/688c9be63a11_.py
+revision = '803045db3b2f'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -38,6 +28,8 @@ def upgrade():
     )
     op.create_table('farmer',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('sur_name', sa.String(length=50), nullable=False),
     sa.Column('country', sa.String(length=40), nullable=False),
     sa.Column('ccaa', sa.String(length=40), nullable=False),
     sa.Column('company', sa.String(length=50), nullable=True),
@@ -49,6 +41,8 @@ def upgrade():
     )
     op.create_table('technician',
     sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=50), nullable=False),
+    sa.Column('sur_name', sa.String(length=50), nullable=False),
     sa.Column('description', sa.String(length=300), nullable=False),
     sa.Column('phone_number', sa.Integer(), nullable=False),
     sa.Column('country', sa.String(length=40), nullable=False),

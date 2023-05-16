@@ -10,6 +10,6 @@ api = Blueprint("api/farmer", __name__)
 
 @api.route('/<int:id>', methods=['GET'])
 def get_farmer(id):
-    farmer = Controller.get_farmer(id)       
+    farmer = Controller.get_farmer_by_user_owner(id)       
     return jsonify(farmer), 200
 

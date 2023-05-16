@@ -8,6 +8,8 @@ export const RegTech = () => {
   const navigate = useNavigate()
   const [state, setState] = useState({
     email: "",
+    name:"",
+    sur_name:"",
     description: "",
     phone_number: "",
     country: "España",
@@ -102,6 +104,10 @@ export const RegTech = () => {
             Las contraseñas no coinciden
           </div>
         )}
+        <label htmlFor="name">Nombre</label>
+        <input className="form-control" type="text" id="name" name="name" placeholder="Escribre tu nombre..." required/>
+        <label htmlFor="sur_name">Apellido</label>
+        <input className="form-control" type="text" id="sur_name" name="sur_name" placeholder="Escribre tu apellido..." required/>
         <label htmlFor="country">País</label>
         <select
           defaultValue="ES"

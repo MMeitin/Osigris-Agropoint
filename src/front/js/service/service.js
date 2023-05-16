@@ -1,9 +1,8 @@
 const URL =
-  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/user";
+  "https://3001-mmeitin-osigrisagropoin-3nqdxrxjcqf.ws-eu97.gitpod.io";
 const URLCROP =
-  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/crop";
-const URLBASE =
-  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api";
+  "https://3001-mmeitin-osigrisagropoin-3nqdxrxjcqf.ws-eu97.gitpod.io/api/crop";
+
 const HEADERS = {
   "Content-Type": "application/json",
 };
@@ -11,13 +10,17 @@ const HEADERS = {
 export const registerFarmer = async (newUser) => {
   const raw = JSON.stringify(newUser);
   try {
-    const resp = await fetch(`${URL}/signup/farmer`, {
+    const resp = await fetch(`${URL}/api/user/signup/farmer/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: raw,
       redirect: "follow",
     });
-    return await resp.json();
+    const data = await resp.json();
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.role);
+
+    return data;
   } catch (err) {
     console.log("Error al crear nuevo User_Farmer", err);
   }
@@ -40,7 +43,7 @@ export const addFarm = async (newFarm) => {
 };
 export const loginUser = async (user) => {
   try {
-    const res = await fetch(`${URL}/login`, {
+    const res = await fetch(`${URL}/api/user/login`, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(user),
@@ -56,9 +59,9 @@ export const loginUser = async (user) => {
   }
 };
 
-export const getInfoUser = async () => {
+export const getInfoUser = async (token) => {
   try {
-    const res = await fetch(`${URL}`, {
+    const res = await fetch(`${URL}/api/user/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -66,37 +69,67 @@ export const getInfoUser = async () => {
       },
     });
     const data = await res.json();
-
     return data;
   } catch (err) {
     console.log("ERROR GET USER", err);
   }
 };
 
+export const getInfoFarmer = async (id_user, token) => {
+  try {
+    const res = await fetch(`${URL}/api/farmer/${id_user}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log("ERROR GET FARMER", err);
+  }
+};
+
+export const getInfoTech = async (id_user, token) => {
+  try {
+    const res = await fetch(`${URL}/api/tech/${id_user}`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.log("ERROR Get technician", err);
+  }
+};
+
 export const registerTech = async (newUser) => {
   const raw = JSON.stringify(newUser);
   try {
-    const resp = await fetch(`${URL}/signup/tech`, {
+    const resp = await fetch(`${URL}/api/user/signup/tech/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: raw,
       redirect: "follow",
     });
-    return await resp.json();
+    const data = await resp.json();
+    console.log("From service -->", data);
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("role", data.role);
+
+    return data;
   } catch (err) {
     console.log("Error al crear nuevo User_Tech", err);
   }
 };
 
-
-
-
-
-
-
 export const getInfoCrop = async () => {
-  const token = localStorage.getItem("token")
-  console.log(token)
+  const token = localStorage.getItem("token");
+  console.log(token);
   try {
     const res = await fetch(`${URLCROP}`, {
       method: "GET",
@@ -105,22 +138,20 @@ export const getInfoCrop = async () => {
         ...HEADERS,
       },
     });
-    
-    
+
     const data = await res.json();
-    
+    console.log("la data del fetch", data);
     return data;
   } catch (error) {
-    console.error('Error en getInfoCrop', error);
-    return [""];
+    console.error("Error en getInfoCrop", error);
   }
 };
 
 export const getMessages = async () => {
-  const token = localStorage.getItem("token")
-  
+  const token = localStorage.getItem("token");
+
   try {
-    const res = await fetch(`${URLBASE}/message/`, {
+    const res = await fetch(`${URL}/api/message/`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -128,10 +159,10 @@ export const getMessages = async () => {
       },
     });
     const data = await res.json();
-    
+
     return data;
   } catch (error) {
-    console.error('Error en getMessages', error);
+    console.error("Error en getMessages", error);
     return [""];
   }
 };
