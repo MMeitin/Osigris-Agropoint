@@ -7,7 +7,8 @@ import "../../styles/technician.css";
 export const Technician = () => {
   const navigate = useNavigate();
   const [conversations, setConversations] = useState([]);
-
+  const [name, setName] = useState("");
+  const [services, setServices] = useState([]);
   
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = conversations => {
@@ -32,8 +33,7 @@ export const Technician = () => {
     setConversations(uniqueConversations);
   };
 
-  const [name, setName] = useState("");
-  const [services, setServices] = useState([]);
+  
 
   const infoUser = async () => {
     const token = localStorage.getItem("token");
