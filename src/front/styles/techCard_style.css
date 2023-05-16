@@ -1,0 +1,22 @@
+.tech_card {
+  background-color: transparent;
+  border: 2px solid #2c9131;
+  width: 16rem;
+  height: fit-content;
+  border-radius: 10%;
+  margin: 1em;
+  transition: all 0.2s ease-in-out;
+}
+.card_conver:hover {
+  background-color: #e9c46a;
+  color: white;
+  width: 17rem;
+  height: 17rem;
+  border-radius: 10%;
+}
+
+.tech-card-body {
+  margin: 0.3rem;
+  text-align: center;
+  justify-content: center;
+}

@@ -1,7 +1,7 @@
 const URL =
-  "https://3001-mmeitin-osigrisagropoin-p7ylsdu04m7.ws-eu97.gitpod.io";
+  "https://3001-mmeitin-osigrisagropoin-jqi46hkowwy.ws-eu97.gitpod.io";
 const URLCROP =
-  "https://3001-mmeitin-osigrisagropoin-p7ylsdu04m7.ws-eu97.gitpod.io/api/crop";
+  "https://3001-mmeitin-osigrisagropoin-jqi46hkowwy.ws-eu97.gitpod.io/api/crop";
 
 const HEADERS = {
   "Content-Type": "application/json",
@@ -146,3 +146,20 @@ export const getInfoCrop = async () => {
     console.error("Error en getInfoCrop", error);
   }
 };
+
+export const getAllTech = async () => {
+  const token = localStorage.getItem("token")
+  try{
+    const res = await fetch(`${URL}/api/tech/`, {
+      method:"GET",
+      headers:{
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+    });
+    const data = await res.json();
+    return data;
+  }catch(err){
+    console.error("Error al fetch de All Tech", err);
+  }
+}
