@@ -1,7 +1,7 @@
 const URL =
-  "https://3001-mmeitin-osigrisagropoin-3nqdxrxjcqf.ws-eu97.gitpod.io";
+  "https://3001-mmeitin-osigrisagropoin-p7ylsdu04m7.ws-eu97.gitpod.io";
 const URLCROP =
-  "https://3001-mmeitin-osigrisagropoin-3nqdxrxjcqf.ws-eu97.gitpod.io/api/crop";
+  "https://3001-mmeitin-osigrisagropoin-p7ylsdu04m7.ws-eu97.gitpod.io/api/crop";
 
 const HEADERS = {
   "Content-Type": "application/json",

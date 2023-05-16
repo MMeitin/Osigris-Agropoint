@@ -1,12 +1,12 @@
 import React, {useState,useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../styles/farmerView.css";
 import logo from "../../img/logo.png";
 import Cropcard from "../component/cropCard.jsx";
 import { getInfoCrop, getInfoUser, getInfoFarmer } from "../service/service";
 
 export const FarmerView = () => {
-
+  const navigate = useNavigate()
   const [crops, setcrops] = useState([]);
   const [name, setName] = useState('');
 
@@ -23,6 +23,11 @@ export const FarmerView = () => {
 		const data = await getInfoCrop();
 		setcrops(data)
 	}
+
+  const logOut = () => {
+    localStorage.clear()
+    navigate('/')
+  }
 
   useEffect(()=>{
     getCrop();
@@ -67,6 +72,9 @@ export const FarmerView = () => {
           </Link>
           <div className="navbar-brand mb-0 h1 p-2 px-5" href="#questions">
             Consultas
+          </div>
+          <div className="navbar-brand mb-0 h1 p-2 px-5" onClick={logOut}>
+            Salir
           </div>
         </div>
       </nav>

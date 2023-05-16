@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { getInfoTech, getInfoUser } from "../service/service";
 import "../../styles/technician.css";
 
 export const Technician = () => {
+  const navigate = useNavigate()
   const [name, setName] = useState("");
 
   const infoUser = async () => {
@@ -15,6 +16,11 @@ export const Technician = () => {
     console.log("Tech", tech);
     setName(tech["name"] + " " + tech["sur_name"]);
   };
+
+  const logOut = () => {
+    localStorage.clear()
+    navigate("/")
+  }
 
   useEffect(() => {
     infoUser();
@@ -60,6 +66,11 @@ export const Technician = () => {
               <li>
                 <a className="dropdown-item" href="#">
                   Ir al perfil
+                </a>
+              </li>
+              <li>
+                <a className="dropdown-item" href="#" onClick={logOut}>
+                  Salir
                 </a>
               </li>
             </ul>

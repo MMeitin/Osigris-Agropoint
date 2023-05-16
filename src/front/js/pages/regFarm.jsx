@@ -41,9 +41,9 @@ export const RegFarmer = () => {
     setState({ ...state, [target.name]: target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    registerFarmer(state);
+    await registerFarmer(state);
     navigate("/profile");
   };
 
