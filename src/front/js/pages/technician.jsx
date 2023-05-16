@@ -1,29 +1,36 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { getInfoTech, getInfoUser } from "../service/service";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { getInfoTech, getInfoUser, getServices } from "../service/service";
 import "../../styles/technician.css";
 
 export const Technician = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState("");
-
-  const infoUser = async () => {
-    const token = localStorage.getItem("token");
-    console.log("Token", token);
-    const user = await getInfoUser(token);
-    console.log("User", user);
-    const tech = await getInfoTech(user["id"], token);
-    console.log("Tech", tech);
-    setName(tech["name"] + " " + tech["sur_name"]);
-  };
+  const [services, setServices] = useState([]);
 
   const logOut = () => {
-    localStorage.clear()
-    navigate("/")
-  }
+    localStorage.clear();
+    navigate("/");
+  };
 
   useEffect(() => {
+    const infoUser = async () => {
+      const token = localStorage.getItem("token");
+      console.log("Token", token);
+      const user = await getInfoUser(token);
+      console.log("User", user);
+      const tech = await getInfoTech(user["id"], token);
+      console.log("Tech", tech);
+      setName(tech["name"] + " " + tech["sur_name"]);
+    };
+
+    const fetchData = async () => {
+      const servicesData = await getServices();
+      setServices(servicesData);
+    };
+
     infoUser();
+    fetchData();
   }, []);
 
   return (
@@ -96,6 +103,11 @@ export const Technician = () => {
             Gran experiencia en todo tipos de cultivo. Especialista en leñosas.
             Contáctame para saber más.
           </p>
+          {services.map((service) => (
+            <div key={service.id}>
+              <h3>{service.name}</h3>
+            </div>
+          ))}
         </div>
       </div>
       {/*SERVICIOS*/}

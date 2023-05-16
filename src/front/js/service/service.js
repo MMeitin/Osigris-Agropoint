@@ -19,7 +19,7 @@ export const registerFarmer = async (newUser) => {
     const data = await resp.json();
     localStorage.setItem("token", data.token);
     localStorage.setItem("role", data.role);
-    
+
     return data;
   } catch (err) {
     console.log("Error al crear nuevo User_Farmer", err);
@@ -163,3 +163,20 @@ export const getAllTech = async () => {
     console.error("Error al fetch de All Tech", err);
   }
 }
+export const getServices = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const user = await getInfoUser(token);
+    const tech = await getInfoTech(user["id"], token);
+    const serviceData = await fetch(`${URL}/api/serv/${tech.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const servicesJson = await serviceData.json();
+    return servicesJson;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
