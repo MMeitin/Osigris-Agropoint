@@ -13,14 +13,14 @@ def register_tech():
     body = request.get_json()
     print(body)
     user = Controller.post_user(body, "tech")
-    return user.serialize()
+    return jsonify(user), 200
 
 # SIGNUP USER FARMER
 @api.route('/signup/farmer', methods=['POST'])
 def register_farmer():
     body = request.get_json()
     user = Controller.post_user(body, "farmer")
-    return user.serialize()
+    return jsonify(user), 200
 
 ##LOGIN USER
 @api.route('/login', methods=['POST'])

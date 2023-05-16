@@ -4,29 +4,29 @@ import "../../styles/farmerView.css";
 import logo from "../../img/logo.png";
 import Cropcard from "../component/cropCard.jsx";
 import { getInfoCrop, getInfoUser, getInfoFarmer } from "../service/service";
+
 export const FarmerView = () => {
 
   const [crops, setcrops] = useState([]);
   const [name, setName] = useState('');
 
-  const getInfoFarmer = async () => {
+  const getInfo = async () => {
     const token = localStorage.getItem("token")
     const user = await getInfoUser(token)
     console.log("User",user)
     const farmer = await getInfoFarmer(user['id'], token)
+    console.log(farmer)
     setName(farmer['name'] +" "+ farmer['sur_name'])
-    console.log("Nombre",name)
   }
 
 	const getCrop = async () => {
 		const data = await getInfoCrop();
 		setcrops(data)
-    console.log(crops)
 	}
 
   useEffect(()=>{
     getCrop();
-    getInfoFarmer();
+    getInfo();
   },[])
 
 
