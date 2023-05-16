@@ -37,18 +37,38 @@ def get_farmer_convers(user_id):
     messages = Message.query.filter_by(farmer_id=farmer.id).all()
     convers = []
     for message in messages:
-        convers.append(message.serialize())
+        technician = Technician.query.filter_by(id=message.technician_id).first()
+        if technician is not None:
+            message_data = message.serialize()
+            message_data['name'] = technician.name
+            convers.append(message_data)
     return convers
     
 
 def get_technician_convers(id):
+
+    
     
     messages = Message.query.filter_by(technician_id=id).all()
     convers = []
     for message in messages:
-        convers.append(message.serialize())
+        farmer = Farmer.query.filter_by(id=message.farmer_id).first()
+        if farmer is not None:
+            message_data = message.serialize()
+            message_data['name'] = farmer.name
+            convers.append(message_data)
     return convers
+
+
+    # messages = Message.query.filter_by(technician_id=id).all()
+    # messages.sort(key=lambda message: message.technician_id)  # Ordenar los mensajes por technician_id
     
+    # convers_list = []
+    # for technician_id, group in groupby(messages, key=lambda message: message.technician_id):
+    #     convers = [message.serialize() for message in group]
+    #     convers_list.append({'technician_id': technician_id, 'conversations': convers})
+    
+    # return convers_list
 
 def delete_farmer_convers(user_id, id):
     farmer = Farmer.query.filter_by(user_owner=user_id).first()

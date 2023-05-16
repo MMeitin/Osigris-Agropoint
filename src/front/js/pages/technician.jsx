@@ -7,21 +7,45 @@ import "../../styles/technician.css";
 export const Technician = () => {
   const [conversations, setConversations] = useState([]);
   const [usedFarmerIds, setUsedFarmerIds] = useState([]);
+
+  // const getConversations = async () => {
+  //   const data = await getMessages();
+  //   console.log("las conversacion que traigo son",data);
+  //   setConversations(data);
+  // };
+  
+  //FILTRO LAS CONVERSACIONES POR FARMER_ID
+  const getUniqueConversationsByFarmer = conversations => {
+    const conversationsByFarmer = {};
+  
+    conversations.forEach(conversation => {
+      const farmerId = conversation.farmer_id;
+      if (!conversationsByFarmer[farmerId]) {
+        conversationsByFarmer[farmerId] = conversation;
+      }
+    });
+  
+    const uniqueConversations = Object.values(conversationsByFarmer);
+    return uniqueConversations;
+  };
+  
   const getConversations = async () => {
     const data = await getMessages();
-    console.log(data);
-    setConversations(data);
+    console.log("las conversaciones que traigo son", data);
+  
+    const uniqueConversations = getUniqueConversationsByFarmer(data);
+    setConversations(uniqueConversations);
   };
 
   const [name, setName] = useState("");
 
   const infoUser = async () => {
     const token = localStorage.getItem("token");
-    console.log("Token", token);
+    
     const user = await getInfoUser(token);
-    console.log("User", user);
+    
     const tech = await getInfoTech(user["id"], token);
-    console.log("Tech", tech);
+    
     setName(tech["name"] + " " + tech["sur_name"]);
   };
 
@@ -119,14 +143,14 @@ export const Technician = () => {
       <div className="misConversaciones col-12">
         <h1 className="titulo-misConversaciones">Conversaciones</h1>
         <div className="messageCard_container justify-content-center">
-          {conversations ? (
+          {conversations  ? (
             conversations.map((todo, index) => (
               <MessageCard
                 key={index}
                 id={todo.id}
                 message={todo.message}
                 date={todo.date}
-                farmer_id={todo.farmer_id}
+                name={todo.name}
               />
             ))
           ) : (

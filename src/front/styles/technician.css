@@ -72,7 +72,13 @@
   font-weight:600;
 
  }
- 
+ .titulo-misConversaciones{
+  margin-top: 25px;
+  border-bottom: 2px solid #2c9131;
+  width: 100%;
+  box-sizing: border-box;
+  
+  }
   .titulo-servicios{
   margin-top: 25px;
   border-bottom: 2px solid #2c9131;
