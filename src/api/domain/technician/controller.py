@@ -19,4 +19,4 @@ def get_tech_by_user_owner(user_id):
     tech = Repository.get_tech_by_user_owner(user_id)
     if tech is None:
         return jsonify('No existe ese técnico')
-    return tech
+    return tech.serialize()

@@ -1,16 +1,19 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, navigate } from "react-router-dom";
-import { getInfoUser } from "../service/service";
+import { getInfoTech, getInfoUser } from "../service/service";
 import "../../styles/technician.css";
 
 export const Technician = () => {
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState("");
 
   const infoUser = async () => {
     const token = localStorage.getItem("token");
-
+    console.log("Token", token);
     const user = await getInfoUser(token);
-    setEmail(user['email']);
+    console.log("User", user);
+    const tech = await getInfoTech(user["id"], token);
+    console.log("Tech", tech);
+    setName(tech["name"] + " " + tech["sur_name"]);
   };
 
   useEffect(() => {
@@ -74,7 +77,7 @@ export const Technician = () => {
           />
         </div>
         <div className="textos  col-5 d-flex  ">
-          <h1 className="titulo1">{email}</h1>
+          <h1 className="titulo1">{name}</h1>
           <h3 className="titulo-tec">
             <span>Técnico agrícola</span>
           </h3>

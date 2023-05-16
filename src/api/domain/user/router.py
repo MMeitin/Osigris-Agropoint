@@ -11,6 +11,7 @@ api = Blueprint("api/user", __name__)
 @api.route('/signup/tech', methods=['POST'])
 def register_tech():
     body = request.get_json()
+    print(body)
     user = Controller.post_user(body, "tech")
     return jsonify(user)
 

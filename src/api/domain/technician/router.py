@@ -14,7 +14,7 @@ def get_all_tech():
 #GET ONE TECHNICIAN
 @api.route('/<int:id>', methods=['GET'])
 def get_one_tech(id):
-    one_tech = Controller.get_one_tech(id)
+    one_tech = Controller.get_tech_by_user_owner(id)
     return jsonify(one_tech), 200
     
   
