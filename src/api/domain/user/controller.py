@@ -28,6 +28,7 @@ def post_user(body, role):
         print("Hy FARMER")
         new_token = create_access_token(identity=new_user.serialize())
         return {"token": new_token, "role": new_user.role}
+        
     elif role == 'tech':
         new_tech = TechRepository.add_tech(body, new_user.id)
         print("Hy TECH")

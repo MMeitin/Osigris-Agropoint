@@ -15,9 +15,9 @@ export const FarmerView = () => {
           <img className="logo" src={logo} />
         </div>
         <div className="d-flex col justify-content-end mb-3 p-4 px-5">
-          <div class="dropdown">
+          <div className="dropdown">
             <button
-              class="btn btn-secondary dropdown-toggle"
+              className="btn btn-secondary dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -25,14 +25,14 @@ export const FarmerView = () => {
             >
               Mis cultivos
             </button>
-            <ul class="dropdown-menu">
+            <ul className="dropdown-menu">
               <li>
-                <button class="dropdown-item" type="button">
+                <button className="dropdown-item" type="button">
                   Añadir Campos
                 </button>
               </li>
               <li>
-                <button class="dropdown-item" type="button">
+                <button className="dropdown-item" type="button">
                   Ver Campos
                 </button>
               </li>
@@ -49,7 +49,7 @@ export const FarmerView = () => {
         </div>
       </nav>
       <section className="main-body">
-        <div class="slider">
+        <div className="slider">
           <ul>
             <li>
               <img src={campo1} />

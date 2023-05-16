@@ -2,11 +2,11 @@ import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-import '../../styles/home.css';
+import "../../styles/home.css";
 import { loginUser } from "../service/service";
 
 export const Home = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { store, actions } = useContext(Context);
 
@@ -21,11 +21,11 @@ export const Home = () => {
     const userRedirect = await loginUser(state);
     if (userRedirect === "farmer") {
       console.log("A granjero");
-      navigate("/profile")
+      navigate("/profile");
     }
     if (userRedirect === "tech") {
       console.log("A Tech");
-      navigate("/technician")
+      navigate("/technician");
     }
   };
 
@@ -110,11 +110,13 @@ export const Home = () => {
                       />
                     </div>
                     <div className="form-group pb-3 d-flex justify-content-center">
-                      <input
+                      <button
                         type="submit"
-                        value="ENVIAR"
                         className="btn mb-3"
-                      />
+                        data-bs-dismiss="modal"
+                      >
+                        Enviar
+                      </button>
                     </div>
                   </form>
                   <div className="modal-register  px-5   text-center">
