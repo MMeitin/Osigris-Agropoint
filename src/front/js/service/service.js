@@ -2,7 +2,8 @@ const URL =
   "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/user";
 const URLCROP =
   "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api/crop";
-
+const URLBASE =
+  "https://3001-mmeitin-osigrisagropoin-li9ak5v9a8k.ws-eu97.gitpod.io/api";
 const HEADERS = {
   "Content-Type": "application/json",
 };
@@ -107,10 +108,30 @@ export const getInfoCrop = async () => {
     
     
     const data = await res.json();
-    console.log("la data del fetch",data)
+    
     return data;
   } catch (error) {
     console.error('Error en getInfoCrop', error);
+    return [""];
+  }
+};
+
+export const getMessages = async () => {
+  const token = localStorage.getItem("token")
+  
+  try {
+    const res = await fetch(`${URLBASE}/message/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await res.json();
+    
+    return data;
+  } catch (error) {
+    console.error('Error en getMessages', error);
     return [""];
   }
 };

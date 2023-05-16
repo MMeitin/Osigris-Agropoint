@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/cropCard_style.css";
 import serviceFunction from "../service/service.js";
-import "../../styles/home.css";
+
 const Cropcard = (props) =>{
 
     

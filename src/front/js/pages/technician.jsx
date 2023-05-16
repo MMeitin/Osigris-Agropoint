@@ -1,12 +1,30 @@
-import React, { useState,useContext } from "react";
+import React, { useState,useEffect,useContext } from "react";
 import { Link, navigate  } from "react-router-dom";
-
+import MessageCard from "../component/messageCard.jsx";
+import { getMessages } from "../service/service";
 import "../../styles/technician.css";
 
 
 
-
 export const Technician = () => {
+
+  const [conversations, setConversations] = useState([]);
+  const [usedFarmerIds, setUsedFarmerIds] = useState([]);
+  const getConversations = async () => {
+
+      const data = await getMessages();
+      console.log(data)
+      setConversations(data); 
+   };
+
+  
+
+  useEffect(() => {
+    getConversations(); 
+  }, []);
+
+
+
     return(
         <div>
             {/*NAVBAR*/}
@@ -87,43 +105,18 @@ export const Technician = () => {
               </div>
             </div>
             {/*CONVERSACIONES*/}
-            <div className="conversaciones col-12">
-              <h1 className="titulo-servicios  ">Conversaciones</h1>
-              <div className=" card_container justify-content-center">
-          <div className=" card_conver col-3  m-3">
-            <img
-              src="https://elcamponopara.org/wp-content/uploads/2020/04/oferta-INGENIERO-T%C3%89CNICO-AGR%C3%8DCOLA-E-INDUSTRIAL.jpg"
-              className="card-img-top  "
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              
-            </div>
-          </div>
-          <div className=" card_conver col-3  m-3 ">
-            <img
-              className="card-img-top "
-              src="https://www.marismas.es/wp-content/uploads/2018/06/asesoramiento-tecnico-agricola-4.jpg"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Monica</h5>
-             
-            </div>
-          </div>
-          <div className=" card_conver col-3 m-3">
-            <img
-              src="https://www.empresaagraria.com/wp-content/uploads/2020/05/Gonzalo-P%C3%A9rez-Fern%C3%A1ndez-1179x580.jpeg"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Javier</h5>
-             
-            </div>
-          </div>
-        </div> 
+            <div className="misConversaciones col-12">
+              <h1 className="titulo-misConversaciones">Conversaciones</h1>
+              <div className="messageCard_container justify-content-center">
+              {conversations ? conversations.map((todo,index) =>
+                                               <MessageCard 
+                                               key={index} 
+                                               id={todo.id} 
+                                               message={todo.message} 
+                                               date={todo.date} 
+                                               farmer_id={todo.farmer_id} />)
+                 : <h1>No hay conversaciones todavía</h1>}
+              </div>
             </div>
         </div>
     )
