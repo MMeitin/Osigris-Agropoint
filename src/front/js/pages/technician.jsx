@@ -1,18 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MessageCard from "../component/messageCard.jsx";
 import { getInfoTech, getInfoUser, getMessages } from "../service/service";
 import "../../styles/technician.css";
 
 export const Technician = () => {
+  const navigate = useNavigate();
   const [conversations, setConversations] = useState([]);
-  const [usedFarmerIds, setUsedFarmerIds] = useState([]);
 
-  // const getConversations = async () => {
-  //   const data = await getMessages();
-  //   console.log("las conversacion que traigo son",data);
-  //   setConversations(data);
-  // };
   
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = conversations => {
@@ -38,6 +33,7 @@ export const Technician = () => {
   };
 
   const [name, setName] = useState("");
+  const [services, setServices] = useState([]);
 
   const infoUser = async () => {
     const token = localStorage.getItem("token");
@@ -49,9 +45,25 @@ export const Technician = () => {
     setName(tech["name"] + " " + tech["sur_name"]);
   };
 
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+  
+    
+  const fetchData = async () => {
+    const servicesData = await getServices();
+    setServices(servicesData);
+  };
+
+const loadAllData = async () => {
+    await getConversations(); 
+    await infoUser();
+    await fetchData();
+}
+
   useEffect(() => {
-    getConversations();
-    infoUser();
+    loadAllData();
   }, []);
 
   return (
@@ -96,6 +108,11 @@ export const Technician = () => {
                   Ir al perfil
                 </a>
               </li>
+              <li>
+                <a className="dropdown-item" href="#" onClick={logOut}>
+                  Salir
+                </a>
+              </li>
             </ul>
           </div>
         </div>
@@ -119,6 +136,11 @@ export const Technician = () => {
             Gran experiencia en todo tipos de cultivo. Especialista en leñosas.
             Contáctame para saber más.
           </p>
+          {services.map((service) => (
+            <div key={service.id}>
+              <h3>{service.name}</h3>
+            </div>
+          ))}
         </div>
       </div>
       {/*SERVICIOS*/}

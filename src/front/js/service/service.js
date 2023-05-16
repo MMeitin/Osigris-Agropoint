@@ -164,5 +164,22 @@ export const getMessages = async () => {
   } catch (error) {
     console.error("Error en getMessages", error);
     return [""];
+     }
+      }
+export const getServices = async () => {
+  try {
+    const token = localStorage.getItem("token");
+    const user = await getInfoUser(token);
+    const tech = await getInfoTech(user["id"], token);
+    const serviceData = await fetch(`${URL}/api/serv/${tech.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const servicesJson = await serviceData.json();
+    return servicesJson;
+  } catch (error) {
+    console.error(error);
+    return null;
   }
 };

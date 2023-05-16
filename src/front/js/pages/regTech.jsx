@@ -42,10 +42,10 @@ export const RegTech = () => {
     setState({ ...state, [target.name]: target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("From handleSubmit --> ", state);
-    registerTech(state);
+    await registerTech(state);
     navigate("/technician")
   };
 
