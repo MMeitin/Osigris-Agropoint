@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import MessageCard from "../component/messageCard.jsx";
-import { getInfoTech, getInfoUser, getMessages } from "../service/service";
+import { getInfoTech, getInfoUser, getMessages, getServices } from "../service/service";
 import "../../styles/technician.css";
 
 export const Technician = () => {
@@ -31,6 +31,7 @@ export const Technician = () => {
   
     const uniqueConversations = getUniqueConversationsByFarmer(data);
     setConversations(uniqueConversations);
+    console.log("elnombre es ",name)
   };
 
   
