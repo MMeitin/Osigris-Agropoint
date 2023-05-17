@@ -199,3 +199,16 @@ export const getServices = async () => {
     return null;
   }
 };
+
+export const filterTechByField = async () => {
+  try{
+    const res = await fetch(`${URL}/api/farmer/`,{
+      method: 'POST',
+      headers: {...HEADERS}
+    });
+     data = await res.json()
+     return data;
+  }catch(err){
+    console.error("No pudimos filtrar tu tecnico -->",err)
+  }
+}
