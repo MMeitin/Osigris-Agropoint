@@ -8,27 +8,27 @@ export const Technician = () => {
   const [name, setName] = useState("");
   const [services, setServices] = useState([]);
 
+  const infoUser = async () => {
+    const token = localStorage.getItem("token");
+    console.log("Token", token);
+    const user = await getInfoUser(token);
+    console.log("User", user);
+    const tech = await getInfoTech(user["id"], token);
+    console.log("Tech", tech);
+    setName(tech["name"] + " " + tech["sur_name"]);
+    };
+
   const logOut = () => {
     localStorage.clear();
     navigate("/");
   };
 
-  useEffect(() => {
-    const infoUser = async () => {
-      const token = localStorage.getItem("token");
-      console.log("Token", token);
-      const user = await getInfoUser(token);
-      console.log("User", user);
-      const tech = await getInfoTech(user["id"], token);
-      console.log("Tech", tech);
-      setName(tech["name"] + " " + tech["sur_name"]);
-    };
-
-    const fetchData = async () => {
-      const servicesData = await getServices();
-      setServices(servicesData);
-    };
-
+  const fetchData = async () => {
+    const servicesData = await getServices();
+    setServices(servicesData);
+  };
+  
+  useEffect(() => { 
     infoUser();
     fetchData();
   }, []);
