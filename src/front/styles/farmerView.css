@@ -1,35 +1,54 @@
 /*SECCION DE FARMER VIEW*/
 .nav-farmer-view {
-    background-color: #efdab7;
-  }
-  
-  .logo {
-    width: 50%;
-    height: 50%;
-    border-radius: 50%;
-  }
-  
+  background-color: #efdab7;
+}
 
-  .main-body{
-    
-  }
+.logo {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
 
-  
+.btnProfile {
+  color: hsl(118, 56%, 29%);
+}
 
-  
+.titulo-misTech {
+  margin-top: 25px;
+  border-bottom: 2px solid #2c9131;
+  width: 100%;
+  box-sizing: border-box;
+}
 
-  
-  .btnProfile {
-    color: hsl(118, 56%, 29%);
-  }
-  
-  /*backdrop-filter: blur(3px);*/
-  
+.cropCard_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
-  .cropCard_container{
-    display: flex; 
-    flex-wrap:wrap;
-    justify-content: space-between;
-    max-width: 100%;
-    
-  }
+.formularioFilterTech {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.oneFilter {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 1em;
+}
+
+.twoFilter {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 1em;
+}
+
+.threeFilter {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: 1em;
+}

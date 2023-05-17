@@ -7,8 +7,14 @@ import { getInfoCrop, getInfoUser, getInfoFarmer } from "../service/service";
 
 export const FarmerView = () => {
   const navigate = useNavigate()
+
   const [crops, setcrops] = useState([]);
   const [name, setName] = useState('');
+  const [filter, setFilter] = useState({
+    ccaa : "",
+    speciality : "",
+    name : ""
+  })
 
   const getInfo = async () => {
     const token = localStorage.getItem("token")
@@ -27,6 +33,15 @@ export const FarmerView = () => {
   const logOut = () => {
     localStorage.clear()
     navigate('/')
+  }
+
+  const handleChangefilterTech = ({target}) => {
+      setFilter({...filter, [target.name]: target.value});
+  }
+
+  const handleSubmitFilterTech = async (e) => {
+    e.preventDefault()
+    console.log(filter)
   }
 
   useEffect(()=>{
@@ -90,6 +105,51 @@ export const FarmerView = () => {
           <div className="cropCard_container justify-content-center">
             {crops.size > 0 ? crops.map((todo,index) => <Cropcard key={index} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />) : <Cropcard  description={"Crea tu primer Cultivo"}   />}
           </div> 
+        </div>
+        {/*FILTRADO DE TECH */}
+        <div className="misTech col-12">
+          <h1 className="titulo-misTech">Mis técnicos</h1>
+          <form 
+          className="formularioFilterTech" 
+          onChange={handleChangefilterTech}
+          onSubmit={handleSubmitFilterTech}
+          >
+            <div className="oneFilter">
+              <label htmlFor="ccaa">Por CCAA</label>
+                <i>Comunidad Autónoma</i>
+                <select className="form-control" id="ccaa" name="ccaa">
+                  <option>Selecciona una CCAA</option>
+                  <option>Andalucía</option>
+                  <option>Aragón</option>
+                  <option>Asturias</option>
+                  <option>Baleares</option>
+                  <option>Canarias</option>
+                  <option>Cantabria</option>
+                  <option>Castilla-La Mancha</option>
+                  <option>Castilla y León</option>
+                  <option>Cataluña</option>
+                  <option>Extremadura</option>
+                  <option>Galicia</option>
+                  <option>La Rioja</option>
+                  <option>Madrid</option>
+                  <option>Murcia</option>
+                  <option>Navarra</option>
+                  <option>País Vasco</option>
+                  <option>Valencia</option>
+                </select>
+            </div>
+            <div className="twoFilter">
+              <label htmlFor="speciality">Especialidad</label>
+              <i>Filtra tu técnico según la especialidad</i>
+              <input className="form-control" type="text" id="speciality" name="speciality" placeholder="filtrar..."></input>
+            </div>
+            <div className="threeFilter">
+              <label htmlFor="name">Nombre</label>
+              <i>Filtra tu técnico por nombre</i>
+              <input className="form-control" type="text" id="name" name="name" placeholder="Filtrar..."></input>
+            </div>
+            <button className="btn" type="submit">Filtrar</button>
+          </form>
         </div>
       </div>
     </div>
