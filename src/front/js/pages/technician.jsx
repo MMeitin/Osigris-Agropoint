@@ -34,17 +34,15 @@ export const Technician = () => {
     console.log("elnombre es ",name)
   };
 
-  
-
   const infoUser = async () => {
     const token = localStorage.getItem("token");
-    
+    console.log("Token", token);
     const user = await getInfoUser(token);
-    
+    console.log("User", user);
     const tech = await getInfoTech(user["id"], token);
-    
+    console.log("Tech", tech);
     setName(tech["name"] + " " + tech["sur_name"]);
-  };
+    };
 
   const logOut = () => {
     localStorage.clear();
