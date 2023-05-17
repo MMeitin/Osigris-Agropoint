@@ -1,4 +1,4 @@
-from api.models.index import db, Farmer
+from api.models.index import db, Farmer, Technician
 
 ## POST FARMER
 def add_farmer(body, user_id):
@@ -12,3 +12,21 @@ def add_farmer(body, user_id):
 def get_farmer_by_user_owner(user_id):
     farmer = Farmer.query.filter_by(user_owner=user_id).first()
     return farmer
+
+## FILTER TECH BY NAME
+def filter_tech_by_name(name):
+    tech = Technician.query.filter_by(name=name).all()
+    tech_serialized = list(map(lambda x : x.serialize(),tech))
+    return tech_serialized
+
+## FILTER TECH BY CCAA
+def filter_tech_by_ccaa(ccaa):
+    tech = Technician.query.filter_by(ccaa=ccaa).all()
+    tech_serialized = list(map(lambda x : x.serialize(),tech))
+    return tech_serialized
+
+## FILTER TECH BY SPECIALITY
+def filter_tech_by_speciality(speciality):
+    tech = Technician.query.filter_by(speciality=speciality).all()
+    tech_serialized = list(map(lambda x : x.serialize(),tech))
+    return tech_serialized
