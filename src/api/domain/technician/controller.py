@@ -27,4 +27,9 @@ def filter_tech(body):
     if body["name"]:
         tech = Repository.filter_tech_by_name(body["name"])
         return tech
-    if body[]
+    if body["ccaa"]:
+        tech = Repository.filter_tech_by_ccaa(body["name"])
+        return tech
+    if body["speciality"]:
+        tech = Repository.filter_tech_by_speciality(body["speciality"])
+        return tech
