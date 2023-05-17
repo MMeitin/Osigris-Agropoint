@@ -147,6 +147,22 @@ export const getInfoCrop = async () => {
   }
 };
 
+export const getAllTech = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const res = await fetch(`${URL}/api/tech/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await res.json();
+    return data;
+  } catch (err) {
+    console.error("Error al fetch de All Tech", err);
+  }
+};
 export const getMessages = async () => {
   const token = localStorage.getItem("token");
 

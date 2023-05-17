@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "../../styles/farmerView.css";
 import logo from "../../img/logo.png";
 import Cropcard from "../component/cropCard.jsx";
-import { getInfoCrop, getInfoUser, getInfoFarmer } from "../service/service";
+import TechCard from "../component/techCard.jsx";
+import { getInfoCrop, getInfoUser, getInfoFarmer, getAllTech } from "../service/service";
 
 export const FarmerView = () => {
   const navigate = useNavigate()
+  const [tech, setTech] = useState([])
   const [crops, setcrops] = useState([]);
   const [name, setName] = useState('');
 
@@ -24,14 +26,27 @@ export const FarmerView = () => {
 		setcrops(data)
 	}
 
+  const getTech = async () => {
+    console.log("TECH BEFORE",tech)
+    const allTech = await getAllTech();
+    console.log(allTech)
+    setTech(allTech);
+    console.log("TECH AFTER",tech)
+  }
+
   const logOut = () => {
     localStorage.clear()
     navigate('/')
   }
 
+  const loadAllData = async () => {
+    await getCrop()
+    await getInfo()
+    await getTech()
+  }
+
   useEffect(()=>{
-    getCrop();
-    getInfo();
+    loadAllData()
   },[])
 
 
@@ -88,8 +103,15 @@ export const FarmerView = () => {
         <div className="misCultivos col-12">
           <h1 className="titulo-miscultivos ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
-            {crops.size > 0 ? crops.map((todo,index) => <Cropcard key={index} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />) : <Cropcard  description={"Crea tu primer Cultivo"}   />}
+            {crops.length > 0 ? crops.map((todo,index) => <Cropcard key={index} id={todo.id} crop_type={todo.crop_type} description={todo.description} dimension_ha={todo.dimension_ha}  />) : <Cropcard  description={"Crea tu primer Cultivo"}   />}
           </div> 
+        </div>
+      </div>
+      {/*My Technician */}
+      <div className="misTechnicos col-12">
+        <h1 className="titulo-miscultivos">Mis Tecnicos</h1>
+        <div className="cropCard_container justify-content-center">
+          {tech.length > 0 ? tech.map((element, index) => <TechCard key={index} name={element.name} sur_name={element.sur_name} country={element.country} ccaa={element.ccaa} speciality={element.speciality} />) : <h1>No hay Tecnicos</h1>}
         </div>
       </div>
     </div>
