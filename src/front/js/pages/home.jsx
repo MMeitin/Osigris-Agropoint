@@ -21,7 +21,7 @@ export const Home = () => {
     const userRedirect = await loginUser(state);
     if (userRedirect === "farmer") {
       console.log("A granjero");
-      navigate("/profile");
+      navigate("/farmer");
     }
     if (userRedirect === "tech") {
       console.log("A Tech");

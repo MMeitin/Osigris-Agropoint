@@ -26,10 +26,10 @@ export const FarmerServices = () => {
                   <button class="dropdown-item" type="button">
                     Añadir Campos
                   </button>
-                </Link>                
+                </Link>
               </li>
               <li>
-                <Link to={"/profile"}>
+                <Link to={"/farmer"}>
                   <button class="dropdown-item" type="button">
                     Ver Campos
                   </button>

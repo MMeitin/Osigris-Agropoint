@@ -41,6 +41,7 @@ export const addFarm = async (newFarm) => {
     console.log("Error al crear el nuevo campo", err);
   }
 };
+
 export const loginUser = async (user) => {
   try {
     const res = await fetch(`${URL}/api/user/login`, {
@@ -163,6 +164,7 @@ export const getAllTech = async () => {
     console.error("Error al fetch de All Tech", err);
   }
 };
+
 export const getMessages = async () => {
   const token = localStorage.getItem("token");
 
@@ -182,6 +184,7 @@ export const getMessages = async () => {
     return [""];
   }
 };
+
 export const getServices = async () => {
   try {
     const token = localStorage.getItem("token");

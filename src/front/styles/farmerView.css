@@ -1,35 +1,16 @@
 /*SECCION DE FARMER VIEW*/
-.nav-farmer-view {
-    background-color: #efdab7;
-  }
-  
-  .logo {
-    width: 50%;
-    height: 50%;
-    border-radius: 50%;
-  }
-  
 
-  .main-body{
-    
-  }
+.logo {
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+}
 
-  
+/*backdrop-filter: blur(3px);*/
 
-  
-
-  
-  .btnProfile {
-    color: hsl(118, 56%, 29%);
-  }
-  
-  /*backdrop-filter: blur(3px);*/
-  
-
-  .cropCard_container{
-    display: flex; 
-    flex-wrap:wrap;
-    justify-content: space-between;
-    max-width: 100%;
-    
-  }
+.cropCard_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 100%;
+}
