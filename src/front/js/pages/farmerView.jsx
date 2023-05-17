@@ -39,10 +39,14 @@ export const FarmerView = () => {
     navigate('/')
   }
 
+  const loadAllData = async () => {
+    await getCrop()
+    await getInfo()
+    await getTech()
+  }
+
   useEffect(()=>{
-    getCrop();
-    getInfo();
-    getTech();
+    loadAllData()
   },[])
 
 
