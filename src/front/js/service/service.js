@@ -163,6 +163,25 @@ export const getAllTech = async () => {
     console.error("Error al fetch de All Tech", err);
   }
 }
+export const getMessages = async () => {
+  const token = localStorage.getItem("token");
+
+  try {
+    const res = await fetch(`${URL}/api/message/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.error("Error en getMessages", error);
+    return [""];
+     }
+      }
 export const getServices = async () => {
   try {
     const token = localStorage.getItem("token");

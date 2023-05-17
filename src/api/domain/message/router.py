@@ -20,17 +20,35 @@ def create_message():
 def get_convers():
     user = get_jwt_identity()
     user_id = user['id']
-    farmer_id = Farmer.query.filter_by(id=user_id).first().id
-    farmer_convers = Controller.get_farmer_convers(farmer_id)
-    if farmer_convers:
-        return jsonify(farmer_convers)
-    else:
-        technician_id = Technician.query.filter_by(id=user_id).first().id
-        technician_convers = Controller.get_technician_convers(technician_id)
-        if technician_convers:
-            return jsonify(technician_convers)
+    user_role = user['role']
+    
+    if user_role == 'farmer':
+        farmer = Farmer.query.filter_by(user_owner=user_id).first()
+        if farmer is not None:
+            
+            farmer_convers = Controller.get_farmer_convers(farmer.id)
+            if farmer_convers:
+                return jsonify(farmer_convers)
+            else:
+                return jsonify({'msg': 'No conversations found for this id'})
         else:
-            return jsonify({'msg': 'No conversations found for this id'})
+            return jsonify({'msg': 'Farmer not found'})
+
+    elif user_role == 'tech':
+        technician = Technician.query.filter_by(user_owner=user_id).first()
+        if technician is not None:
+            
+            technician_convers = Controller.get_technician_convers(technician.id)
+            
+            if technician_convers:
+                return jsonify(technician_convers)
+            else:
+                return jsonify({'msg': 'No conversations found for this tech_id'})
+        else:
+            return jsonify({'msg': 'Technician not found'})
+    
+    else:
+        return jsonify({'msg': 'Invalid user role'})
 
 @api.route('/<int:id>', methods=['DELETE'])
 @jwt_required()

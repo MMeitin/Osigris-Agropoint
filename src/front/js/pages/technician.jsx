@@ -1,12 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getInfoTech, getInfoUser, getServices } from "../service/service";
+import MessageCard from "../component/messageCard.jsx";
+import { getInfoTech, getInfoUser, getMessages, getServices } from "../service/service";
 import "../../styles/technician.css";
 
 export const Technician = () => {
   const navigate = useNavigate();
+  const [conversations, setConversations] = useState([]);
   const [name, setName] = useState("");
   const [services, setServices] = useState([]);
+  
+  //FILTRO LAS CONVERSACIONES POR FARMER_ID
+  const getUniqueConversationsByFarmer = conversations => {
+    const conversationsByFarmer = {};
+  
+    conversations.forEach(conversation => {
+      const farmerId = conversation.farmer_id;
+      if (!conversationsByFarmer[farmerId]) {
+        conversationsByFarmer[farmerId] = conversation;
+      }
+    });
+  
+    const uniqueConversations = Object.values(conversationsByFarmer);
+    return uniqueConversations;
+  };
+  
+  const getConversations = async () => {
+    const data = await getMessages();
+    console.log("las conversaciones que traigo son", data);
+  
+    const uniqueConversations = getUniqueConversationsByFarmer(data);
+    setConversations(uniqueConversations);
+    console.log("elnombre es ",name)
+  };
 
   const infoUser = async () => {
     const token = localStorage.getItem("token");
@@ -22,15 +48,21 @@ export const Technician = () => {
     localStorage.clear();
     navigate("/");
   };
-
+  
+    
   const fetchData = async () => {
     const servicesData = await getServices();
     setServices(servicesData);
   };
-  
-  useEffect(() => { 
-    infoUser();
-    fetchData();
+
+const loadAllData = async () => {
+    await getConversations(); 
+    await infoUser();
+    await fetchData();
+}
+
+  useEffect(() => {
+    loadAllData();
   }, []);
 
   return (
@@ -129,39 +161,22 @@ export const Technician = () => {
         </div>
       </div>
       {/*CONVERSACIONES*/}
-      <div className="conversaciones col-12">
-        <h1 className="titulo-servicios  ">Conversaciones</h1>
-        <div className=" card_container justify-content-center">
-          <div className=" card_conver col-3  m-3">
-            <img
-              src="https://elcamponopara.org/wp-content/uploads/2020/04/oferta-INGENIERO-T%C3%89CNICO-AGR%C3%8DCOLA-E-INDUSTRIAL.jpg"
-              className="card-img-top  "
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-            </div>
-          </div>
-          <div className=" card_conver col-3  m-3 ">
-            <img
-              className="card-img-top "
-              src="https://www.marismas.es/wp-content/uploads/2018/06/asesoramiento-tecnico-agricola-4.jpg"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Monica</h5>
-            </div>
-          </div>
-          <div className=" card_conver col-3 m-3">
-            <img
-              src="https://www.empresaagraria.com/wp-content/uploads/2020/05/Gonzalo-P%C3%A9rez-Fern%C3%A1ndez-1179x580.jpeg"
-              className="card-img-top"
-              alt="..."
-            />
-            <div className="card-body">
-              <h5 className="card-title">Javier</h5>
-            </div>
-          </div>
+      <div className="misConversaciones col-12">
+        <h1 className="titulo-misConversaciones">Conversaciones</h1>
+        <div className="messageCard_container justify-content-center">
+          {conversations  ? (
+            conversations.map((todo, index) => (
+              <MessageCard
+                key={index}
+                id={todo.id}
+                message={todo.message}
+                date={todo.date}
+                name={todo.name}
+              />
+            ))
+          ) : (
+            <h1>No hay conversaciones todavía</h1>
+          )}
         </div>
       </div>
     </div>
