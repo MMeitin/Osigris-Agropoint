@@ -42,8 +42,8 @@ export const FarmerView = () => {
   };
 
   const filterTech = async () => {
-    const data =  await filterTechByField(filter);
-    setTech(data)
+    const data = await filterTechByField(filter);
+    setTech(data);
   };
 
   const logOut = () => {
@@ -57,7 +57,7 @@ export const FarmerView = () => {
 
   const handleSubmitFilterTech = async (e) => {
     e.preventDefault();
-    await filterTech()
+    await filterTech();
   };
   const loadAllData = async () => {
     await getCrop();
@@ -83,7 +83,7 @@ export const FarmerView = () => {
               Técnicos disponibles
             </a>
             <div className="dropdown">
-              <span className="user-label">Nombre de usuario</span>
+              <span className="user-label">{name}</span>
               <button
                 className="btn dropdown-toggle"
                 type="button"
@@ -117,14 +117,10 @@ export const FarmerView = () => {
           </div>
         </div>
       </nav>
-      {/*BODY*/}
-      <div className="pre-body">
-        <h1>{name}</h1>
-      </div>
       <div className="main-body ">
         {/*My Crops*/}
         <div className="misCultivos col-12">
-          <h1 className="titulo-miscultivos ">Mis Cultivos</h1>
+          <h1 className="titulo-miscultivos ps-5 ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
             {crops.length > 0 ? (
               crops.map((todo, index) => (
@@ -143,7 +139,7 @@ export const FarmerView = () => {
         </div>
         {/*FILTRADO DE TECH */}
         <div className="misTech col-12">
-          <h1 className="titulo-misTech">Mis técnicos</h1>
+          <h1 className="titulo-misTech text-center">Filtrar Técnicos</h1>
           <form
             className="formularioFilterTech"
             onChange={handleChangefilterTech}
@@ -181,7 +177,7 @@ export const FarmerView = () => {
                 type="text"
                 id="speciality"
                 name="speciality"
-                placeholder="filtrar..."
+                placeholder="Filtrar..."
               ></input>
             </div>
             <div className="threeFilter">
@@ -203,7 +199,7 @@ export const FarmerView = () => {
       </div>
       {/*My Technician */}
       <div className="misTechnicos col-12">
-        <h1 className="titulo-miscultivos">Mis Tecnicos</h1>
+        <h1 className="titulo-miscultivos text-end pe-5">Mis Técnicos</h1>
         <div className="cropCard_container justify-content-center">
           {tech.length > 0 ? (
             tech.map((element, index) => (
