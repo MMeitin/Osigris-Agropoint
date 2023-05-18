@@ -30,3 +30,9 @@ def filter_tech_by_speciality(speciality):
     tech = Technician.query.filter_by(speciality=speciality).all()
     tech_serialized = list(map(lambda x : x.serialize(),tech))
     return tech_serialized
+
+## ALL TECH
+def get_all_tech():
+    tech = Technician.query.all()
+    tech_serialize = list(map(lambda x : x.serialize(), tech))
+    return tech_serialize

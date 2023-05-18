@@ -38,16 +38,13 @@ export const FarmerView = () => {
   };
 
   const getTech = async () => {
-    console.log("TECH BEFORE", tech);
     const allTech = await getAllTech();
-    console.log(allTech);
     setTech(allTech);
-    console.log("TECH AFTER", tech);
   };
 
-  const filterTech = () => {
-    const data = filterTechByField();
-    console.log(data);
+  const filterTech = async () => {
+    const data =  await filterTechByField(filter);
+    setTech(data)
   };
 
   const logOut = () => {
@@ -61,7 +58,7 @@ export const FarmerView = () => {
 
   const handleSubmitFilterTech = async (e) => {
     e.preventDefault();
-    console.log(filter);
+    await filterTech()
   };
   const loadAllData = async () => {
     await getCrop();
@@ -195,7 +192,7 @@ export const FarmerView = () => {
                 placeholder="Filtrar..."
               ></input>
             </div>
-            <button className="btn" type="submit" onClick={filterTech}>
+            <button className="btn" type="submit">
               Filtrar
             </button>
           </form>

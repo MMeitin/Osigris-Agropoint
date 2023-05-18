@@ -12,7 +12,6 @@ def add_tech(body, user_id):
 ###GET ALL TECHNICIAN
 def get_all_tech():
    tech = Technician.query.all()
-   print(tech)
    tech_serialized = list(map(lambda x : x.serialize(), tech))
    return tech_serialized
 

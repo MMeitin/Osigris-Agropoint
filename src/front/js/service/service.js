@@ -200,13 +200,19 @@ export const getServices = async () => {
   }
 };
 
-export const filterTechByField = async () => {
+export const filterTechByField = async (body) => {
+  const token = localStorage.getItem("token")
+  const raw = JSON.stringify(body)
   try{
     const res = await fetch(`${URL}/api/farmer/`,{
       method: 'POST',
-      headers: {...HEADERS}
+      body: raw,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS}
     });
-     data = await res.json()
+     const data = await res.json();
+     console.log("FROM SERVICE -->", data)
      return data;
   }catch(err){
     console.error("No pudimos filtrar tu tecnico -->",err)

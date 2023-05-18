@@ -15,6 +15,7 @@ def get_farmer(id):
     
 # FILTER TECH
 @api.route('/', methods=['POST'])
+@jwt_required()
 def filter_tech():
     body = request.get_json()
     filtered_tech = Controller.filter_tech(body)

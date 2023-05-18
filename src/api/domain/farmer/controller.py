@@ -21,3 +21,6 @@ def filter_tech(body):
     if body["speciality"]:
         tech = Repository.filter_tech_by_speciality(body["speciality"])
         return tech
+    else:
+        tech = Repository.get_all_tech()
+        return tech
