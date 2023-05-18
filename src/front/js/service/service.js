@@ -1,7 +1,4 @@
-const URL =
-  "https://3001-mmeitin-osigrisagropoin-jqi46hkowwy.ws-eu97.gitpod.io";
-const URLCROP =
-  "https://3001-mmeitin-osigrisagropoin-jqi46hkowwy.ws-eu97.gitpod.io/api/crop";
+const URL = `${process.env.BACKEND_URL}`;
 
 const HEADERS = {
   "Content-Type": "application/json",
@@ -30,7 +27,7 @@ export const addFarm = async (newFarm) => {
   const raw = JSON.stringify(newFarm);
   try {
     console.log("Farm created on service", newFarm);
-    const resp = await fetch(`${URLCROP}/addFarm`, {
+    const resp = await fetch(`${URL}/api/crop/addFarm`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: raw,
@@ -132,7 +129,7 @@ export const getInfoCrop = async () => {
   const token = localStorage.getItem("token");
   console.log(token);
   try {
-    const res = await fetch(`${URLCROP}`, {
+    const res = await fetch(`${URL}/api/crop`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -204,20 +201,21 @@ export const getServices = async () => {
 };
 
 export const filterTechByField = async (body) => {
-  const token = localStorage.getItem("token")
-  const raw = JSON.stringify(body)
-  try{
-    const res = await fetch(`${URL}/api/farmer/`,{
-      method: 'POST',
+  const token = localStorage.getItem("token");
+  const raw = JSON.stringify(body);
+  try {
+    const res = await fetch(`${URL}/api/farmer/`, {
+      method: "POST",
       body: raw,
       headers: {
         Authorization: `Bearer ${token}`,
-        ...HEADERS}
+        ...HEADERS,
+      },
     });
-     const data = await res.json();
-     console.log("FROM SERVICE -->", data)
-     return data;
-  }catch(err){
-    console.error("No pudimos filtrar tu tecnico -->",err)
+    const data = await res.json();
+    console.log("FROM SERVICE -->", data);
+    return data;
+  } catch (err) {
+    console.error("No pudimos filtrar tu tecnico -->", err);
   }
-}
+};
