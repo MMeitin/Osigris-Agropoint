@@ -44,7 +44,7 @@ export const RegFarmer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await registerFarmer(state);
-    navigate("/profile");
+    navigate("/farmer");
   };
 
   return (

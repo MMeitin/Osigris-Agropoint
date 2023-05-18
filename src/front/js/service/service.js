@@ -1,7 +1,7 @@
 const URL =
-  "https://3001-mmeitin-osigrisagropoin-jqi46hkowwy.ws-eu97.gitpod.io";
+  "https://3001-mmeitin-osigrisagropoin-e4o6gva6m7k.ws-eu97.gitpod.io";
 const URLCROP =
-  "https://3001-mmeitin-osigrisagropoin-jqi46hkowwy.ws-eu97.gitpod.io/api/crop";
+  "https://3001-mmeitin-osigrisagropoin-e4o6gva6m7k.ws-eu97.gitpod.io/api/crop";
 
 const HEADERS = {
   "Content-Type": "application/json",
@@ -41,6 +41,7 @@ export const addFarm = async (newFarm) => {
     console.log("Error al crear el nuevo campo", err);
   }
 };
+
 export const loginUser = async (user) => {
   try {
     const res = await fetch(`${URL}/api/user/login`, {
@@ -148,21 +149,22 @@ export const getInfoCrop = async () => {
 };
 
 export const getAllTech = async () => {
-  const token = localStorage.getItem("token")
-  try{
+  const token = localStorage.getItem("token");
+  try {
     const res = await fetch(`${URL}/api/tech/`, {
-      method:"GET",
-      headers:{
+      method: "GET",
+      headers: {
         Authorization: `Bearer ${token}`,
-        ...HEADERS
+        ...HEADERS,
       },
     });
     const data = await res.json();
     return data;
-  }catch(err){
+  } catch (err) {
     console.error("Error al fetch de All Tech", err);
   }
-}
+};
+
 export const getMessages = async () => {
   const token = localStorage.getItem("token");
 
@@ -180,8 +182,9 @@ export const getMessages = async () => {
   } catch (error) {
     console.error("Error en getMessages", error);
     return [""];
-     }
-      }
+  }
+};
+
 export const getServices = async () => {
   try {
     const token = localStorage.getItem("token");

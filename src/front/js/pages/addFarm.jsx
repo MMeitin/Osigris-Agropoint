@@ -5,23 +5,22 @@ import { addFarm } from "../service/service";
 import logo from "../../img/logo.png";
 import "../../styles/addFarm.css";
 export const AddFarm = () => {
+  const [farm, setFarm] = useState({
+    crop_type: "",
+    dimension_ha: "",
+    description: "",
+    farmer_id: "",
+  });
 
-    const [farm, setFarm] = useState({
-        crop_type : "",
-        dimension_ha : "",
-        description : "",
-        farmer_id : ""
-    })
-    
-    const handleChange = ({target}) => {
-        setFarm({...farm, [target.name]: target.value})
-    }
+  const handleChange = ({ target }) => {
+    setFarm({ ...farm, [target.name]: target.value });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("From handleSubmit --> ", farm);
-        addFarm(farm)
-      };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("From handleSubmit --> ", farm);
+    addFarm(farm);
+  };
 
   return (
     <div className="container-fluid">
@@ -49,7 +48,7 @@ export const AddFarm = () => {
                 </Link>
               </li>
               <li>
-                <Link to={"/profile"}>
+                <Link to={"/farmer"}>
                   <button class="dropdown-item" type="button">
                     Ver Campos
                   </button>
@@ -71,7 +70,11 @@ export const AddFarm = () => {
       </nav>
 
       <h1>Añadir cultivo</h1>
-      <form className="formulario" onChange={handleChange} onSubmit={handleSubmit}>
+      <form
+        className="formulario"
+        onChange={handleChange}
+        onSubmit={handleSubmit}
+      >
         <div className="form-group">
           <label htmlFor="cropType">Tipo de campo</label>
           <input
@@ -113,11 +116,12 @@ export const AddFarm = () => {
             aria-labelledby="HelpBlock"
           />
           <div id="HelpBlock" class="form-text">
-            Si no tienes JWT/Auth para saber el id del Granjero, revisa la Api en "/admin" 
+            Si no tienes JWT/Auth para saber el id del Granjero, revisa la Api
+            en "/admin"
           </div>
         </div>
         <button type="submit" className="btn" id="addFarmBtn">
-            Enviar
+          Enviar
         </button>
       </form>
     </div>
