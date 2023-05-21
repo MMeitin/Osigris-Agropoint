@@ -6,3 +6,4 @@ from api.models.farmer import Farmer
 from api.models.crops import Crop
 from api.models.message import Message
 from api.models.review import Review
+from api.models.hiring import Hiring
