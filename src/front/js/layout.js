@@ -11,7 +11,7 @@ import injectContext from "./store/appContext";
 import RegFarmer from "./pages/regFarm.jsx";
 import RegTech from "./pages/regTech.jsx";
 import Technician from "./pages/technician.jsx";
-
+import ConversView  from "./pages/conversView.jsx";
 //create your first component
 const Layout = () => {
   //the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -34,6 +34,7 @@ const Layout = () => {
             <Route element={<RegFarmer />} path="/registerFarmer" />
             <Route element={<RegTech />} path="/registerTech" />
             <Route element={<Technician />} path="/technician" />
+            <Route element={<ConversView />} path="/convers/:targetName/:role" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>

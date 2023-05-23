@@ -14,7 +14,8 @@ def create_message(body,user):
         farmer = Farmer.query.filter_by(user_owner=user_id).first()
         if farmer is not None:
             farmer_id = farmer.id
-            message = Message(farmer_id=farmer_id, technician_id=body['technician_id'], message=body['message'], date=body.get('date', now), sender=user_id)
+            farmerTech_id = 0
+            message = Message(farmer_id=farmer_id, technician_id=body['technician_id'], message=body['message'], date=body.get('date', now), sender_id=farmerTech_id)
             created_message = Repository.create_message(message)
             return created_message.serialize()
         else:
@@ -23,7 +24,8 @@ def create_message(body,user):
         technician = Technician.query.filter_by(user_owner=user_id).first()
         if technician is not None:
             technician_id = technician.id
-            message = Message(farmer_id=body['farmer_id'], technician_id=technician_id, message=body['message'], date=body.get('date', now), sender=user_id)
+            userTech_id = 1
+            message = Message(farmer_id=body['farmer_id'], technician_id=technician_id, message=body['message'], date=body.get('date', now), sender_id=userTech_id)
             created_message = Repository.create_message(message)
             return created_message.serialize()
         else:

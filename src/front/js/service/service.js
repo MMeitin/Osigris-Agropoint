@@ -200,6 +200,24 @@ export const getServices = async () => {
   }
 };
 
+export const sendMessage = async (newMessage) => {
+  const token = localStorage.getItem("token");
+  const raw = JSON.stringify(newMessage);
+  console.log(raw);
+  try {
+    const res = await fetch(`${URL}/api/message/`, {
+      method: "POST",
+      body: raw,
+      redirect: "follow",
+    });
+    const data = await res.json();
+    console.log("la data del service", data);
+    return data;
+  } catch (error) {
+    console.error("Error en sendMessages", error);
+    return error;
+  }
+};
 export const filterTechByField = async (body) => {
   const token = localStorage.getItem("token");
   const raw = JSON.stringify(body);

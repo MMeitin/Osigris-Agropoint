@@ -1,0 +1,44 @@
+.tabs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  font-size: 2rem;
+}
+
+.convers-container {
+  display: flex;
+  flex-direction: column;
+  background-color: antiquewhite;
+}
+
+/* Estilos para el contenedor de los mensajes del técnico */
+.own-message {
+  margin:1rem;
+  text-align: right;
+  justify-content: center;
+  align-self: flex-end;
+  font-size: 2rem;
+  color: brown;
+}
+.other-message {
+  border-radius: 1rem;
+  margin:1rem;
+  text-align: left;
+  justify-content: center;
+  align-self: center;
+  font-size: 2rem;
+  color: rgb(24, 155, 122);
+  background-color: rgb(204, 204, 204);
+  width: fit-content;
+}
+.tab-name {
+  margin: 2rem;
+}
+
+.send-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px; 
+}

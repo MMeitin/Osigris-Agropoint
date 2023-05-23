@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import MessageCard from "../component/messageCard.jsx";
 import {
   getInfoTech,
   getInfoUser,
   getMessages,
   getServices,
+  loginUser,
 } from "../service/service";
 import "../../styles/technician.css";
 
@@ -14,7 +15,8 @@ export const Technician = () => {
   const [conversations, setConversations] = useState([]);
   const [name, setName] = useState("");
   const [services, setServices] = useState([]);
-
+  const [selectRole, setselectRole] = useState("");
+  const [state, setState] = useState({ email: "", password: "" });
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = (conversations) => {
     const conversationsByFarmer = {};
@@ -29,14 +31,20 @@ export const Technician = () => {
     const uniqueConversations = Object.values(conversationsByFarmer);
     return uniqueConversations;
   };
+  const paramsSet = async () => {
+    const chooseRole = localStorage.getItem("role");
 
+    if (chooseRole === "farmer") {
+      setselectRole("farmer");
+    }
+    if (chooseRole === "tech") {
+      setselectRole("tech");
+    }
+  };
   const getConversations = async () => {
     const data = await getMessages();
-    console.log("las conversaciones que traigo son", data);
-
     const uniqueConversations = getUniqueConversationsByFarmer(data);
     setConversations(uniqueConversations);
-    console.log("elnombre es ", name);
   };
 
   const infoUser = async () => {
@@ -60,6 +68,7 @@ export const Technician = () => {
   const loadAllData = async () => {
     await infoUser();
     await fetchData();
+    await paramsSet();
     await getConversations();
   };
 
@@ -142,13 +151,15 @@ export const Technician = () => {
         <div className="messageCard_container justify-content-center">
           {conversations ? (
             conversations.map((todo, index) => (
-              <MessageCard
-                key={index}
-                id={todo.id}
-                message={todo.message}
-                date={todo.date}
-                name={todo.name}
-              />
+              <Link to={`/convers/${todo.name}/${selectRole}`}>
+                <MessageCard
+                  key={index}
+                  id={todo.id}
+                  message={todo.message}
+                  date={todo.date}
+                  name={todo.name}
+                />
+              </Link>
             ))
           ) : (
             <h1>No hay conversaciones todavía</h1>
