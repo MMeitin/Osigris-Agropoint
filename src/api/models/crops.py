@@ -16,6 +16,7 @@ class Crop(db.Model):
         self.crop_type = crop_type
         self.description = description
         self.farmer_id = farmer_id
+    
     def serialize(self):
         return{
             "id": self.id,

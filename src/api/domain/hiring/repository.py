@@ -1,4 +1,4 @@
-from api.models.index import db, Hiring, Farmer
+from api.models.index import db, Hiring
 
 ## GET HIRING
 def get_all_hiring(user_id):
@@ -7,4 +7,11 @@ def get_all_hiring(user_id):
     all_hiring = list(map(lambda x : x.serialize(), hiring))
     return all_hiring
 
+
+## POST HIRING
+def post_hiring(body):
+    hiring = Hiring(body['crop_id'], body['service_id'], body['farmer_id'],body['technician_id'],body['status'])
+    db.session.add(hiring)
+    db.session.commit()
+    return hiring.serialize()
     

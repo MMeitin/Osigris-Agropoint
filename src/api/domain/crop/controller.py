@@ -3,18 +3,15 @@ from flask import jsonify,request
 from api.models.crops import Crop
 from flask_jwt_extended import get_jwt_identity , jwt_required, get_jwt
 #  Create Crop
-def post_crop(body,user_id):
+def post_crop(body):
     if body['dimension_ha'] is None:
         return ('dimension_ha is empty', 400)
     if body['crop_type'] is None:
         return Response.response_error('crop_type is empty', 400)
-    return Repository.create_crop(body,user_id)
+    return Repository.create_crop(body)
 
 def get_farmer_crops(farmer_id):
-    
     farmer_crops = Crop.query.filter_by(farmer_id=farmer_id).all()
-    
-    
     crops_data = []
     for crop in farmer_crops:
         crops_data.append(crop.serialize())

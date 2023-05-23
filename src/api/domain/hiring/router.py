@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, Blueprint
-from api.domain.hiring.controller as Controller
+import api.domain.hiring.controller as Controller
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_jwt
 
 api = Blueprint("api/hiring", __name__)
@@ -14,7 +14,7 @@ def get_hiring():
 
 @api.route("/", methods=['POST'])
 @jwt_required()
-def add_hiring(body):
+def add_hiring():
     user_token = get_jwt()
     user = user_token['sub']
     user_id = user["id"]

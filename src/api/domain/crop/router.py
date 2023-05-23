@@ -13,8 +13,8 @@ def post_crop():
     user = get_jwt_identity()
     user_id = user['id']
     body = request.get_json()
-    crop = Controller.post_crop(body,user_id)
-    return jsonify(crop.serialize())
+    crop = Controller.post_crop(body)
+    return jsonify(crop)
 
 
 # Get crops from an ID    

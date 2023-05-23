@@ -7,7 +7,7 @@ def get_farmer_by_user_owner(id):
    farmer = Repository.get_farmer_by_user_owner(id)
    if farmer is None:
         return jsonify('No existe el granjero')   
-   return farmer.serialize()
+   return farmer
    
 ## FILTER TECH
 def filter_tech(body):

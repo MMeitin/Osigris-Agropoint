@@ -17,6 +17,7 @@ import api.domain.technician.router as tech_router
 import api.domain.message.router as message_router
 import api.domain.review.router as review_router
 import api.domain.serv.router as serv_router
+import api.domain.hiring.router as hiring_router
 from flask_jwt_extended import JWTManager
 
 
@@ -59,6 +60,7 @@ app.register_blueprint(tech_router.api, url_prefix="/api/tech")
 app.register_blueprint(message_router.api, url_prefix="/api/message")
 app.register_blueprint(review_router.api, url_prefix="/api/review")
 app.register_blueprint(serv_router.api, url_prefix="/api/serv")
+app.register_blueprint(hiring_router.api, url_prefix="/api/hiring")
 
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
