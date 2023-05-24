@@ -203,18 +203,23 @@ export const getServices = async () => {
 export const sendMessage = async (newMessage) => {
   const token = localStorage.getItem("token");
   const raw = JSON.stringify(newMessage);
-  console.log(raw);
+  console.log("el raw", raw);
   try {
     const res = await fetch(`${URL}/api/message/`, {
       method: "POST",
+      
       body: raw,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
       redirect: "follow",
     });
     const data = await res.json();
-    console.log("la data del service", data);
+    
     return data;
   } catch (error) {
-    console.error("Error en sendMessages", error);
+    
     return error;
   }
 };

@@ -210,6 +210,8 @@ export const FarmerView = () => {
                 country={element.country}
                 ccaa={element.ccaa}
                 speciality={element.speciality}
+                technician_id={element.id}
+                
               />
             ))
           ) : (
