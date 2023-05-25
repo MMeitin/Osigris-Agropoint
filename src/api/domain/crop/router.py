@@ -9,6 +9,7 @@ api = Blueprint("api/crop", __name__)
 @api.route('/addFarm', methods=['POST'])
 @jwt_required()
 def post_crop():
+    print(get_jwt_identity())
     user_id = get_jwt_identity()['id']
     body = request.get_json()
     crop = Controller.post_crop(body, user_id)
@@ -24,10 +25,12 @@ def post_crop():
 def get_farmer_crops():
     user = get_jwt_identity()
     user_id = user['id']
+    print(user_id)
     user_role = user['role']
     print (user_role)
     if user_role == "farmer":
         farmer_crops = Controller.get_farmer_crops(user_id) 
+        print('farmercrops----------------------',farmer_crops)
         return jsonify(farmer_crops)
     else:
         return jsonify('Not allowed profile')   
