@@ -14,7 +14,7 @@ import {
 export const FarmerView = () => {
   const navigate = useNavigate();
   const [tech, setTech] = useState([]);
-  const [crops, setcrops] = useState([]);
+  const [crops, setCrops] = useState([]);
   const [name, setName] = useState("");
   const [filter, setFilter] = useState({
     ccaa: "",
@@ -33,7 +33,7 @@ export const FarmerView = () => {
 
   const getCrop = async () => {
     const data = await getInfoCrop();
-    setcrops(data);
+    setCrops(data);
   };
 
   const getTech = async () => {

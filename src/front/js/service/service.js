@@ -136,7 +136,7 @@ export const getInfoCrop = async () => {
         ...HEADERS,
       },
     });
-
+    console.log("apicrop", res);
     const data = await res.json();
     console.log("la data del fetch", data);
     return data;

@@ -6,11 +6,12 @@ import api.domain.technician.controller as TechController
 def create_serv(user_id, body):
     try:
         tech = TechController.get_tech_by_user_owner(user_id)
-        if not isinstance(tech, Technician):
-            return jsonify({'error': 'User is not a technician.'}), 400
+        print("CONTROLLER ----> ", tech)
+        #if not isinstance(tech, Technician): --> No funciona bien el isinstance --> False
+            #return jsonify({'error': 'User is not a technician.'}), 400
         if body is None or 'name' not in body:
             return jsonify({'error': 'Name is required.'}), 400
-        return Repository.create_serv(tech.id, body)
+        return Repository.create_serv(tech['id'], body)
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
