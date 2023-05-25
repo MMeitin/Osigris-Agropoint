@@ -13,8 +13,7 @@ export const RegFarmer = () => {
     sur_name: "",
     country: "España",
     ccaa: "",
-    company: "",
-    pac_num: "",
+    company: ""
   });
 
   const [password, setPassword] = useState("");
@@ -207,14 +206,6 @@ export const RegFarmer = () => {
           id="company"
           placeholder="Introduce el nombre de tu compañía..."
           name="company"
-        />
-        <label htmlFor="pac_num">Número de PAC</label>
-        <input
-          type="number"
-          className="form-control"
-          id="pac_num"
-          placeholder="Introduce el número de tu PAC..."
-          name="pac_num"
         />
         <button type="submit" className="btn btn-register">
           Enviar
