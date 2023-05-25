@@ -7,28 +7,8 @@ import "../../styles/techCard_style.css";
 const TechCard = (props) => {
   const navigate = useNavigate();
 
-  const handleSendMessage = async () => {
-    const fetchData = async () => {
-      const token = localStorage.getItem("token");
-      const userInfo = await getInfoUser(token);
-      const farmerInfo = await getInfoFarmer(userInfo.id, token);
-      const farmerId = farmerInfo.id;
-      
-      console.log("farmer",farmerId)
-      console.log("technician", props.technician_id)
-      const messageData = {
-        
-        technician_id: props.technician_id,
-        message: "newMessageContent",
-      };
-      
-
-      await sendMessage(messageData);
-
-      navigate(`/convers/${props.name}/${"farmer"}`);
-    };
-
-    fetchData();
+  const handleSendMessage = () => {
+    navigate(`/convers/${props.name}/${"farmer"}`);
   };
 
   return (

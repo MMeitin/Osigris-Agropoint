@@ -54,7 +54,9 @@ export const FarmerView = () => {
   const handleChangefilterTech = ({ target }) => {
     setFilter({ ...filter, [target.name]: target.value });
   };
-
+  const handleConversationsClick = () => {
+    navigate(`/convers/${name}/farmer`);
+  };
   const handleSubmitFilterTech = async (e) => {
     e.preventDefault();
     await filterTech();
@@ -81,6 +83,13 @@ export const FarmerView = () => {
             </a>
             <a className="navbar-link" href="#conversations">
               Técnicos disponibles
+            </a>
+            <a
+              className="navbar-link"
+              href="#conversations"
+              onClick={handleConversationsClick}
+            >
+              Mis conversaciones
             </a>
             <div className="dropdown">
               <span className="user-label">{name}</span>
@@ -211,7 +220,7 @@ export const FarmerView = () => {
                 ccaa={element.ccaa}
                 speciality={element.speciality}
                 technician_id={element.id}
-                
+                role={element.role}
               />
             ))
           ) : (

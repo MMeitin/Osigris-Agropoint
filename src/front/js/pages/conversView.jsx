@@ -14,6 +14,7 @@ export const ConversView = () => {
   const { targetName, role } = useParams();
   const [initialTabName, setInitialTabName] = useState("");
   const [firstTime, setfirstTime] = useState(true);
+
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByTarget = (conversations) => {
     const conversationsByTarget = {};
@@ -54,9 +55,26 @@ export const ConversView = () => {
         message: newMessageContent,
       };
     }
-
-    await sendMessage(messageData);
-
+  
+    // Verificar si ya existe una conversación con el objetivo seleccionado
+    const existingConversation = conversations.find(
+      (conversation) => {
+        if (role === "tech") {
+          return conversation.farmer_id === selectedTarget;
+        } else {
+          return conversation.technician_id === selectedTarget;
+        }
+      }
+    );
+  
+    if (existingConversation) {
+      // La conversación ya existe, no es necesario enviar un mensaje vacío
+      console.log("La conversación ya existe. No se envió el mensaje.");
+    } else {
+      // La conversación no existe, crear una nueva conversación sin mensaje
+      await sendMessage(messageData);
+    }
+  
     await loadAllData();
     setNewMessageContent("");
   };
@@ -69,7 +87,7 @@ export const ConversView = () => {
       setSelectedTarget(uniqueparam[index].technician_id);
     }
   };
-  //Cojo solo un el nombre de la persona de todos los mensajes
+  //Cojo solo el nombre de la persona de todos los mensajes
   const getConversations = async () => {
     const data = await getMessages();
     if (targetName) {
@@ -82,6 +100,7 @@ export const ConversView = () => {
   const getMessage = async () => {
     const data = await getMessages();
     setConversations(data);
+
     return setConversations;
   };
 
@@ -96,11 +115,10 @@ export const ConversView = () => {
         setSelectedTab(index);
         if (role === "tech") {
           setSelectedTarget(uniqueparam[index].farmer_id);
-          setfirstTime(false);
         } else {
           setSelectedTarget(uniqueparam[index].technician_id);
-          setfirstTime(false);
         }
+        setfirstTime(false);
       }
     }
   }, [targetName, role, uniqueparam]);
@@ -113,6 +131,7 @@ export const ConversView = () => {
   useEffect(() => {
     loadAllData();
   }, []);
+  
 
   return (
     <div>
@@ -184,20 +203,26 @@ export const ConversView = () => {
                   (message, index) =>
                     message.name === uniqueparam[selectedTab].name && (
                       <div className="" key={index}>
-                        {message.sender_id === "tech" ? (
-                          // Renderizar mensajes para el técnico
-
+                        {role === "tech" && message.sender_role === "tech" ? (
+                          // Renderizar mensajes para el técnico en "own-message"
                           <div className="own-message">
-                            <div className="conver-name">{message.name}</div>
+                            <div className="conver-message">
+                              {message.message}
+                            </div>
+                            <div className="conver-date">{message.date}</div>
+                          </div>
+                        ) : role === "farmer" &&
+                          message.sender_role === "farmer" ? (
+                          // Renderizar mensajes para el agricultor en "own-message"
+                          <div className="own-message">
                             <div className="conver-message">
                               {message.message}
                             </div>
                             <div className="conver-date">{message.date}</div>
                           </div>
                         ) : (
-                          // Renderizar mensajes para el agricultor
+                          // Renderizar mensajes de otros en "other-message"
                           <div className="other-message">
-                            <div className="conver-name">{message.name}</div>
                             <div className="conver-message">
                               {message.message}
                             </div>
