@@ -13,7 +13,7 @@ export const RegFarmer = () => {
     sur_name: "",
     country: "España",
     ccaa: "",
-    company: ""
+    company: "",
   });
 
   const [password, setPassword] = useState("");
@@ -207,6 +207,8 @@ export const RegFarmer = () => {
           placeholder="Introduce el nombre de tu compañía..."
           name="company"
         />
+        <label htmlFor="imagen">Selecciona tu imagen de perfil</label><br/>
+        <input id="imagen" name="imagen" type="file"></input>
         <button type="submit" className="btn btn-register">
           Enviar
         </button>
