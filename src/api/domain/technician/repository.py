@@ -4,7 +4,7 @@ from flask import jsonify
 ###POST TECHNICIAN - SIGNUP
 
 def add_tech(body, user_id):
-    new_tech = Technician(body['name'],body['sur_name'],body['description'], body['phone_number'], body['country'], body['ccaa'], body['speciality'], body['num_ropo'], user_id)
+    new_tech = Technician(body['name'],body['sur_name'],body['description'], body['phone_number'], body['country'], body['ccaa'], body['speciality'], body['num_ropo'], body['url_image'] ,user_id)
     db.session.add(new_tech)
     db.session.commit()
     return new_tech

@@ -5,6 +5,7 @@ import { registerFarmer } from "../service/service";
 import "../../styles/register.css";
 
 export const RegFarmer = () => {
+  
   const navigate = useNavigate();
 
   const [state, setState] = useState({
@@ -20,6 +21,8 @@ export const RegFarmer = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alertTimeout, setAlertTimeout] = useState(null);
+  const [file, setFile] = useState("")
+  const [fileURL, setFileURL] = useState("")
 
   function validatePassword() {
     if (password !== confirmPassword) {
@@ -39,6 +42,21 @@ export const RegFarmer = () => {
   const handleChange = ({ target }) => {
     setState({ ...state, [target.name]: target.value });
   };
+
+  const handleFileChange = ({target}) => {
+    console.log(target.files)
+    if(target.files){
+      setFile(target.files[0]);
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if(reader.readyState === 2){
+          console.log("Reader result --> ", reader.result);
+          setFileURL(reader.result);
+        }
+      };
+      reader.readAsDataURL(target.files[0])
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -208,7 +226,8 @@ export const RegFarmer = () => {
           name="company"
         />
         <label htmlFor="imagen">Selecciona tu imagen de perfil</label><br/>
-        <input id="imagen" name="imagen" type="file"></input>
+        <img className="img-profile" src={fileURL}></img>
+        <input id="imagen" name="imagen" type="file" onChange={handleFileChange}></input>
         <button type="submit" className="btn btn-register">
           Enviar
         </button>

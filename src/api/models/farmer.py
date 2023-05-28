@@ -6,7 +6,8 @@ class Farmer(db.Model):
     sur_name = db.Column(db.String(50), nullable=False)
     country = db.Column(db.String(40), nullable=False)
     ccaa = db.Column(db.String(40), nullable=False)
-    company = db.Column(db.String(50)))
+    company = db.Column(db.String(50))
+    url_image = db.Column(db.Text(), nullable=False)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 
