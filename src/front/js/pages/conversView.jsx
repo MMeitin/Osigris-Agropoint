@@ -15,7 +15,7 @@ export const ConversView = () => {
   const [initialTabName, setInitialTabName] = useState("");
   const [firstTime, setfirstTime] = useState(true);
 
-  //FILTRO LAS CONVERSACIONES POR FARMER_ID
+  //FILTRO LAS CONVERSACIONES POR ID
   const getUniqueConversationsByTarget = (conversations) => {
     const conversationsByTarget = {};
     let targetId;
@@ -66,15 +66,7 @@ export const ConversView = () => {
         }
       }
     );
-  
-    if (existingConversation) {
-      // La conversación ya existe, no es necesario enviar un mensaje vacío
-      console.log("La conversación ya existe. No se envió el mensaje.");
-    } else {
-      // La conversación no existe, crear una nueva conversación sin mensaje
-      await sendMessage(messageData);
-    }
-  
+    await sendMessage(messageData);
     await loadAllData();
     setNewMessageContent("");
   };

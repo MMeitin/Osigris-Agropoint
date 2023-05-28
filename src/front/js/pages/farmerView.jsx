@@ -25,9 +25,9 @@ export const FarmerView = () => {
   const getInfo = async () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
-    console.log("User", user);
+    
     const farmer = await getInfoFarmer(user["id"], token);
-    console.log(farmer);
+    
     setName(farmer["name"] + " " + farmer["sur_name"]);
   };
 

@@ -203,7 +203,7 @@ export const getServices = async () => {
 export const sendMessage = async (newMessage) => {
   const token = localStorage.getItem("token");
   const raw = JSON.stringify(newMessage);
-  console.log("el raw", raw);
+  
   try {
     const res = await fetch(`${URL}/api/message/`, {
       method: "POST",

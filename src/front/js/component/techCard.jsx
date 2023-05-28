@@ -1,15 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getInfoUser, getInfoFarmer, sendMessage} from "../service/service";
+import {
+  sendMessage,
+  getMessages,
+} from "../service/service";
 
 import "../../styles/techCard_style.css";
 
 const TechCard = (props) => {
   const navigate = useNavigate();
+  
+  const [conversations, setConversations] = useState([]);
+  const getMessage = async () => {
+    const data = await getMessages();
+    setConversations(data);
+    
+  };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
+    await getMessage();
+    
+  
+    if (conversations.length === 0 || conversations.msg === 'No conversations found for this id'){
+      
+      const messageData = {
+        technician_id: props.technician_id,
+        message: "hola",
+      };
+
+      await sendMessage(messageData);
+    }else{
+      
+      const existingConversation = conversations.filter(
+        (conversation) => conversation.technician_id === props.technician_id
+      );
+  
+      if (!existingConversation) {
+        const messageData = {
+          technician_id: props.technician_id,
+          message: "hola",
+        };
+  
+        await sendMessage(messageData);
+      }
+    }
+  
     navigate(`/convers/${props.name}/${"farmer"}`);
   };
+  useEffect(() => {
+    getMessage();
+  }, []);
 
   return (
     <div className="tech_card card ">
