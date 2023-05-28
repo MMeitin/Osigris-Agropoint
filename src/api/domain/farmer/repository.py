@@ -17,8 +17,9 @@ def get_only_farmer_id(user_id):
 
 ### GET FARMER BY USER_OWNER
 def get_farmer_by_user_owner(user_id):
+    print('userid', user_id)
     farmer = Farmer.query.filter_by(user_owner=user_id).first()
-    print(farmer.serialize())
+    print('----------------', farmer)
     return farmer.serialize()
 
 ## FILTER TECH BY NAME
@@ -44,3 +45,6 @@ def get_all_tech():
     tech = Technician.query.all()
     tech_serialize = list(map(lambda x : x.serialize(), tech))
     return tech_serialize
+
+def modifyFarmer():
+    db.session.commit()

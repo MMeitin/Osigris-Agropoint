@@ -19,6 +19,8 @@ import api.domain.review.router as review_router
 import api.domain.serv.router as serv_router
 import api.domain.hiring.router as hiring_router
 from flask_jwt_extended import JWTManager
+from datetime import timedelta
+
 
 
 ENV = os.getenv("FLASK_ENV")
@@ -29,6 +31,9 @@ app = Flask(__name__)
 jwt = JWTManager(app)
 app.config["JWT_SECRET_KEY"] = "super-secret"
 app.url_map.strict_slashes = False
+
+# Configurar JWT para que expire en 60 minutos
+app.config['JWT_EXPIRATION_DELTA'] = timedelta(minutes=60)
 
 # database condiguration
 db_url = os.getenv("DATABASE_URL")

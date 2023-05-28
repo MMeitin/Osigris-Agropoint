@@ -14,7 +14,7 @@ import {
 export const FarmerView = () => {
   const navigate = useNavigate();
   const [tech, setTech] = useState([]);
-  const [crops, setcrops] = useState([]);
+  const [crops, setCrops] = useState([]);
   const [name, setName] = useState("");
   const [filter, setFilter] = useState({
     ccaa: "",
@@ -33,7 +33,7 @@ export const FarmerView = () => {
 
   const getCrop = async () => {
     const data = await getInfoCrop();
-    setcrops(data);
+    setCrops(data);
   };
 
   const getTech = async () => {
@@ -54,7 +54,9 @@ export const FarmerView = () => {
   const handleChangefilterTech = ({ target }) => {
     setFilter({ ...filter, [target.name]: target.value });
   };
-
+  const handleConversationsClick = () => {
+    navigate(`/convers/${name}/farmer`);
+  };
   const handleSubmitFilterTech = async (e) => {
     e.preventDefault();
     await filterTech();
@@ -81,6 +83,13 @@ export const FarmerView = () => {
             </a>
             <a className="navbar-link" href="#conversations">
               Técnicos disponibles
+            </a>
+            <a
+              className="navbar-link"
+              href="#conversations"
+              onClick={handleConversationsClick}
+            >
+              Mis conversaciones
             </a>
             <div className="dropdown">
               <span className="user-label">{name}</span>
@@ -210,6 +219,8 @@ export const FarmerView = () => {
                 country={element.country}
                 ccaa={element.ccaa}
                 speciality={element.speciality}
+                technician_id={element.id}
+                role={element.role}
               />
             ))
           ) : (

@@ -1,7 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { getInfoUser, getInfoFarmer, sendMessage} from "../service/service";
+
 import "../../styles/techCard_style.css";
 
 const TechCard = (props) => {
+  const navigate = useNavigate();
+
+  const handleSendMessage = () => {
+    navigate(`/convers/${props.name}/${"farmer"}`);
+  };
+
   return (
     <div className="tech_card card ">
       <img
@@ -15,7 +24,9 @@ const TechCard = (props) => {
         <p className="card-text">{props.speciality}</p>
       </div>
       <div className="contact-btn">
-        <button className="btn">Contactar</button>
+        <button className="btn" onClick={handleSendMessage}>
+          Contactar
+        </button>
       </div>
     </div>
   );

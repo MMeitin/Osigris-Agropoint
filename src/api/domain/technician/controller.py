@@ -1,6 +1,6 @@
 import api.domain.technician.repository as Repository
 from flask import jsonify
-
+from api.models.index import db
 ##GET ALL TECH
 def get_all_tech():
     all_tech = Repository.get_all_tech()
@@ -22,3 +22,18 @@ def get_tech_by_user_owner(user_id):
         return jsonify('No existe ese técnico')
     return tech.serialize()
 
+def modifyTechnician(technician, body):
+    technician.name = body.get("name", technician.name)
+    technician.sur_name = body.get("sur_name", technician.sur_name)
+    technician.country = body.get("country", technician.country)
+    technician.ccaa = body.get("ccaa", technician.ccaa)
+    technician.speciality = body.get("speciality", technician.speciality)
+    technician.num_ropo = body.get("num_ropo", technician.num_ropo)
+    technician.phone_number = body.get("phone_number", technician.phone_number)
+    technician.description = body.get("description", technician.description)
+
+    db.session.commit()
+
+    return technician.serialize()
+
+    

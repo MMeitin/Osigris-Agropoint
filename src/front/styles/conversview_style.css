@@ -14,23 +14,27 @@
 
 /* Estilos para el contenedor de los mensajes del técnico */
 .own-message {
-  margin:1rem;
-  text-align: right;
-  justify-content: center;
-  align-self: flex-end;
-  font-size: 2rem;
-  color: brown;
-}
-.other-message {
+  padding: 1rem;
   border-radius: 1rem;
-  margin:1rem;
-  text-align: left;
-  justify-content: center;
-  align-self: center;
+  margin: 1rem;
+  text-align: right;
   font-size: 2rem;
-  color: rgb(24, 155, 122);
   background-color: rgb(204, 204, 204);
+  margin-left: 5px;
+  padding-left: 5px;
+  align-self: flex-end; 
+}
+
+.other-message {
+  padding: 1rem;
+  border-radius: 1rem;
+  margin: 1rem;
+  text-align: left;
+  font-size: 2rem;
+  background-color: rgb(204, 204, 204);
+  align-self: flex-start; 
   width: fit-content;
+  max-width: 80%;
 }
 .tab-name {
   margin: 2rem;
@@ -40,5 +44,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20px; 
+  margin-top: 20px;
+}
+.conver-date {
+  font-size: 1rem;
 }

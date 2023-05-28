@@ -12,20 +12,24 @@ def post_crop(body, user_id):
         return ('crop_type is empty', 400)
 
     # Obtener farmer_id a partir del user_id
+    print('useriddelcontroller', user_id)
     farmer = get_farmer_by_user_owner(user_id)
     if not farmer:
         return ('Farmer not found for the given user_id', 404)
 
     # Crear crop con el farmer_id correcto
-    crop = Repository.create_crop(body, farmer.id)
+    crop = Repository.create_crop(body, farmer['id'])
     if not crop:
         return ('Failed to create crop', 500)
 
-    return crop.serialize()
+    return crop
 
 
-def get_farmer_crops(farmer_id):
-    farmer_crops = Crop.query.filter_by(farmer_id=farmer_id).all()
+def get_farmer_crops(user_id):
+    # Obtener farmer_id a partir del user_id
+    print('get_farmer_crops', user_id)
+    farmer = get_farmer_by_user_owner(user_id)
+    farmer_crops = Crop.query.filter_by(farmer_id=farmer['id']).all()
     crops_data = []
     for crop in farmer_crops:
         crops_data.append(crop.serialize())
