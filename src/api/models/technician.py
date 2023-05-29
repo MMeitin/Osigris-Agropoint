@@ -11,7 +11,6 @@ class Technician(db.Model):
     ccaa = db.Column(db.String(40), nullable=False)
     speciality = db.Column(db.String(120), nullable=False)
     num_ropo = db.Column(db.Integer, unique=True)
-    url_image = db.Column(db.Integer, nullable=False)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
     

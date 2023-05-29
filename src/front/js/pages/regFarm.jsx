@@ -5,7 +5,6 @@ import { registerFarmer } from "../service/service";
 import "../../styles/register.css";
 
 export const RegFarmer = () => {
-  
   const navigate = useNavigate();
 
   const [state, setState] = useState({
@@ -15,14 +14,15 @@ export const RegFarmer = () => {
     country: "España",
     ccaa: "",
     company: "",
+    url_image: "",
   });
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alertTimeout, setAlertTimeout] = useState(null);
-  const [file, setFile] = useState("")
-  const [fileURL, setFileURL] = useState("")
+  const [file, setFile] = useState("");
+  const [fileURL, setFileURL] = useState("");
 
   function validatePassword() {
     if (password !== confirmPassword) {
@@ -43,23 +43,23 @@ export const RegFarmer = () => {
     setState({ ...state, [target.name]: target.value });
   };
 
-  const handleFileChange = ({target}) => {
-    console.log(target.files)
-    if(target.files){
+  const handleFileChange = ({ target }) => {
+    if (target.files) {
       setFile(target.files[0]);
       const reader = new FileReader();
       reader.onload = (e) => {
-        if(reader.readyState === 2){
+        if (reader.readyState === 2) {
           console.log("Reader result --> ", reader.result);
           setFileURL(reader.result);
         }
       };
-      reader.readAsDataURL(target.files[0])
+      reader.readAsDataURL(target.files[0]);
     }
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(state);
     await registerFarmer(state);
     navigate("/farmer");
   };
@@ -225,9 +225,15 @@ export const RegFarmer = () => {
           placeholder="Introduce el nombre de tu compañía..."
           name="company"
         />
-        <label htmlFor="imagen">Selecciona tu imagen de perfil</label><br/>
+        <label htmlFor="imagen">Selecciona tu imagen de perfil</label>
+        <br />
         <img className="img-profile" src={fileURL}></img>
-        <input id="imagen" name="imagen" type="file" onChange={handleFileChange}></input>
+        <input
+          id="imagen"
+          name="url_image"
+          type="file"
+          onChange={handleFileChange}
+        ></input>
         <button type="submit" className="btn btn-register">
           Enviar
         </button>
