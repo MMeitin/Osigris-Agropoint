@@ -35,7 +35,7 @@
  
   color: #e9c46a;
 }
-.btn {
+.btn-navbar {
   font-family: Roboto, sans-serif;
   font-weight: 3;
   font-size: 14px;
@@ -67,7 +67,7 @@
 .modal-body h6{
   background-color: blur;
 }
-.btn:hover {
+.btn-navbar:hover {
   background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
   color: #e9c46a;
   border: none;
@@ -80,7 +80,13 @@
   color: #237320;
   font-weight: 900;
 }
-
+.img1 {
+  width: 100%;
+  height: auto;
+}
+.titulo2{
+  font-size: 5rem;
+}
 .titulo2 span {
   color: #e9c46a;
   font-weight: 900;
@@ -94,20 +100,62 @@
 
 .textos p {
   word-wrap: break-word;
+  font-size: 1.3rem;
 }
 .titulo1 span {
   color: #237320;
   font-weight: 900;
 }
-.fixed-size-card {
-  width: 300px;
-  height: 400px;
-}
-.card-img-top {
-  max-height: 200px;
-  object-fit: cover;
-}
 
+/* CARD*/
+.card-container-landing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+.card-landing {
+  overflow: hidden;
+  min-height: 28rem;
+  background-color: transparent;
+  border: 2px solid #2c9131;
+  width: 25rem;
+  
+  border-radius: 10%;
+  margin: 1rem;
+  transition: all 0.2s ease-in-out;
+  max-height: 10rem;
+}
+.card-body-landing{
+  width: fit-content;
+  margin: 1rem;
+}
+.card-img-top-landing {
+  border-radius: 10%;
+  width: 100%;
+  height: 15rem;
+  object-fit: cover; /* Ajusta la imagen al tamaño sin deformarla */
+  
+}
+.card-img-top-landing:hover {
+  border-radius: 10%;
+  width: 100%;
+  height: 16rem;
+  object-fit: cover; /* Ajusta la imagen al tamaño sin deformarla */
+}
+.card-title-landing{
+  
+  font-size: 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.card-text-landing{
+  font-size: 1.1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
 .faq-section {
   text-align: left;
   margin-top: 50px;
