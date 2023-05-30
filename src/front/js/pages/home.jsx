@@ -150,7 +150,7 @@ export const Home = () => {
 
       <div className="body container-fluid">
         {/* Sección 1 quienes somos */}
-        <div className="titulo col-12 d-flex justify-content-center m-5">
+        <div className="titulo ">
           <h1>
             Encuentra a tu <span>técnico</span>
           </h1>
@@ -251,16 +251,59 @@ export const Home = () => {
         <button
             className="btn-busca" 
           >
-            Inicio de sesión
+            BUSCAR
           </button>
           </div>
-        {/* Sección 3  Preguntas frecuentes*/}
+          {/* Sección 3  reseñas*/}
+          <div className="section-review">
+          <h1>¿Qué opinan nuestros <span>agricultores</span> ?</h1>
+          <div className="review-container">
+            
+            <div className="review-box">
+              <p className="review-description">
+                Muy sencillo de usar. Contacté con Julio y ha sido mi técnico de confianza desde entonces
+              </p>
+              <p className="review-name">
+                Javier - Zamora
+              </p>
+            </div>
+
+            <div className="review-box">
+              <p className="review-description">
+                Me ha servido. Contento la verdad, la seguiré usando.
+                </p>
+              <p className="review-name">
+                Juampe - Ourense
+              </p>
+            </div>
+
+            <div className="review-box">
+              <p className="review-description">
+                Necesitaba un técnico agrícola y me hablaron de ésta página, la recomiendo completamente. Me ha salvado
+                </p>
+              <p className="review-name">
+                María - Almeria
+              </p>
+            </div>
+
+            <div className="review-box">
+              <p className="review-description">
+               No tenía mucha esperanza, pero he encontrado lo que esperaba, gracias.
+              </p>
+              <p className="review-name">
+                Julio - Valencia
+              </p>
+            </div>
+
+          </div>
+          </div>
+        {/* Sección 4  Preguntas frecuentes*/}
 
         <div
           className="section3  d-flex align-items-center  flex-column "
           id="questions"
         >
-          <h1 className="row pt-5 pb-2">¿Dudas?</h1>
+          <h1 className="pt-5 pb-2">¿Dudas?</h1>
 
           <div className="container col-10 d-flex align-items-start  flex-column text-start">
             <div className="col-lg-9 col-md-12 col-sm-12 d-flex flex-column  align-items-start">
