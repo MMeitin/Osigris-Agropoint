@@ -11,16 +11,22 @@ api = Blueprint("api/user", __name__)
 @api.route('/signup/tech', methods=['POST'])
 def register_tech():
     body = request.get_json()
-    print(body)
     user = Controller.post_user(body, "tech")
     return jsonify(user), 200
 
 # SIGNUP USER FARMER
 @api.route('/signup/farmer', methods=['POST'])
 def register_farmer():
-    body = request.get_json()
-    user = Controller.post_user(body, "farmer")
-    return jsonify(user), 200
+    try:
+        avatar = request.files['url_image']
+        print("AVATAR --> ", avatar)
+        body = request.form.to_dict()
+        print("Body --> ", body)
+        user = Controller.post_user(body,avatar,"farmer")
+        return jsonify(user), 200
+    except Exception as error:
+        print("error --> ", error)
+        return jsonify("error interno")
 
 ##LOGIN USER
 @api.route('/login', methods=['POST'])

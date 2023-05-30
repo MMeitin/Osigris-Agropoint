@@ -115,7 +115,6 @@ export const registerTech = async (newUser) => {
       redirect: "follow",
     });
     const data = await resp.json();
-    console.log("From service -->", data);
     localStorage.setItem("token", data.token);
     localStorage.setItem("role", data.role);
 

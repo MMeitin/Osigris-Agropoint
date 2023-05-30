@@ -5,6 +5,7 @@ import api.domain.technician.repository as TechRepository
 from flask import jsonify
 import bcrypt
 from flask_jwt_extended import create_access_token
+from cloudinary.uploader import upload
 
 def verify_user_email_and_pass(user):
     if user["email"] is None:
@@ -13,7 +14,7 @@ def verify_user_email_and_pass(user):
         return jsonify("Null password")
     return user
 
-def post_user(body, role):
+def post_user(body,avatar, role):
     user_verify = verify_user_email_and_pass(body)
     
     if user_verify.get('error') is not None:
@@ -24,10 +25,11 @@ def post_user(body, role):
     new_user = Repository.sign_in_user(body['email'], body['password'], role)
    
     if role == 'farmer':
-        new_farmer = FarmerRepository.add_farmer(body, new_user.id)
-        print("Hy FARMER")
-        new_token = create_access_token(identity=new_user.serialize())
-        return {"token": new_token, "role": new_user.role}
+        url_image = upload(avatar)
+        #new_farmer = FarmerRepository.add_farmer(body, new_user.id)
+        print("Hy FARMER todo bien", url_image)
+        #new_token = create_access_token(identity=new_user.serialize())
+        #return {"token": new_token, "role": new_user.role}
         
     elif role == 'tech':
         new_tech = TechRepository.add_tech(body, new_user.id)

@@ -59,8 +59,18 @@ export const RegFarmer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(state);
-    await registerFarmer(state);
+
+    const formData = new FormData()
+    formData.append('email', state.email)
+    formData.append('name', state.name)
+    formData.append('sur_name', state.sur_name)
+    formData.append('country', state.country)
+    formData.append('ccaa', state.ccaa)
+    formData.append('company', state.company)
+    formData.append('url_image', file)
+
+    console.log(formData);
+    await registerFarmer(formData);
     navigate("/farmer");
   };
 
