@@ -8,9 +8,7 @@ def get_all_hiring(id):
     return hiring
 
 ## POST HIRING
-def post_hiring(body,user_id):
-    id_farmer = Farmer_Repositoy.get_only_farmer_id(user_id)
-    body['farmer_id'] = id_farmer
+def post_hiring(body):
     hiring = Repository.post_hiring(body)
     return hiring
     
