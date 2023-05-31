@@ -6,6 +6,7 @@ import "../../styles/register.css";
 export const ModTech = () => {
   const navigate = useNavigate()
   const { idTech } = useParams();
+  const token = localStorage.getItem("token");
   const [state, setState] = useState({
     email: "",
     name:"",
@@ -23,7 +24,7 @@ export const ModTech = () => {
     const fetchTechData = async () => {
       try {
         const technician = await getInfoTech(idTech, token);
-        console.log(technician)
+        console.log("los datos del técnico", technician)
         setState((prevState) => ({
           ...prevState,
           
@@ -36,6 +37,7 @@ export const ModTech = () => {
           speciality: technician.speciality,
           num_ropo: technician.num_ropo,
         }));
+        
       } catch (err) {
         console.log(err);
       }
@@ -43,23 +45,23 @@ export const ModTech = () => {
 
     fetchTechData();
   }, []);
-
+  
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("From handleSubmit --> ", state);
+    
     try {
-      await modifyTech(idTech, state);
+      await modifyTech(idTech, state, token);
       
     } catch (err) {
       
       console.log(err);
     }
   };
-
+  
   return (
     <div className="container-fluid register">
       <div className="logoRegister">
@@ -77,9 +79,9 @@ export const ModTech = () => {
         
         
         <label htmlFor="name">Nombre</label>
-        <input className="form-control" type="text" id="name" name="name" placeholder="Escribre tu nombre..." required/>
+        <input className="form-control" type="text" id="name" name="name" placeholder={state.name} />
         <label htmlFor="sur_name">Apellido</label>
-        <input className="form-control" type="text" id="sur_name" name="sur_name" placeholder="Escribre tu apellido..." required/>
+        <input className="form-control" type="text" id="sur_name" name="sur_name" placeholder={state.sur_name} />
         <label htmlFor="country">País</label>
         <select
           defaultValue="ES"
@@ -165,36 +167,36 @@ export const ModTech = () => {
           type="text"
           className="form-control"
           id="description"
-          placeholder="Introduce tus servicios..."
+          placeholder={state.description}
           name="description"
-          required
+          
         />
         <label htmlFor="phone_number">Número de teléfono</label>
         <input
           id="phone_number"
           className="form-control"
           type="tel"
-          placeholder="Introduce tu número de teléfono..."
+          placeholder={state.phone_number}
           name="phone_number"
-          required
+          
         />
         <label htmlFor="speciality">Especialidad</label>
         <input
           id="speciality"
           className="form-control"
           type="text"
-          placeholder="Introduce tu especialidad..."
+          placeholder={state.speciality}
           name="speciality"
-          required
+          
         />
         <label htmlFor="num_ropo">Número ROPO</label>
         <input
           id="num_ropo"
           className="form-control"
           type="number"
-          placeholder="Nº Registro oficial de productores y operadores..."
+          placeholder={state.num_ropo}
           name="num_ropo"
-          required
+          
         />
         <button type="submit" className="btn btn-register">
           Enviar

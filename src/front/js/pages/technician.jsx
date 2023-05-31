@@ -17,6 +17,8 @@ export const Technician = () => {
   const [services, setServices] = useState([]);
   const [selectRole, setselectRole] = useState("");
   const [state, setState] = useState({ email: "", password: "" });
+  const [tech, setTech] = useState(null);
+
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = (conversations) => {
     const conversationsByFarmer = {};
@@ -51,7 +53,7 @@ export const Technician = () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
     const tech = await getInfoTech(user["id"], token);
-
+    setTech(tech);
     setName(tech["name"] + " " + tech["sur_name"]);
   };
 
@@ -101,12 +103,12 @@ export const Technician = () => {
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" onClick={() => navigate(`/modTech/${tech.id}`)}>
                     Ajustes
                   </a>
                 </li>
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item">
                     Ir al perfil
                   </a>
                 </li>
