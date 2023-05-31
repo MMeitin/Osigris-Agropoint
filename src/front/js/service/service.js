@@ -242,3 +242,26 @@ export const filterTechByField = async (body) => {
     console.error("No pudimos filtrar tu tecnico -->", err);
   }
 };
+
+
+export const modifyTech = async (technicianId, body) => {
+  try {
+    const resp = await fetch(`${URL}/api/tech/${technicianId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+      redirect: "follow",
+    });
+    if (resp) {
+      const data = await resp.json();
+      console.log(data)
+      return data;
+    } else {
+      throw new Error("Error al modificar el técnico");
+    }
+  } catch (err) {
+    console.log("no entra")
+    console.log("Error al modificar el técnico", err);
+    throw err;
+  }
+};
