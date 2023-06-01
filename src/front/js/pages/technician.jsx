@@ -6,9 +6,10 @@ import {
   getInfoUser,
   getMessages,
   getServices,
-  loginUser,
+  getHiring,
 } from "../service/service";
 import "../../styles/technician.css";
+import Modal from "react-modal"
 
 export const Technician = () => {
   const navigate = useNavigate();
@@ -17,23 +18,36 @@ export const Technician = () => {
   const [services, setServices] = useState([]);
   const [selectRole, setselectRole] = useState("");
   const [state, setState] = useState({ email: "", password: "" });
+
+  const [modal, setModal] = useState(false);
+  const [hiring, setHiring] = useState([]);
+
+  const getHirings = async () => {
+    const contrataciones = await getHiring();
+    setHiring(contrataciones);
+  }
+
+  const openModal = () => {
+    setModal(true);
+  }
+  const closeModal = () => {
+    setModal(false)
+  }
+
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = (conversations) => {
     const conversationsByFarmer = {};
-
     conversations.forEach((conversation) => {
       const farmerId = conversation.farmer_id;
       if (!conversationsByFarmer[farmerId]) {
         conversationsByFarmer[farmerId] = conversation;
       }
     });
-
     const uniqueConversations = Object.values(conversationsByFarmer);
     return uniqueConversations;
   };
   const paramsSet = async () => {
     const chooseRole = localStorage.getItem("role");
-
     if (chooseRole === "farmer") {
       setselectRole("farmer");
     }
@@ -70,6 +84,7 @@ export const Technician = () => {
     await fetchData();
     await paramsSet();
     await getConversations();
+    await getHirings()
   };
 
   useEffect(() => {
@@ -82,6 +97,9 @@ export const Technician = () => {
         <div className="navbar-content">
           <h2 className="logo">LOGO</h2>
           <div className="navbar-right">
+            <a className="navbar-link">
+              Mis contrataciones
+            </a>
             <a className="navbar-link" href="#conversations">
               Mis conversaciones
             </a>

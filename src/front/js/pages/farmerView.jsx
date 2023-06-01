@@ -29,6 +29,7 @@ export const FarmerView = () => {
   const [hiring, setHiring] = useState([]);
 
   const openModal = () => {
+    getHiringFromService();
     setModalStatus(true)
   }
 
@@ -39,7 +40,6 @@ export const FarmerView = () => {
   const getHiringFromService = async () => {
     const hirings = await getHiring();
     setHiring(hirings);
-    console.log("From FarmerView Get Hiring -->",hirings)
   }
 
   const getInfo = async () => {
@@ -262,6 +262,10 @@ export const FarmerView = () => {
                 hiring.length > 0 ? (hiring.map((element, index) => (
                   <HiringCard
                   key={index}
+                  crop_type={element.crop_name}
+                  service={element.service_id}
+                  tech={element.tech_name}
+                  status={element.status}
                     />
                 ))) : <h3>No tienes contrataciones activas</h3>
               }

@@ -52,3 +52,6 @@
   width: 25%;
   margin: 1em;
 }
+.hiringBody{
+  overflow-y: scroll;
+}
