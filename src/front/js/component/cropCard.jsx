@@ -1,6 +1,5 @@
 import React from "react";
 import "../../styles/cropCard_style.css";
-import serviceFunction from "../service/service.js";
 import "../../styles/home.css";
 
 const Cropcard = (props) =>{
@@ -10,8 +9,7 @@ const Cropcard = (props) =>{
             <div className="crop-card-body">
                 <h5 className="crop-card-title">{props.crop_type}</h5>
                 <p className="crop-card-text">{props.description} </p>
-                <p className="crop-card-text">{props.dimension_ha} ha</p>
-                
+                <p className="crop-card-text">{props.dimension_ha}</p>
                 {/* <button onClick={handleDelete} className="card-text">
                     Delete
                 </button> */}

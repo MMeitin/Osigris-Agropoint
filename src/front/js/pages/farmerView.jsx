@@ -11,11 +11,13 @@ import {
   filterTechByField,
 } from "../service/service";
 
+
 export const FarmerView = () => {
   const navigate = useNavigate();
   const [tech, setTech] = useState([]);
   const [crops, setCrops] = useState([]);
   const [name, setName] = useState("");
+  const [idFarmer, setIdFarmer] = useState("")
   const [filter, setFilter] = useState({
     ccaa: "",
     speciality: "",
@@ -25,9 +27,8 @@ export const FarmerView = () => {
   const getInfo = async () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
-    
+    setIdFarmer(user["id"])
     const farmer = await getInfoFarmer(user["id"], token);
-    
     setName(farmer["name"] + " " + farmer["sur_name"]);
   };
 
@@ -221,6 +222,8 @@ export const FarmerView = () => {
                 speciality={element.speciality}
                 technician_id={element.id}
                 role={element.role}
+                cropList ={crops}
+                farmer_id={idFarmer}
               />
             ))
           ) : (
