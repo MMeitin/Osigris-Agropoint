@@ -82,7 +82,7 @@ export const FarmerView = () => {
               Mis cultivos
             </a>
             <a className="navbar-link" href="#conversations">
-              Técnicos disponibles
+              Mis contrataciones
             </a>
             <a
               className="navbar-link"
