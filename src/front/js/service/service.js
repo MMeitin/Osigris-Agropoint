@@ -77,6 +77,8 @@ export const getInfoUser = async (token) => {
 };
 
 export const getInfoFarmer = async (id_user, token) => {
+  console.log("El id del user", id_user)
+  
   try {
     const res = await fetch(`${URL}/api/farmer/${id_user}`, {
       method: "GET",
@@ -84,7 +86,9 @@ export const getInfoFarmer = async (id_user, token) => {
         Authorization: `Bearer ${token}`,
         ...HEADERS,
       },
+      
     });
+    console.log("entra")
     const data = await res.json();
     return data;
   } catch (err) {
@@ -245,6 +249,47 @@ export const filterTechByField = async (body) => {
   }
 };
 
+export const modifyTech = async (technicianId, body, token) => {
+  try {
+    const resp = await fetch(`${URL}/api/tech/${technicianId}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+      redirect: "follow",
+    });
+    if (resp) {
+      const data = await resp.json();
+      return data;
+    } else {
+      throw new Error("Error al modificar el técnico");
+    }
+  } catch (err) {
+    console.log("Error al modificar el técnico", err);
+    throw err;
+  }
+};
+
+export const modifyFarmer = async (farmerId, body, token) => {
+  try {
+    const resp = await fetch(`${URL}/api/farmer/${farmerId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+      body: JSON.stringify(body),
+      redirect: "follow",
+    });
+    if (resp) {
+      const data = await resp.json();
+      return data;
+    } else {
+      throw new Error("Error al modificar el técnico");
+    }
+  } catch (err) {
+    console.log("Error al modificar el técnico", err);
+    throw err;
+  }
+};
 export const postHiring = async (body) => {
   const token = localStorage.getItem("token");
   const raw = JSON.stringify(body);
