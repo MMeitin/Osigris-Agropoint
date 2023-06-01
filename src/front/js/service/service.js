@@ -341,3 +341,23 @@ export const getTechHiring = async () => {
     return err;
   }
 }
+
+export const putHiring = async (body) => {
+  const token = localStorage.getItem("token");
+  try{  
+    const resp = await fetch(`${URL}/api/hiring/`, {
+      method:'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+      body: JSON.stringify(body),
+      redirect: "follow",
+    });
+    const data = await resp.json()
+    return data;
+  }catch(err){
+    console.log("Error en el put hiring")
+    return err
+  }
+}

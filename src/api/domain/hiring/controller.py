@@ -20,3 +20,7 @@ def post_hiring(body):
     hiring = Repository.post_hiring(body)
     return hiring
     
+## PUT HIRING
+def put_hiring(body):
+    put_hiring = Repository.post_hiring(body)
+    return put_hiring

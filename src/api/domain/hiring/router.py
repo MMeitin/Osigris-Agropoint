@@ -20,10 +20,12 @@ def get_tech_hiring():
     hiring = Controller.get_all_tech_hiring(id)
     return jsonify(hiring)
 
-@api.router("/", methods=['PUT'])
+@api.route("/", methods=['PUT'])
 @jwt_required()
 def put_hiring():
-    return jsonify()
+    body = request.get_json()
+    aprove_status = Controller.put_hiring(body)
+    return jsonify(aprove_status)
 
 @api.route("/", methods=['POST'])
 @jwt_required()

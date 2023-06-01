@@ -18,4 +18,10 @@ def post_hiring(body):
     db.session.add(hiring)
     db.session.commit()
     return hiring.serialize()
-    
+
+## PUT HIRING
+def put_hiring(body):
+    hiring = Hiring(body['crop_name'], body['tech_name'],body['crop_id'], body['service_id'], body['farmer_id'],body['technician_id'],body['status'])
+    db.session.add(hiring)
+    db.session.commit()
+    return hiring.serialize()

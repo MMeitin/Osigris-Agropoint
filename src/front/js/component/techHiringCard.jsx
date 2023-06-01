@@ -1,6 +1,9 @@
-import React from "react";
+import React,{useState} from "react";
 
 const TechHiringCard = (props) => {
+
+    
+
     return(
         <div className="hiring_card card m-3">
             <div className="hiring-card-body">
