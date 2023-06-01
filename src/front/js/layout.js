@@ -13,6 +13,7 @@ import RegTech from "./pages/regTech.jsx";
 import Technician from "./pages/technician.jsx";
 import ConversView  from "./pages/conversView.jsx";
 import ModTech from "./pages/modifyTech.jsx";
+import ModFarmer from "./pages/modifyFarmer.jsx"
 
 //create your first component
 const Layout = () => {
@@ -38,6 +39,7 @@ const Layout = () => {
             <Route element={<Technician />} path="/technician" />
             <Route element={<ConversView />} path="/convers/:targetName/:role" />
             <Route element={<ModTech />} path="/modTech/:idTech" />
+            <Route element={<ModFarmer />} path="/modFarmer/:idFarmer" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
         </ScrollToTop>

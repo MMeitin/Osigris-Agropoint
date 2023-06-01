@@ -107,7 +107,7 @@ export const FarmerView = () => {
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" onClick={() => navigate(`/modFarmer/${farmer.id}`)}>
                     Ajustes
                   </a>
                 </li>

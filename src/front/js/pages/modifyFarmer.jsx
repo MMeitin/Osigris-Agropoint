@@ -1,49 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { modifyTech,getInfoTech } from "../service/service";
+import { modifyFarmer,getInfoFarmer, getInfoUser } from "../service/service";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/register.css";
 
-export const ModTech = () => {
+export const ModFarmer = () => {
   const navigate = useNavigate()
   const [name, setName] = useState("");
-  const { idTech } = useParams();
+  const { idFarmer } = useParams();
   const token = localStorage.getItem("token");
   const [state, setState] = useState({
     email: "",
-    name:"",
-    sur_name:"",
-    description: "",
-    phone_number: "",
+    name: "",
+    sur_name: "",
     country: "España",
     ccaa: "",
-    speciality: "",
-    num_ropo: "",
+    company: "",
+    pac_num: "",
   });
-  const goperfil = () => {
-    navigate("/");
-  }
+  
   const logOut = () => {
     localStorage.clear();
     navigate("/");
   };
-
+  
   useEffect(() => {
+    
     const token = localStorage.getItem("token");
-    const fetchTechData = async () => {
+    const fetchFarmerData = async () => {
       try {
-        const technician = await getInfoTech(idTech, token);
-        console.log("los datos del técnico", technician)
+        const user = await getInfoUser(token);
+        const farmer = await getInfoFarmer(user["id"], token);
         setState((prevState) => ({
           ...prevState,
           
-          name: technician.name,
-          sur_name: technician.sur_name,
-          description: technician.description,
-          phone_number: technician.phone_number,
-          country: technician.country,
-          ccaa: technician.ccaa,
-          speciality: technician.speciality,
-          num_ropo: technician.num_ropo,
+          name: farmer.name,
+          sur_name: farmer.sur_name,
+          description: farmer.description,
+          phone_number: farmer.phone_number,
+          country: farmer.country,
+          company: farmer.company,
+          ccaa: farmer.ccaa,
+          pac_num: farmer.pac_num,
         }));
         
       } catch (err) {
@@ -51,7 +48,7 @@ export const ModTech = () => {
       }
     };
 
-    fetchTechData();
+    fetchFarmerData();
   }, []);
   
   const handleChange = (e) => {
@@ -62,12 +59,13 @@ export const ModTech = () => {
     e.preventDefault();
     
     try {
-      await modifyTech(idTech, state, token);
+      await modifyFarmer(idFarmer, state, token);
       
     } catch (err) {
       
       console.log(err);
     }
+    navigate(`/farmer`)
   };
   
   return (
@@ -76,7 +74,7 @@ export const ModTech = () => {
         <div className="navbar-content">
           <h2 className="logo">LOGO</h2>
           <div className="navbar-right">
-            <a className="navbar-link" onClick={() => navigate(`/technician`)}>
+            <a className="navbar-link" onClick={() => navigate(`/farmer`)}>
               Volver
             </a>
             <div className="dropdown">
@@ -94,13 +92,9 @@ export const ModTech = () => {
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
               >
+                
                 <li>
-                  <a className="dropdown-item" onClick={() => navigate(`/modTech/${tech.id}`)}>
-                    Ajustes
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" onClick={() => navigate(`/technician`)}>
+                  <a className="dropdown-item" onClick={() => navigate(`/farmer`)}>
                     Ir al perfil
                   </a>
                 </li>
@@ -115,7 +109,7 @@ export const ModTech = () => {
         </div>
       </nav>
       
-    <div className="container-fluid register">
+      <div className="container-fluid register">
       <div className="logoRegister">
         <img
           className="img img-fluid"
@@ -124,16 +118,29 @@ export const ModTech = () => {
         />
       </div>
       <form
-        className="formularioTech"
+        className="formularioFarm"
         onChange={handleChange}
         onSubmit={handleSubmit}
       >
-        
+  
         
         <label htmlFor="name">Nombre</label>
-        <input className="form-control" type="text" id="name" name="name" placeholder={state.name} />
+        <input
+          className="form-control"
+          type="text"
+          id="name"
+          name="name"
+          placeholder={state.name}
+          
+        />
         <label htmlFor="sur_name">Apellido</label>
-        <input className="form-control" type="text" id="sur_name" name="sur_name" placeholder={state.sur_name} />
+        <input
+          className="form-control"
+          type="text"
+          id="sur_name"
+          name="sur_name"
+          placeholder={state.sur_name}
+        />
         <label htmlFor="country">País</label>
         <select
           defaultValue="ES"
@@ -214,41 +221,21 @@ export const ModTech = () => {
           <option>País Vasco</option>
           <option>Valencia</option>
         </select>
-        <label htmlFor="description">Descripción de mis servicios</label>
+        <label htmlFor="company">Compañía</label>
         <input
           type="text"
           className="form-control"
-          id="description"
-          placeholder={state.description}
-          name="description"
-          
+          id="company"
+          placeholder={state.company}
+          name="company"
         />
-        <label htmlFor="phone_number">Número de teléfono</label>
+        <label htmlFor="pac_num">Número de PAC</label>
         <input
-          id="phone_number"
-          className="form-control"
-          type="tel"
-          placeholder={state.phone_number}
-          name="phone_number"
-          
-        />
-        <label htmlFor="speciality">Especialidad</label>
-        <input
-          id="speciality"
-          className="form-control"
-          type="text"
-          placeholder={state.speciality}
-          name="speciality"
-          
-        />
-        <label htmlFor="num_ropo">Número ROPO</label>
-        <input
-          id="num_ropo"
-          className="form-control"
           type="number"
-          placeholder={state.num_ropo}
-          name="num_ropo"
-          
+          className="form-control"
+          id="pac_num"
+          placeholder={state.pac_num}
+          name="pac_num"
         />
         <button type="submit" className="btn btn-register">
           Enviar
@@ -259,4 +246,4 @@ export const ModTech = () => {
   );
 };
 
-export default ModTech;
+export default ModFarmer;
