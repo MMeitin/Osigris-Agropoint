@@ -108,7 +108,7 @@ export const FarmerView = () => {
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a className="dropdown-item" onClick={() => navigate(`/modFarmer/${farmer.id}`)}>
+                  <a className="dropdown-item" onClick={() => navigate(`/modFarmer/${idFarmer}`)}>
                     Ajustes
                   </a>
                 </li>
@@ -149,7 +149,7 @@ export const FarmerView = () => {
         </div>
         {/*FILTRADO DE TECH */}
         <div className="misTech col-12">
-          <h1 className="titulo-misTech text-center">Filtrar Técnicos</h1>
+          <h1 className="titulo-misTech text-center">Buscar</h1>
           <form
             className="formularioFilterTech"
             onChange={handleChangefilterTech}
@@ -209,7 +209,7 @@ export const FarmerView = () => {
       </div>
       {/*My Technician */}
       <div className="misTechnicos col-12">
-        <h1 className="titulo-miscultivos text-end pe-5">Mis Técnicos</h1>
+        
         <div className="cropCard_container justify-content-center">
           {tech.length > 0 ? (
             tech.map((element, index) => (
