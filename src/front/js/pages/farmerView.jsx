@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/farmerView.css";
 import Cropcard from "../component/cropCard.jsx";
-import AddCropModal from "../component/addCropModal.jsx";
 import TechCard from "../component/techCard.jsx";
 import AddCropModal from "../component/addCropModal.jsx";
 import {
@@ -81,6 +80,7 @@ export const FarmerView = () => {
     e.preventDefault();
     await filterTech();
   };
+
   const loadAllData = async () => {
     await getCrop();
     await getInfo();
