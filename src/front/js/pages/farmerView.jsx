@@ -4,6 +4,7 @@ import "../../styles/farmerView.css";
 import Cropcard from "../component/cropCard.jsx";
 import AddCropModal from "../component/addCropModal.jsx";
 import TechCard from "../component/techCard.jsx";
+import AddCropModal from "../component/addCropModal.jsx";
 import {
   getInfoCrop,
   getInfoUser,
@@ -20,6 +21,7 @@ export const FarmerView = () => {
   const [tech, setTech] = useState([]);
   const [crops, setCrops] = useState([]);
   const [name, setName] = useState("");
+  const [idFarmer, setIdFarmer] = useState("");
   const [filter, setFilter] = useState({
     ccaa: "",
     speciality: "",
@@ -42,9 +44,8 @@ export const FarmerView = () => {
   const getInfo = async () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
-    console.log("User", user);
+    setIdFarmer(user["id"]);
     const farmer = await getInfoFarmer(user["id"], token);
-    console.log(farmer);
     setName(farmer["name"] + " " + farmer["sur_name"]);
   };
 
@@ -70,6 +71,10 @@ export const FarmerView = () => {
 
   const handleChangefilterTech = ({ target }) => {
     setFilter({ ...filter, [target.name]: target.value });
+  };
+
+  const handleConversationsClick = () => {
+    navigate(`/convers/${name}/farmer`);
   };
 
   const handleSubmitFilterTech = async (e) => {
@@ -99,6 +104,13 @@ export const FarmerView = () => {
             <a className="navbar-link" href="#conversations">
               Técnicos disponibles
             </a>
+            <a
+              className="navbar-link"
+              href="#conversations"
+              onClick={handleConversationsClick}
+            >
+              Mis conversaciones
+            </a>
             <div className="dropdown">
               <span className="user-label">{name}</span>
               <button
@@ -115,7 +127,10 @@ export const FarmerView = () => {
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a className="dropdown-item" href="#">
+                  <a
+                    className="dropdown-item"
+                    onClick={() => navigate(`/modFarmer/${idFarmer}`)}
+                  >
                     Ajustes
                   </a>
                 </li>
@@ -172,7 +187,7 @@ export const FarmerView = () => {
         </div>
         {/*FILTRADO DE TECH */}
         <div className="misTech col-12">
-          <h1 className="titulo-misTech text-center">Filtrar Técnicos</h1>
+          <h1 className="titulo-misTech text-center">Buscar</h1>
           <form
             className="formularioFilterTech"
             onChange={handleChangefilterTech}
@@ -232,7 +247,6 @@ export const FarmerView = () => {
       </div>
       {/*My Technician */}
       <div className="misTechnicos col-12">
-        <h1 className="titulo-miscultivos text-end pe-5">Mis Técnicos</h1>
         <div className="cropCard_container justify-content-center">
           {tech.length > 0 ? (
             tech.map((element, index) => (
@@ -243,6 +257,10 @@ export const FarmerView = () => {
                 country={element.country}
                 ccaa={element.ccaa}
                 speciality={element.speciality}
+                technician_id={element.id}
+                role={element.role}
+                cropList={crops}
+                farmer_id={idFarmer}
               />
             ))
           ) : (

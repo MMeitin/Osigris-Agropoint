@@ -3,7 +3,7 @@ from api.models.db import db
 class Service(db.Model):
     
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), unique=True, nullable=False)
+    name = db.Column(db.String(50), unique=False, nullable=False)
     id_technician = db.Column(db.Integer,db.ForeignKey('technician.id'), unique=True, nullable=False)
     technician = db.relationship('Technician')
     

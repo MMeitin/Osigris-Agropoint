@@ -75,6 +75,8 @@ export const getInfoUser = async (token) => {
 };
 
 export const getInfoFarmer = async (id_user, token) => {
+  console.log("El id del user", id_user);
+
   try {
     const res = await fetch(`${URL}/api/farmer/${id_user}`, {
       method: "GET",
@@ -83,6 +85,7 @@ export const getInfoFarmer = async (id_user, token) => {
         ...HEADERS,
       },
     });
+    console.log("entra");
     const data = await res.json();
     return data;
   } catch (err) {
@@ -204,18 +207,22 @@ export const getServices = async () => {
 export const sendMessage = async (newMessage) => {
   const token = localStorage.getItem("token");
   const raw = JSON.stringify(newMessage);
-  console.log(raw);
+
   try {
     const res = await fetch(`${URL}/api/message/`, {
       method: "POST",
+
       body: raw,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
       redirect: "follow",
     });
     const data = await res.json();
-    console.log("la data del service", data);
+
     return data;
   } catch (error) {
-    console.error("Error en sendMessages", error);
     return error;
   }
 };
@@ -236,5 +243,66 @@ export const filterTechByField = async (body) => {
     return data;
   } catch (err) {
     console.error("No pudimos filtrar tu tecnico -->", err);
+  }
+};
+
+export const modifyTech = async (technicianId, body, token) => {
+  try {
+    const resp = await fetch(`${URL}/api/tech/${technicianId}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+      redirect: "follow",
+    });
+    if (resp) {
+      const data = await resp.json();
+      return data;
+    } else {
+      throw new Error("Error al modificar el técnico");
+    }
+  } catch (err) {
+    console.log("Error al modificar el técnico", err);
+    throw err;
+  }
+};
+
+export const modifyFarmer = async (farmerId, body, token) => {
+  try {
+    const resp = await fetch(`${URL}/api/farmer/${farmerId}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+      body: JSON.stringify(body),
+      redirect: "follow",
+    });
+    if (resp) {
+      const data = await resp.json();
+      return data;
+    } else {
+      throw new Error("Error al modificar el técnico");
+    }
+  } catch (err) {
+    console.log("Error al modificar el técnico", err);
+    throw err;
+  }
+};
+export const postHiring = async (body) => {
+  const token = localStorage.getItem("token");
+  const raw = JSON.stringify(body);
+  try {
+    const req = await fetch(`${URL}/api/hiring/`, {
+      method: "POST",
+      body: raw,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await req.json();
+    console.log("Hiring de cookies");
+    return data;
+  } catch (err) {
+    return err;
   }
 };
