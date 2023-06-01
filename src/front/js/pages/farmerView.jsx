@@ -9,8 +9,10 @@ import {
   getInfoFarmer,
   getAllTech,
   filterTechByField,
+  getHiring
 } from "../service/service";
-
+import Modal from "react-modal";
+import HiringCard from "../component/hiringCard.jsx";
 
 export const FarmerView = () => {
   const navigate = useNavigate();
@@ -23,6 +25,22 @@ export const FarmerView = () => {
     speciality: "",
     name: "",
   });
+  const [modalStatus, setModalStatus] = useState(false);
+  const [hiring, setHiring] = useState([]);
+
+  const openModal = () => {
+    setModalStatus(true)
+  }
+
+  const closeModal = () => {
+    setModalStatus(false)
+  }
+
+  const getHiringFromService = async () => {
+    const hirings = await getHiring();
+    setHiring(hirings);
+    console.log("From FarmerView Get Hiring -->",hirings)
+  }
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -66,6 +84,7 @@ export const FarmerView = () => {
     await getCrop();
     await getInfo();
     await getTech();
+    await getHiringFromService();
   };
 
   useEffect(() => {
@@ -82,7 +101,7 @@ export const FarmerView = () => {
             <a className="navbar-link" href="#conversations">
               Mis cultivos
             </a>
-            <a className="navbar-link" href="#conversations">
+            <a className="navbar-link" onClick={openModal}>
               Mis contrataciones
             </a>
             <a
@@ -231,6 +250,25 @@ export const FarmerView = () => {
           )}
         </div>
       </div>
+      <Modal 
+        isOpen={modalStatus}
+        onRequestClose={closeModal}
+        contentLabel="ViewHirings"
+        ariaHideApp={false}>
+          <div className="viewHiringModal">
+            <h2>Hola {name}, estas son tus contrataciones</h2>
+            <div className="hiringBody">
+              {
+                hiring.length > 0 ? (hiring.map((element, index) => (
+                  <HiringCard
+                  key={index}
+                    />
+                ))) : <h3>No tienes contrataciones activas</h3>
+              }
+            </div>
+            <button onClick={closeModal}>Cerrar Ventana</button>
+          </div>
+      </Modal>
     </div>
   );
 };
