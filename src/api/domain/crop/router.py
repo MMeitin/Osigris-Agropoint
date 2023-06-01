@@ -12,6 +12,7 @@ def post_crop():
     print(get_jwt_identity())
     user_id = get_jwt_identity()['id']
     body = request.get_json()
+    print(body)
     crop = Controller.post_crop(body, user_id)
 
     if isinstance(crop, tuple):  # Si la función post_crop devuelve un error en forma de tupla

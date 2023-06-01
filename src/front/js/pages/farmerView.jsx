@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styles/farmerView.css";
 import Cropcard from "../component/cropCard.jsx";
+import AddCropModal from "../component/addCropModal.jsx";
 import TechCard from "../component/techCard.jsx";
 import {
   getInfoCrop,
@@ -9,10 +10,13 @@ import {
   getInfoFarmer,
   getAllTech,
   filterTechByField,
+  addFarm,
 } from "../service/service";
 
 export const FarmerView = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingCrop, setEditingCrop] = useState(null);
   const [tech, setTech] = useState([]);
   const [crops, setCrops] = useState([]);
   const [name, setName] = useState("");
@@ -21,6 +25,19 @@ export const FarmerView = () => {
     speciality: "",
     name: "",
   });
+
+  const toggleCreateCrop = (crop = null) => {
+    setEditingCrop(crop);
+    setIsModalOpen(true);
+  };
+
+  const handleAddNewCrop = async (cropData) => {
+    try {
+      await addFarm(cropData);
+    } catch (error) {
+      console.log("Error al agregar el nuevo cultivo", error);
+    }
+  };
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -119,21 +136,37 @@ export const FarmerView = () => {
       </nav>
       <div className="main-body ">
         {/*My Crops*/}
+        <AddCropModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onSave={handleAddNewCrop}
+          editingCrop={editingCrop}
+        />
         <div className="misCultivos col-12">
           <h1 className="titulo-miscultivos ps-5 ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
-            {crops.length > 0 ? (
-              crops.map((todo, index) => (
-                <Cropcard
-                  key={index}
-                  id={todo.id}
-                  crop_type={todo.crop_type}
-                  description={todo.description}
-                  dimension_ha={todo.dimension_ha}
-                />
-              ))
+            {crops.length === 0 ? (
+              <Cropcard
+                description={"Crea tu primer Cultivo"}
+                onClick={() => toggleCreateCrop()}
+              />
             ) : (
-              <Cropcard description={"Crea tu primer Cultivo"} />
+              <>
+                {crops.map((crop, index) => (
+                  <Cropcard
+                    key={index}
+                    id={crop.id}
+                    crop_type={crop.crop_type}
+                    description={crop.description}
+                    dimension_ha={crop.dimension_ha}
+                    onClick={() => toggleCreateCrop(crop)}
+                  />
+                ))}
+                <Cropcard
+                  description={"Agregar nuevo cultivo"}
+                  onClick={() => toggleCreateCrop()}
+                />
+              </>
             )}
           </div>
         </div>
