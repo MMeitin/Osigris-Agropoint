@@ -23,13 +23,16 @@ export const registerFarmer = async (newUser) => {
   }
 };
 
-export const addFarm = async (newFarm) => {
+export const addFarm = async (newFarm, authToken) => {
   const raw = JSON.stringify(newFarm);
   try {
     console.log("Farm created on service", newFarm);
     const resp = await fetch(`${URL}/api/crop/addFarm`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${authToken}`,
+      },
       body: raw,
       redirect: "follow",
     });

@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/farmerView.css";
 import Cropcard from "../component/cropCard.jsx";
 import TechCard from "../component/techCard.jsx";
+import AddCropModal from "../component/addCropModal.jsx";
 import {
   getInfoCrop,
   getInfoUser,
   getInfoFarmer,
   getAllTech,
   filterTechByField,
+  addFarm,
 } from "../service/service";
 
 export const FarmerView = () => {
@@ -16,11 +18,27 @@ export const FarmerView = () => {
   const [tech, setTech] = useState([]);
   const [crops, setCrops] = useState([]);
   const [name, setName] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingCrop, setEditingCrop] = useState(null);
   const [filter, setFilter] = useState({
     ccaa: "",
     speciality: "",
     name: "",
   });
+
+  const handleAddNewCrop = async (cropData) => {
+    try {
+      const authToken = localStorage.getItem("token");
+      if (!authToken) {
+        throw new Error(
+          "No se encontró el token de autenticación en el localStorage"
+        );
+      }
+      await addFarm(cropData, authToken);
+    } catch (error) {
+      console.log("Error al agregar el nuevo cultivo", error);
+    }
+  };
 
   const getInfo = async () => {
     const token = localStorage.getItem("token");
@@ -53,6 +71,11 @@ export const FarmerView = () => {
 
   const handleChangefilterTech = ({ target }) => {
     setFilter({ ...filter, [target.name]: target.value });
+  };
+
+  const toggleCreateCrop = (crop = null) => {
+    setIsModalOpen(true);
+    setEditingCrop(crop);
   };
 
   const handleSubmitFilterTech = async (e) => {
@@ -119,21 +142,37 @@ export const FarmerView = () => {
       </nav>
       <div className="main-body ">
         {/*My Crops*/}
+        <AddCropModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onSave={handleAddNewCrop}
+          editingCrop={editingCrop}
+        />
         <div className="misCultivos col-12">
           <h1 className="titulo-miscultivos ps-5 ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
-            {crops.length > 0 ? (
-              crops.map((todo, index) => (
-                <Cropcard
-                  key={index}
-                  id={todo.id}
-                  crop_type={todo.crop_type}
-                  description={todo.description}
-                  dimension_ha={todo.dimension_ha}
-                />
-              ))
+            {crops.length === 0 ? (
+              <Cropcard
+                description={"Crea tu primer Cultivo"}
+                onClick={() => toggleCreateCrop()}
+              />
             ) : (
-              <Cropcard description={"Crea tu primer Cultivo"} />
+              <>
+                {crops.map((crop, index) => (
+                  <Cropcard
+                    key={index}
+                    id={crop.id}
+                    crop_type={crop.crop_type}
+                    description={crop.description}
+                    dimension_ha={crop.dimension_ha}
+                    onClick={() => toggleCreateCrop(crop)}
+                  />
+                ))}
+                <Cropcard
+                  description={"Agregar nuevo cultivo"}
+                  onClick={() => toggleCreateCrop()}
+                />
+              </>
             )}
           </div>
         </div>
