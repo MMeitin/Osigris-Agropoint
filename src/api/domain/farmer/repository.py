@@ -45,3 +45,6 @@ def get_all_tech():
     tech = Technician.query.all()
     tech_serialize = list(map(lambda x : x.serialize(), tech))
     return tech_serialize
+
+def modifyFarmer():
+    db.session.commit()

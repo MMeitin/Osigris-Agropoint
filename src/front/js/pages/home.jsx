@@ -44,7 +44,7 @@ export const Home = () => {
             Preguntas frecuentes
           </a>
           <button
-            className="btn"
+            className="btn-navbar"
             data-bs-toggle="modal"
             data-bs-target="#registerModal"
           >
@@ -150,14 +150,14 @@ export const Home = () => {
 
       <div className="body container-fluid">
         {/* Sección 1 quienes somos */}
-        <div className="titulo col-12 d-flex justify-content-center m-5">
+        <div className="titulo ">
           <h1>
             Encuentra a tu <span>técnico</span>
           </h1>
         </div>
 
-        <div className="section1 container-fluid  row" id="section1">
-          <div className="textos row col-6 d-flex align-items-center justify-content-center">
+        <div className="section1 container-fluid" id="section1">
+          <div className="textos  d-flex align-items-center justify-content-center">
             <h1 className="titulo1">
               El <span>técnico agrícola</span> perfecto para ti.
             </h1>
@@ -170,13 +170,13 @@ export const Home = () => {
               ideal, ¡únete a nosotros y haz crecer tu negocio hoy mismo!
             </p>
           </div>
-          <div className=" row col-4 d-flex  ">
+          
             <img
               className="img1 img-fluid"
               src="https://res.cloudinary.com/ddyd5ebc7/image/upload/v1682015035/_dde26f94-d3f6-44ef-a892-4c90bd2c8dd6_rorddp.png"
               alt="Imagen de la sección 1"
             />
-          </div>
+          
         </div>
 
         {/* Sección 2  contactos (habría que hacer un slider y que se llene con 7-8 contactos al azar)*/}
@@ -189,7 +189,7 @@ export const Home = () => {
             ¿Buscando al gurú verde para tus <span>cultivos</span>? <br></br>
             ¡Aquí lo tienes!
           </h1>
-          <p className="row">
+          <p className="">
             {" "}
             Nuestros técnicos agrícolas especializados son la clave para mejorar
             la producción de tus cultivos. Con años de experiencia en el campo y
@@ -200,67 +200,110 @@ export const Home = () => {
             mismo!
           </p>
         </div>
-        <div className=" row  justify-content-center">
-          <div className=" card col-3  m-3">
+        <div className="card-container-landing">
+          <div className="card-landing">
             <img
               src="https://elcamponopara.org/wp-content/uploads/2020/04/oferta-INGENIERO-T%C3%89CNICO-AGR%C3%8DCOLA-E-INDUSTRIAL.jpg"
-              className="card-img-top  "
+              className="card-img-top-landing  "
               alt="..."
             />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+            <div className="card-body-landing">
+              <h5 className="card-title-landing">Luis Gonzaga</h5>
+              <p className="card-text-landing">
+              Listo para brindar soluciones efectivas y asesoramiento personalizado para optimizar sus operaciones agrícolas. 
               </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
+              
             </div>
           </div>
-          <div className=" card col-3  m-3 ">
+          <div className=" card-landing">
             <img
-              className="card-img-top "
+              className="card-img-top-landing "
               src="https://www.marismas.es/wp-content/uploads/2018/06/asesoramiento-tecnico-agricola-4.jpg"
               alt="..."
             />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
+            <div className="card-body-landing">
+              <h5 className="card-title-landing">Susana Arias</h5>
+              <p className="card-text-landing">
+              Puedo ayudarles a maximizar la productividad y 
+              minimizar el impacto ambiental en su actividad agrícola.
               </p>
-              <a href="#" className="btn btn-primary">
-                Go somewhere
-              </a>
+              
             </div>
           </div>
-          <div className=" card col-3 m-3">
+          <div className=" card-landing ">
             <img
               src="https://www.empresaagraria.com/wp-content/uploads/2020/05/Gonzalo-P%C3%A9rez-Fern%C3%A1ndez-1179x580.jpeg"
-              className="card-img-top"
+              className="card-img-top-landing"
               alt="..."
             />
-            <div className="card-body">
-              <h5 className="card-title">Card title</h5>
-              <p className="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" className="btn btn-primary">
+            <div className="card-body-landing">
+              <h5 className="card-title-landing">Manuel Coujil</h5>
+              Estoy dedicado a colaborar con ustedes para lograr un 
+              crecimiento sostenible, ofreciendo herramientas prácticas y conocimientos especializados
+              <a href="#" className="btn-landing btn-primary">
                 Go somewhere
               </a>
             </div>
           </div>
+          
         </div>
+        <div className="btn-container">
+        <button
+            className="btn-busca" 
+          >
+            BUSCAR
+          </button>
+          </div>
+          {/* Sección 3  reseñas*/}
+          <div className="section-review">
+          <h1>¿Qué opinan nuestros <span>agricultores</span> ?</h1>
+          <div className="review-container">
+            
+            <div className="review-box">
+              <p className="review-description">
+                Muy sencillo de usar. Contacté con Julio y ha sido mi técnico de confianza desde entonces
+              </p>
+              <p className="review-name">
+                Javier - Zamora
+              </p>
+            </div>
 
-        {/* Sección 3  Preguntas frecuentes*/}
+            <div className="review-box">
+              <p className="review-description">
+                Me ha servido. Contento la verdad, la seguiré usando.
+                </p>
+              <p className="review-name">
+                Juampe - Ourense
+              </p>
+            </div>
+
+            <div className="review-box">
+              <p className="review-description">
+                Necesitaba un técnico agrícola y me hablaron de ésta página, la recomiendo completamente. Me ha salvado
+                </p>
+              <p className="review-name">
+                María - Almeria
+              </p>
+            </div>
+
+            <div className="review-box">
+              <p className="review-description">
+               No tenía mucha esperanza, pero he encontrado lo que esperaba, gracias.
+              </p>
+              <p className="review-name">
+                Julio - Valencia
+              </p>
+            </div>
+
+          </div>
+          </div>
+        {/* Sección 4  Preguntas frecuentes*/}
 
         <div
           className="section3  d-flex align-items-center  flex-column "
           id="questions"
         >
-          <h1 className="row pt-5 pb-2">¿Dudas?</h1>
+          <h1 className="pt-5 pb-2">¿Dudas?</h1>
 
           <div className="container col-10 d-flex align-items-start  flex-column text-start">
             <div className="col-lg-9 col-md-12 col-sm-12 d-flex flex-column  align-items-start">

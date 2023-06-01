@@ -20,6 +20,7 @@ export const FarmerView = () => {
   const [name, setName] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingCrop, setEditingCrop] = useState(null);
+  const [idFarmer, setIdFarmer] = useState("");
   const [filter, setFilter] = useState({
     ccaa: "",
     speciality: "",
@@ -43,15 +44,14 @@ export const FarmerView = () => {
   const getInfo = async () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
-    console.log("User", user);
+    setIdFarmer(user["id"]);
     const farmer = await getInfoFarmer(user["id"], token);
-    console.log(farmer);
     setName(farmer["name"] + " " + farmer["sur_name"]);
   };
 
   const getCrop = async () => {
     const data = await getInfoCrop();
-    setCrops(data);
+    setcrops(data);
   };
 
   const getTech = async () => {
@@ -76,6 +76,10 @@ export const FarmerView = () => {
   const toggleCreateCrop = (crop = null) => {
     setIsModalOpen(true);
     setEditingCrop(crop);
+  };
+
+  const handleConversationsClick = () => {
+    navigate(`/convers/${name}/farmer`);
   };
 
   const handleSubmitFilterTech = async (e) => {
@@ -104,6 +108,13 @@ export const FarmerView = () => {
             </a>
             <a className="navbar-link" href="#conversations">
               Técnicos disponibles
+            </a>
+            <a
+              className="navbar-link"
+              href="#conversations"
+              onClick={handleConversationsClick}
+            >
+              Mis conversaciones
             </a>
             <div className="dropdown">
               <span className="user-label">{name}</span>
@@ -249,6 +260,10 @@ export const FarmerView = () => {
                 country={element.country}
                 ccaa={element.ccaa}
                 speciality={element.speciality}
+                technician_id={element.id}
+                role={element.role}
+                cropList={crops}
+                farmer_id={idFarmer}
               />
             ))
           ) : (

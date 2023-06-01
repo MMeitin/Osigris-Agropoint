@@ -15,10 +15,7 @@ def get_hiring():
 @api.route("/", methods=['POST'])
 @jwt_required()
 def add_hiring():
-    user_token = get_jwt()
-    user = user_token['sub']
-    user_id = user["id"]
     body = request.get_json()
-    req = Controller.post_hiring(body, user_id)
+    req = Controller.post_hiring(body)
     return jsonify(req)
 

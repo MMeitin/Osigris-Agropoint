@@ -206,18 +206,22 @@ export const getServices = async () => {
 export const sendMessage = async (newMessage) => {
   const token = localStorage.getItem("token");
   const raw = JSON.stringify(newMessage);
-  console.log(raw);
+
   try {
     const res = await fetch(`${URL}/api/message/`, {
       method: "POST",
+
       body: raw,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
       redirect: "follow",
     });
     const data = await res.json();
-    console.log("la data del service", data);
+
     return data;
   } catch (error) {
-    console.error("Error en sendMessages", error);
     return error;
   }
 };
@@ -238,5 +242,25 @@ export const filterTechByField = async (body) => {
     return data;
   } catch (err) {
     console.error("No pudimos filtrar tu tecnico -->", err);
+  }
+};
+
+export const postHiring = async (body) => {
+  const token = localStorage.getItem("token");
+  const raw = JSON.stringify(body);
+  try {
+    const req = await fetch(`${URL}/api/hiring/`, {
+      method: "POST",
+      body: raw,
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
+    });
+    const data = await req.json();
+    console.log("Hiring de cookies");
+    return data;
+  } catch (err) {
+    return err;
   }
 };

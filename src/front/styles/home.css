@@ -35,7 +35,7 @@
  
   color: #e9c46a;
 }
-.btn {
+.btn-navbar {
   font-family: Roboto, sans-serif;
   font-weight: 3;
   font-size: 14px;
@@ -54,12 +54,7 @@
   text-decoration: none;
 }
 
-/* .modal-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  justify-self: center;
-} */
+
 
 .modal{
   backdrop-filter: blur(3px);
@@ -67,20 +62,50 @@
 .modal-body h6{
   background-color: blur;
 }
-.btn:hover {
+.btn-navbar:hover {
   background: linear-gradient(90deg, #237320 0%, #c1d230 68%);
   color: #e9c46a;
   border: none;
 }
 
+/*----------SECCION 1----------*/
+
+
+.section1{
+  background: rgb(231,215,146);
+background: linear-gradient(90deg, rgba(231,215,146,1) 0%, rgba(0,212,255,0) 100%);
+border-radius: 5rem;
+}
+.titulo{
+  text-align: center;
+  margin:6rem;
+  
+ 
+}
 .titulo h1 {
-  font-size: 100px;
+  font-size: 8rem;
 }
 .titulo h1 span {
   color: #237320;
   font-weight: 900;
 }
+.img1 {
+  width: 100%;
+  height: auto;
+}
 
+
+
+
+/*----------SECCION 2----------*/
+
+
+
+
+
+.titulo2{
+  font-size: 5rem;
+}
 .titulo2 span {
   color: #e9c46a;
   font-weight: 900;
@@ -94,19 +119,165 @@
 
 .textos p {
   word-wrap: break-word;
+  font-size: 1.3rem;
 }
 .titulo1 span {
   color: #237320;
   font-weight: 900;
 }
-.fixed-size-card {
-  width: 300px;
-  height: 400px;
+
+/* CARD*/
+.card-container-landing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+  background: rgb(231,215,146);
+background: linear-gradient(90deg, rgba(231,215,146,0) 0%, rgba(212,223,129,1) 100%);
+border-radius: 5rem;
 }
-.card-img-top {
-  max-height: 200px;
-  object-fit: cover;
+.card-landing {
+  overflow: hidden;
+  min-height: 28rem;
+  background-color: transparent;
+  border: 2px solid #2c9131;
+  width: 25rem;
+  
+  border-radius: 10%;
+  margin: 1rem;
+  transition: all 0.2s ease-in-out;
+  max-height: 10rem;
 }
+.card-body-landing{
+  width: fit-content;
+  margin: 1rem;
+}
+.card-img-top-landing {
+  border-radius: 10%;
+  width: 100%;
+  height: 15rem;
+  object-fit: cover; 
+  
+}
+.card-img-top-landing:hover {
+  border-radius: 10%;
+  width: 100%;
+  height: 16rem;
+  object-fit: cover; 
+}
+.card-title-landing{
+  
+  font-size: 2rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.card-text-landing{
+  font-size: 1.1rem;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  
+}
+.btn-container {
+  display: flex;
+  justify-content: center;
+}
+.btn-busca{
+  margin-top: 2rem;
+  font-family: Roboto, sans-serif;
+  font-weight: 3;
+  font-size: 2.5rem;
+  color: #000000;
+  background: transparent;
+  padding: 10px 30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  width:25rem;
+  height:5rem;
+  font-weight: bold;
+  border: 2px solid #2c9131;
+  transition: 0.05s;
+}
+.btn-busca:hover{
+  margin-top: 2rem;
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+  font-size: 2.8rem;
+  color:#e9c46a;
+  background: transparent;
+  padding: 10px 30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  justify-content: center;
+  width:25rem;
+  height:5rem;
+  border: 2px solid #2c9131;
+}
+
+
+
+
+/*----------SECCION 3----------*/
+
+
+
+
+.section-review {
+  margin: 5rem;
+  text-align: center;
+}
+.section-review h1{
+  font-size: 4rem;
+}
+.section-review h1 span{
+  font-size: 4rem;
+  color:#2c9131;
+}
+.review-description{
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.review-name{
+  font-weight:bolder;
+  font-size: 1.5rem;
+  margin-top: auto; 
+  
+}
+.review-container{
+  margin-left: 0;
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.review-box{
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: transparent;
+    border: 2px solid #2c9131;
+    width: 20rem;
+    border-radius: 20px;
+    margin: 1rem;
+    transition: all 0.2s ease-in-out;
+  
+}
+
+
+
+/*----------SECCION 4----------*/
+
+
+
+
+
 
 .faq-section {
   text-align: left;
@@ -140,11 +311,6 @@ p {
   font-size: small;
 }
 
-/* #efdab7  #d2e0d2*/
-
-
-
-/*            */
 #btnServices {
   font-family: Roboto, sans-serif;
   font-weight: 3;

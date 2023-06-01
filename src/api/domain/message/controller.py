@@ -14,8 +14,9 @@ def create_message(body,user):
         farmer = Farmer.query.filter_by(user_owner=user_id).first()
         if farmer is not None:
             farmer_id = farmer.id
-            farmerTech_id = 0
-            message = Message(farmer_id=farmer_id, technician_id=body['technician_id'], message=body['message'], date=body.get('date', now), sender_id=farmerTech_id)
+            print("farmer back", farmer_id)
+            
+            message = Message(farmer_id=farmer_id, technician_id=body['technician_id'], message=body['message'], date=body.get('date', now), sender_role=user_role)
             created_message = Repository.create_message(message)
             return created_message.serialize()
         else:
@@ -24,8 +25,8 @@ def create_message(body,user):
         technician = Technician.query.filter_by(user_owner=user_id).first()
         if technician is not None:
             technician_id = technician.id
-            userTech_id = 1
-            message = Message(farmer_id=body['farmer_id'], technician_id=technician_id, message=body['message'], date=body.get('date', now), sender_id=userTech_id)
+            
+            message = Message(farmer_id=body['farmer_id'], technician_id=technician_id, message=body['message'], date=body.get('date', now), sender_role=user_role)
             created_message = Repository.create_message(message)
             return created_message.serialize()
         else:
@@ -34,9 +35,9 @@ def create_message(body,user):
         return {'error': 'No user with this ID'}
     
 
-def get_farmer_convers(user_id):
+def get_farmer_convers(id):
     
-    messages = Message.query.filter_by(farmer_id=farmer.id).all()
+    messages = Message.query.filter_by(farmer_id=id).all()
     convers = []
     for message in messages:
         technician = Technician.query.filter_by(id=message.technician_id).first()

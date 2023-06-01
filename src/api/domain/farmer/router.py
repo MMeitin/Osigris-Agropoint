@@ -20,3 +20,15 @@ def filter_tech():
     body = request.get_json()
     filtered_tech = Controller.filter_tech(body)
     return jsonify(filtered_tech), 200
+
+@api.route('/<int:farmer_id>', methods=['PUT'])
+@jwt_required()
+def modifyFarmer(farmer_id):
+    farmer = Farmer.query.get(farmer_id)
+    
+    if not farmer:
+        return jsonify({'error': 'El agricultor no existe'}), 404
+    
+    body = request.get_json()
+    modifiedFarmer = Controller.modifyFarmer(farmer, body)
+    return jsonify(modifiedFarmer)
