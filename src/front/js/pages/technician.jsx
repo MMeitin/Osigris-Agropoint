@@ -6,10 +6,11 @@ import {
   getInfoUser,
   getMessages,
   getServices,
-  getHiring,
+  getTechHiring,
 } from "../service/service";
 import "../../styles/technician.css";
-import Modal from "react-modal"
+import Modal from "react-modal";
+import TechHiringCard from "../component/techHiringCard.jsx";
 
 export const Technician = () => {
   const navigate = useNavigate();
@@ -22,17 +23,18 @@ export const Technician = () => {
   const [modal, setModal] = useState(false);
   const [hiring, setHiring] = useState([]);
 
-  const getHirings = async () => {
-    const contrataciones = await getHiring();
-    setHiring(contrataciones);
-  }
+  const getHiringFromService = async () => {
+    const hirings = await getTechHiring();
+    setHiring(hirings);
+    console.log(hirings);
+  };
 
   const openModal = () => {
     setModal(true);
-  }
+  };
   const closeModal = () => {
-    setModal(false)
-  }
+    setModal(false);
+  };
 
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = (conversations) => {
@@ -83,8 +85,8 @@ export const Technician = () => {
     await infoUser();
     await fetchData();
     await paramsSet();
-    await getConversations();
-    await getHirings()
+    await getHiringFromService();
+    //await getConversations();
   };
 
   useEffect(() => {
@@ -97,7 +99,7 @@ export const Technician = () => {
         <div className="navbar-content">
           <h2 className="logo">LOGO</h2>
           <div className="navbar-right">
-            <a className="navbar-link">
+            <a className="navbar-link" onClick={openModal}>
               Mis contrataciones
             </a>
             <a className="navbar-link" href="#conversations">
@@ -184,6 +186,28 @@ export const Technician = () => {
           )}
         </div>
       </div>
+      <Modal
+        isOpen={modal}
+        onRequestClose={closeModal}
+        contentLabel="ModalhiringTech"
+        ariaHideApp={false}
+      >
+        <div className="viewHiringModal">
+          <h2>Hola {name}, estas son tus contrataciones</h2>
+          {hiring.length > 0 ? (
+            hiring.map((element, index) => (
+              <TechHiringCard
+                key={index}
+                crop_type={element.crop_name}
+                service={element.service_id}
+                status={element.status}
+              />
+            ))
+          ) : (
+            <h3>No tienes contrataciones</h3>
+          )}
+        </div>
+      </Modal>
     </div>
   );
 };

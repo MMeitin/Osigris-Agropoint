@@ -6,6 +6,11 @@ def get_all_hiring(id_farmer):
     all_hiring = list(map(lambda x : x.serialize(), hiring))
     return all_hiring
 
+##GET ALL TECH HIRING
+def get_all_tech_hiring(id_tech):
+    hiring = Hiring.query.filter_by(technician_id=id_tech).all()
+    all_hiring = list(map(lambda x : x.serialize(), hiring))
+    return all_hiring
 
 ## POST HIRING
 def post_hiring(body):

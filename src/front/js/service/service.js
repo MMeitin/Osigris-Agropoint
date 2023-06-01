@@ -277,6 +277,22 @@ export const getHiring = async () => {
     console.log("Error en el get hiring")
     return err;
   }
-  
+}
 
+export const getTechHiring = async () => {
+  try{
+    const token = localStorage.getItem("token");
+    const resp = await fetch(`${URL}/api/hiring/tech`,{
+      method: 'GET',
+      headers:{
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+    });
+    const data = await resp.json();
+    return data;
+  }catch(err){
+    console.log("Error on get tech hiring!!!")
+    return err;
+  }
 }
