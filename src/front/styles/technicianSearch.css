@@ -1,3 +1,26 @@
 .link{
     text-decoration: none;
 }
+.btn-filter{
+  
+  border: 2px solid #2c9131;
+  margin-top: 3.5rem;
+  background: transparent;
+  border-radius: 1rem;
+  color: #2c9131;
+  font-size: 1.5rem;
+  
+  height: fit-content;
+  
+  
+}
+.btn-filter:hover{
+  
+    margin-top: 3.5rem;
+  background:#2c9131;
+  border-radius: 1rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  justify-content: center;
+  
+}

@@ -2,7 +2,23 @@
 .nav-farmer-view {
   background-color: #efdab7;
 }
-
+.navbar-link-farmer{
+  text-decoration: none;
+  color: #2c9131;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+  width: 13rem;
+}
+.misCultivos{
+  margin-top: 4rem;
+}
+.titulo-farmer{
+  font-size: 6rem;
+  text-align: center;
+}
+.titulo-farmer span{
+  color: #e9c46a;
+}
 .logo {
   width: 50%;
   height: 50%;
@@ -14,10 +30,12 @@
 }
 
 .titulo-misTech {
-  margin-top: 25px;
+  margin-top: 2rem;
   border-bottom: 2px solid #2c9131;
   width: 100%;
   box-sizing: border-box;
+  text-align: left;
+  
 }
 
 .cropCard_container {
@@ -33,6 +51,8 @@
 }
 
 .oneFilter {
+  font-size: 1.3rem;
+  font-weight:bolder;
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -40,15 +60,27 @@
 }
 
 .twoFilter {
+  font-size: 1.3rem;
+  font-weight:bolder;
   display: flex;
   flex-direction: column;
   width: 25%;
   margin: 1em;
 }
-
+.twoFilter i{
+  font-size: 1rem;
+}
 .threeFilter {
+  font-size: 1.3rem;
+  font-weight:bolder;
   display: flex;
   flex-direction: column;
   width: 25%;
   margin: 1em;
+}
+.threeFilter i{
+  font-size: 1rem;
+}
+.oneFilter i{
+  font-size: 1rem;
 }

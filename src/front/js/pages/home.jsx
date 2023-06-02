@@ -240,9 +240,6 @@ export const Home = () => {
               <h5 className="card-title-landing">Manuel Coujil</h5>
               Estoy dedicado a colaborar con ustedes para lograr un 
               crecimiento sostenible, ofreciendo herramientas prácticas y conocimientos especializados
-              <a href="#" className="btn-landing btn-primary">
-                Go somewhere
-              </a>
             </div>
           </div>
           

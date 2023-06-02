@@ -1,12 +1,25 @@
 .tech_card {
-  min-height: 28rem;
+  min-height: 24rem;
   background-color: transparent;
   border: 2px solid #2c9131;
-  width: 16rem;
+  
   height: fit-content;
   border-radius: 10%;
-  margin: 1em;
+  
   transition: all 0.2s ease-in-out;
+  color:black;
+  overflow: hidden;
+  
+  background-color: transparent;
+  
+  width: 20rem; 
+  border-radius: 10%;
+  margin: 1rem;
+  transition: all 0.2s ease-in-out;
+  
+}
+.techcard-img{
+  border-radius: 10%;
 }
 .card_conver:hover {
   background-color: #e9c46a;
@@ -15,16 +28,65 @@
   height: 17rem;
   border-radius: 10%;
 }
-
-.tech-card-body {
-  margin: 0.3rem;
+.card-title{
   text-align: center;
-  justify-content: center;
-  flex-direction: column;
+  font-size: 2.5rem;
+  
 }
+.tech-card-body {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  text-align: left;
+  justify-content: left;
+  flex-direction: column;
+  
+}
+.card-text{
+font-size: 1.5rem;
+margin:0rem;
+}
+.techcard-btn{
+  border: 2px solid #2c9131;
+  margin: 1rem;
+  background: transparent;
+  border-radius: 1rem;
+  color: #2c9131;
+  font-size: 1.5rem;
+  justify-content: center;
+  
+}
+.techcard-btn:hover{
+  
+  margin: 1rem;
+  background:#2c9131;
+  border-radius: 1rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  justify-content: center;
+  
+}
+.btn-hiring{
+  border: 2px transparent;
+  margin: 1rem;
+  background:#e9c46a;
+  border-radius: 1rem;
+  color: #ffffff;
+  font-size: 1.5rem;
+  justify-content: center;
+}
+.btn-hiring:hover{
+  border: 2px solid #e9c46a;
+  margin: 1rem;
+  background: transparent;
+  border-radius: 1rem;
+  color: #e9c46a;
+  font-size: 1.5rem;
+  justify-content: center;
+}
+
 .contact-btn {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 .cropList {
@@ -43,5 +105,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  border: 2px solid #2c9131;
+  
 }

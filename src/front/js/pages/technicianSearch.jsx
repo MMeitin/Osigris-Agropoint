@@ -230,7 +230,7 @@ export const TechnicianSearch = () => {
                 placeholder="Filtrar..."
               ></input>
             </div>
-            <button className="btn" type="submit">
+            <button className="btn-filter" type="submit">
               Filtrar
             </button>
           </form>

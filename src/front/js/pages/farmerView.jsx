@@ -98,14 +98,14 @@ export const FarmerView = () => {
         <div className="navbar-content">
           <h2 className="logo">LOGO</h2>
           <div className="navbar-right">
-            <a className="navbar-link" href="#conversations">
+            <a className="navbar-link-farmer" href="#conversations">
               Mis cultivos
             </a>
-            <a className="navbar-link" href="#conversations">
+            <a className="navbar-link-farmer" href="#conversations">
               Técnicos disponibles
             </a>
             <a
-              className="navbar-link"
+              className="navbar-link-farmer"
               href="#conversations"
               onClick={handleConversationsClick}
             >
@@ -157,6 +157,7 @@ export const FarmerView = () => {
           onSave={handleAddNewCrop}
           editingCrop={editingCrop}
         />
+        <h1 className="titulo-farmer">AREA <span>PERSONAL</span></h1>
         <div className="misCultivos col-12">
           <h1 className="titulo-miscultivos ps-5 ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
@@ -187,7 +188,7 @@ export const FarmerView = () => {
         </div>
         {/*FILTRADO DE TECH */}
         <div className="misTech col-12">
-          <h1 className="titulo-misTech text-center">Buscar</h1>
+          <h1 className="titulo-misTech ps-5">Buscar</h1>
           <form
             className="formularioFilterTech"
             onChange={handleChangefilterTech}
@@ -239,7 +240,7 @@ export const FarmerView = () => {
                 placeholder="Filtrar..."
               ></input>
             </div>
-            <button className="btn" type="submit">
+            <button className="btn-filter" type="submit">
               Filtrar
             </button>
           </form>

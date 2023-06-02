@@ -123,7 +123,7 @@ export const Technician = () => {
         </div>
       </nav>
       {/* PROFILE */}
-      <div className="section1 container " id="section1">
+      <div className="section1-technician container " id="section1">
         <div className="card_img h-500 col-4 d-flex  ">
           <img
             className="img1  w-100 h-100 object-fit-cover"
@@ -131,7 +131,7 @@ export const Technician = () => {
             alt="Imagen de la sección 1"
           />
         </div>
-        <div className="textos  col-5 d-flex  ">
+        <div className="textos-tech  col-5 d-flex  ">
           <h1 className="titulo1">{name}</h1>
           <h3 className="titulo-tec">
             <span>Técnico agrícola</span>
@@ -149,7 +149,7 @@ export const Technician = () => {
       </div>
       {/* CONVERSATIONS */}
       <div className="misConversaciones col-12">
-        <h1 className="titulo-misConversaciones">Conversaciones</h1>
+        <h1 className="titulo-misConversaciones ps-5">Conversaciones</h1>
         <div className="messageCard_container justify-content-center">
           {conversations.length >0 ? (
             conversations.map((todo, index) => (

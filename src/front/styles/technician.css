@@ -85,11 +85,15 @@ user {
   color: #2c9131;
 }
 
-.textos {
+.textos-tech  {
   margin-left: 5rem;
+  align-items: start;
+  flex-direction: column;
+  justify-content: center;
+  
 }
 
-.section1 {
+.section1-technician {
   width: 100%;
   max-width: 100%;
   display: flex;
@@ -112,10 +116,10 @@ user {
 }
 
 .card_img {
-  margin-left: 25rem;
+  margin-left: 15rem;
   margin-top: 3rem;
-  width: 25rem;
-  height: 25rem;
+  width: 20rem;
+  height: 20rem;
 }
 
 .img1 {
