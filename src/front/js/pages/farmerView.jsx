@@ -3,23 +3,28 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/farmerView.css";
 import Cropcard from "../component/cropCard.jsx";
 import TechCard from "../component/techCard.jsx";
+import AddCropModal from "../component/addCropModal.jsx";
 import {
   getInfoCrop,
   getInfoUser,
   getInfoFarmer,
   getAllTech,
   filterTechByField,
-  getHiring
+  getHiring,
+  addFarm
 } from "../service/service";
 import Modal from "react-modal";
 import HiringCard from "../component/hiringCard.jsx";
 
+
 export const FarmerView = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [editingCrop, setEditingCrop] = useState(null);
   const [tech, setTech] = useState([]);
   const [crops, setCrops] = useState([]);
   const [name, setName] = useState("");
-  const [idFarmer, setIdFarmer] = useState("")
+  const [idFarmer, setIdFarmer] = useState("");
   const [filter, setFilter] = useState({
     ccaa: "",
     speciality: "",
@@ -42,10 +47,23 @@ export const FarmerView = () => {
     setHiring(hirings);
   }
 
+  const toggleCreateCrop = (crop = null) => {
+    setEditingCrop(crop);
+    setIsModalOpen(true);
+  };
+
+  const handleAddNewCrop = async (cropData) => {
+    try {
+      await addFarm(cropData);
+    } catch (error) {
+      console.log("Error al agregar el nuevo cultivo", error);
+    }
+  };
+
   const getInfo = async () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
-    setIdFarmer(user["id"])
+    setIdFarmer(user["id"]);
     const farmer = await getInfoFarmer(user["id"], token);
     setName(farmer["name"] + " " + farmer["sur_name"]);
   };
@@ -73,13 +91,16 @@ export const FarmerView = () => {
   const handleChangefilterTech = ({ target }) => {
     setFilter({ ...filter, [target.name]: target.value });
   };
+
   const handleConversationsClick = () => {
     navigate(`/convers/${name}/farmer`);
   };
+
   const handleSubmitFilterTech = async (e) => {
     e.preventDefault();
     await filterTech();
   };
+
   const loadAllData = async () => {
     await getCrop();
     await getInfo();
@@ -127,7 +148,10 @@ export const FarmerView = () => {
                 aria-labelledby="dropdownMenuButton"
               >
                 <li>
-                  <a className="dropdown-item" onClick={() => navigate(`/modFarmer/${idFarmer}`)}>
+                  <a
+                    className="dropdown-item"
+                    onClick={() => navigate(`/modFarmer/${idFarmer}`)}
+                  >
                     Ajustes
                   </a>
                 </li>
@@ -148,21 +172,37 @@ export const FarmerView = () => {
       </nav>
       <div className="main-body ">
         {/*My Crops*/}
+        <AddCropModal
+          isOpen={isModalOpen}
+          onRequestClose={() => setIsModalOpen(false)}
+          onSave={handleAddNewCrop}
+          editingCrop={editingCrop}
+        />
         <div className="misCultivos col-12">
           <h1 className="titulo-miscultivos ps-5 ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
-            {crops.length > 0 ? (
-              crops.map((todo, index) => (
-                <Cropcard
-                  key={index}
-                  id={todo.id}
-                  crop_type={todo.crop_type}
-                  description={todo.description}
-                  dimension_ha={todo.dimension_ha}
-                />
-              ))
+            {crops.length === 0 ? (
+              <Cropcard
+                description={"Crea tu primer Cultivo"}
+                onClick={() => toggleCreateCrop()}
+              />
             ) : (
-              <Cropcard description={"Crea tu primer Cultivo"} />
+              <>
+                {crops.map((crop, index) => (
+                  <Cropcard
+                    key={index}
+                    id={crop.id}
+                    crop_type={crop.crop_type}
+                    description={crop.description}
+                    dimension_ha={crop.dimension_ha}
+                    onClick={() => toggleCreateCrop(crop)}
+                  />
+                ))}
+                <Cropcard
+                  description={"Agregar nuevo cultivo"}
+                  onClick={() => toggleCreateCrop()}
+                />
+              </>
             )}
           </div>
         </div>
@@ -228,7 +268,6 @@ export const FarmerView = () => {
       </div>
       {/*My Technician */}
       <div className="misTechnicos col-12">
-        
         <div className="cropCard_container justify-content-center">
           {tech.length > 0 ? (
             tech.map((element, index) => (
@@ -241,7 +280,7 @@ export const FarmerView = () => {
                 speciality={element.speciality}
                 technician_id={element.id}
                 role={element.role}
-                cropList ={crops}
+                cropList={crops}
                 farmer_id={idFarmer}
               />
             ))

@@ -24,14 +24,15 @@ export const registerFarmer = async (newUser) => {
 };
 
 export const addFarm = async (newFarm) => {
-  const raw = JSON.stringify(newFarm);
   try {
-    console.log("Farm created on service", newFarm);
+    const token = localStorage.getItem("token");
     const resp = await fetch(`${URL}/api/crop/addFarm`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: raw,
-      redirect: "follow",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(newFarm),
     });
     return await resp.json();
   } catch (err) {
@@ -74,8 +75,8 @@ export const getInfoUser = async (token) => {
 };
 
 export const getInfoFarmer = async (id_user, token) => {
-  console.log("El id del user", id_user)
-  
+  console.log("El id del user", id_user);
+
   try {
     const res = await fetch(`${URL}/api/farmer/${id_user}`, {
       method: "GET",
@@ -83,9 +84,8 @@ export const getInfoFarmer = async (id_user, token) => {
         Authorization: `Bearer ${token}`,
         ...HEADERS,
       },
-      
     });
-    console.log("entra")
+    console.log("entra");
     const data = await res.json();
     return data;
   } catch (err) {
