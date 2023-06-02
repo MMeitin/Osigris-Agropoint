@@ -20,8 +20,8 @@ def post_hiring(body):
     return hiring.serialize()
 
 ## PUT HIRING
-def put_hiring(body):
-    hiring = Hiring(body['crop_name'], body['tech_name'],body['crop_id'], body['service_id'], body['farmer_id'],body['technician_id'],body['status'])
-    db.session.add(hiring)
+def put_hiring(hiring):
+    hiring_put = hiring
+    print("FROM REPOSITORY -----> ", hiring_put)
     db.session.commit()
-    return hiring.serialize()
+    return hiring_put.serialize()

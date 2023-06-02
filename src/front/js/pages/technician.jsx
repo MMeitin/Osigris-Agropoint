@@ -92,7 +92,7 @@ export const Technician = () => {
 
   useEffect(() => {
     loadAllData();
-  }, []);
+  }, [modal]);
 
   return (
     <div>
@@ -191,6 +191,7 @@ export const Technician = () => {
         isOpen={modal}
         onRequestClose={closeModal}
         contentLabel="ModalhiringTech"
+        tabIndex="1"
         ariaHideApp={false}
       >
         <div className="viewHiringModal">
@@ -199,7 +200,12 @@ export const Technician = () => {
             hiring.map((element, index) => (
               <TechHiringCard
                 key={index}
+                id={element.id}
                 crop_type={element.crop_name}
+                tech_name={element.tech_name}
+                crop_id={element.crop_id}
+                farmer_id={element.farmer_id}
+                tech_id={element.technician_id}
                 service={element.service_id}
                 status={element.status}
               />

@@ -21,6 +21,8 @@ def post_hiring(body):
     return hiring
     
 ## PUT HIRING
-def put_hiring(body):
-    put_hiring = Repository.post_hiring(body)
+def put_hiring(body, hiring_id):
+    hiring_to_modify = Hiring.query.get(hiring_id)
+    hiring_to_modify.status = body.get("status")
+    put_hiring = Repository.put_hiring(hiring_to_modify)
     return put_hiring

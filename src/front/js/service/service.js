@@ -342,10 +342,10 @@ export const getTechHiring = async () => {
   }
 }
 
-export const putHiring = async (body) => {
+export const putHiring = async (body, hiring_id) => {
   const token = localStorage.getItem("token");
   try{  
-    const resp = await fetch(`${URL}/api/hiring/`, {
+    const resp = await fetch(`${URL}/api/hiring/${hiring_id}`, {
       method:'PUT',
       headers: {
         Authorization: `Bearer ${token}`,
