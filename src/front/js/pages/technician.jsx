@@ -195,7 +195,7 @@ export const Technician = () => {
         ariaHideApp={false}
       >
         <div className="viewHiringModal">
-          <h2>Hola {name}, estas son tus contrataciones</h2>
+          <h2>Hola {name}, estas son tus contrataciones:</h2>
           {hiring.length > 0 ? (
             hiring.map((element, index) => (
               <TechHiringCard

@@ -309,7 +309,7 @@ export const FarmerView = () => {
                 ))) : <h3>No tienes contrataciones activas</h3>
               }
             </div>
-            <button onClick={closeModal}>Cerrar Ventana</button>
+            <button className="btn" onClick={closeModal}>Cerrar Ventana</button>
           </div>
       </Modal>
     </div>
