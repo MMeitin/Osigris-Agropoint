@@ -11,6 +11,9 @@
   border-radius: 3rem;
   border: 2px solid #2c9131;
 }
+.register-title{
+  margin: 1rem;
+}
 .register-title h1 span{
   color: #2c9131;
 }
