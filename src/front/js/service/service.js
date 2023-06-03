@@ -140,9 +140,7 @@ export const getInfoCrop = async () => {
         ...HEADERS,
       },
     });
-    console.log("apicrop", res);
     const data = await res.json();
-    console.log("la data del fetch", data);
     return data;
   } catch (error) {
     console.error("Error en getInfoCrop", error);
@@ -239,7 +237,6 @@ export const filterTechByField = async (body) => {
       },
     });
     const data = await res.json();
-    console.log("FROM SERVICE -->", data);
     return data;
   } catch (err) {
     console.error("No pudimos filtrar tu tecnico -->", err);
@@ -303,6 +300,64 @@ export const postHiring = async (body) => {
     console.log("Hiring de cookies");
     return data;
   } catch (err) {
+    console.log("UUUUUPS ALGO PASO")
     return err;
   }
 };
+
+export const getHiring = async () => {
+  try{
+    const token = localStorage.getItem("token");
+    const resp = await fetch(`${URL}/api/hiring/`,{
+      method:'GET',
+      headers:{
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+    });
+    const data = await resp.json();
+    console.log("Tenemos la Data del Hiring", data);
+    return data;
+  }catch(err){
+    console.log("Error en el get hiring")
+    return err;
+  }
+}
+
+export const getTechHiring = async () => {
+  try{
+    const token = localStorage.getItem("token");
+    const resp = await fetch(`${URL}/api/hiring/tech`,{
+      method: 'GET',
+      headers:{
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+    });
+    const data = await resp.json();
+    return data;
+  }catch(err){
+    console.log("Error on get tech hiring!!!")
+    return err;
+  }
+}
+
+export const putHiring = async (body, hiring_id) => {
+  const token = localStorage.getItem("token");
+  try{  
+    const resp = await fetch(`${URL}/api/hiring/${hiring_id}`, {
+      method:'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+      body: JSON.stringify(body),
+      redirect: "follow",
+    });
+    const data = await resp.json()
+    return data;
+  }catch(err){
+    console.log("Error en el put hiring")
+    return err
+  }
+}

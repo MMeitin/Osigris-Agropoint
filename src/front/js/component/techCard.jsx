@@ -4,7 +4,6 @@ import { sendMessage, getMessages, postHiring } from "../service/service";
 import "../../styles/techCard_style.css";
 import Cropcard from "../component/cropCard.jsx";
 import Modal from "react-modal";
-import { element } from "prop-types";
 
 const TechCard = (props) => {
   const farmerId = parseInt(props.farmer_id);
@@ -14,6 +13,8 @@ const TechCard = (props) => {
   const [modalStatus, setModalStatus] = useState(false);
   const [conversations, setConversations] = useState([]);
   const [hiring, setHiring] = useState({
+    crop_name:"",
+    tech_name:props.name,
     crop_id:null,
     service_id: null,
     farmer_id: farmerId,
@@ -24,20 +25,18 @@ const TechCard = (props) => {
   const handleChangeHiring = ({target}) => {
     if(target.name === "crop_id"){
       const cId = parseInt(target.value)
-      setHiring({...hiring, [target.name]: cId})
+      const crop = cropsFarmer.filter(crop => crop.id === parseInt(cId))
+      setHiring({...hiring, crop_id: cId, crop_name: crop[0].crop_type})  
     }
     if(target.name === "service_id"){
       const sId = parseInt(target.value)
       setHiring({...hiring, [target.name]: sId})
     }
-    
   }
 
   const handleSubmitHiring = async (e) => {
     e.preventDefault()
     await postHiring(hiring);
-    console.log(hiring)
-
   }
 
   const getMessage = async () => {
@@ -47,7 +46,6 @@ const TechCard = (props) => {
 
   const openModal = () => {
     setModalStatus(true);
-    console.log("From tech Card farmer Crops --> ", cropsFarmer);
   };
   const closeModal = () => {
     setModalStatus(false);

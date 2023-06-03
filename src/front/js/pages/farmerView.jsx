@@ -10,8 +10,12 @@ import {
   getInfoFarmer,
   getAllTech,
   filterTechByField,
-  addFarm,
+  getHiring,
+  addFarm
 } from "../service/service";
+import Modal from "react-modal";
+import HiringCard from "../component/hiringCard.jsx";
+
 
 export const FarmerView = () => {
   const navigate = useNavigate();
@@ -26,6 +30,22 @@ export const FarmerView = () => {
     speciality: "",
     name: "",
   });
+  const [modalStatus, setModalStatus] = useState(false);
+  const [hiring, setHiring] = useState([]);
+
+  const openModal = () => {
+    getHiringFromService();
+    setModalStatus(true)
+  }
+
+  const closeModal = () => {
+    setModalStatus(false)
+  }
+
+  const getHiringFromService = async () => {
+    const hirings = await getHiring();
+    setHiring(hirings);
+  }
 
   const toggleCreateCrop = (crop = null) => {
     setEditingCrop(crop);
@@ -85,6 +105,7 @@ export const FarmerView = () => {
     await getCrop();
     await getInfo();
     await getTech();
+    await getHiringFromService();
   };
 
   useEffect(() => {
@@ -103,6 +124,9 @@ export const FarmerView = () => {
             </a>
             <a className="navbar-link-farmer" href="#conversations">
               Técnicos disponibles
+              </a>
+            <a className="navbar-link" onClick={openModal}>
+              Mis contrataciones
             </a>
             <a
               className="navbar-link-farmer"
@@ -269,6 +293,29 @@ export const FarmerView = () => {
           )}
         </div>
       </div>
+      <Modal 
+        isOpen={modalStatus}
+        onRequestClose={closeModal}
+        contentLabel="ViewHirings"
+        ariaHideApp={false}>
+          <div className="viewHiringModal">
+            <h2>Hola {name}, estas son tus contrataciones</h2>
+            <div className="hiringBody">
+              {
+                hiring.length > 0 ? (hiring.map((element, index) => (
+                  <HiringCard
+                  key={index}
+                  crop_type={element.crop_name}
+                  service={element.service_id}
+                  tech={element.tech_name}
+                  status={element.status}
+                    />
+                ))) : <h3>No tienes contrataciones activas</h3>
+              }
+            </div>
+            <button className="btn" onClick={closeModal}>Cerrar Ventana</button>
+          </div>
+      </Modal>
     </div>
   );
 };

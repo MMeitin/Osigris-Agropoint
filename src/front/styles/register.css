@@ -1,24 +1,90 @@
 .register {
+  backdrop-filter: blur(10px);
+  justify-content: center;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #d2e0d2;
+  background-color: #e7d792;
+  width: 40%;
+  height: 75%;
+  border-radius: 3rem;
+  border: 2px solid #2c9131;
 }
-.logoRegister {
-  width: 33%;
+.register-title{
+  margin: 1rem;
 }
-.formulario-tech {
-  width: 33%;
+.register-title h1 span{
+  color: #2c9131;
 }
-.formulario label {
+.regbody {
+  
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  
+}
+.formularioTech{
+  justify-content: center;
+  align-items: center;
+  
+}
+.background-image {
+  position: fixed;
+  
+  width: 100%;
+  height:100%;
+  background-image: url("https://res.cloudinary.com/ddyd5ebc7/image/upload/v1682015035/_dde26f94-d3f6-44ef-a892-4c90bd2c8dd6_rorddp.png");
+  filter: blur(3px);
+  opacity: 0.5; 
+  z-index: -1; 
+}
+.register .btn-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 1em;
   margin-bottom: 1em;
 }
 .btn-register {
   margin-top: 1em;
   margin-bottom: 1em;
+  font-family: Roboto, sans-serif;
+  font-weight: 3;
+  font-size: 1.5rem;
+  border: 2px solid #2c9131;
+  
+  padding: 10px 30px;
+  background-color: transparent;
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  
+  cursor: pointer;
+  text-align: center;
+  
 }
-
+.btn-register:hover {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-family: Roboto, sans-serif;
+  background-color: white;
+  font-size: 1.5rem;
+  border: 2px solid #2c9131;
+  
+  padding: 10px 30px;
+  
+  box-shadow: rgb(0, 0, 0) 0px 0px 0px 0px;
+  border-radius: 50px;
+  
+  cursor: pointer;
+  text-align: center;
+  
+}
+.btn-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 @media screen and (max-width: 800px) {
   .formulario {
     width: 50%;

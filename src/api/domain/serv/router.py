@@ -13,9 +13,8 @@ def serialize_service(all_service):
 def create_serv():
     body = request.get_json()
     user = get_jwt_identity()
-    return Controller.create_serv(user['id'], body)
-    #print(serv)
-    #return jsonify(serv), 200;
+    serv = Controller.create_serv(user['id'], body)
+    return jsonify(serv), 200;
 
 @api.route('/', methods=['GET'])
 @jwt_required()

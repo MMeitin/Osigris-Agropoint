@@ -83,4 +83,7 @@
 }
 .oneFilter i{
   font-size: 1rem;
+   }
+.hiringBody{
+  overflow-y: scroll;
 }

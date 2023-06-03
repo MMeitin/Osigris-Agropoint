@@ -114,14 +114,11 @@ export const ModTech = () => {
           </div>
         </div>
       </nav>
-      
+      <div className="regbody">
+    <div className="background-image"></div>
     <div className="container-fluid register">
-      <div className="logoRegister">
-        <img
-          className="img img-fluid"
-          src="https://res.cloudinary.com/ddyd5ebc7/image/upload/v1682015035/_dde26f94-d3f6-44ef-a892-4c90bd2c8dd6_rorddp.png"
-          alt="logo_Osigris"
-        />
+    <div className="register-title">
+        <h1>Modifica tus <span>datos</span></h1>
       </div>
       <form
         className="formularioTech"
@@ -250,10 +247,13 @@ export const ModTech = () => {
           name="num_ropo"
           
         />
-        <button type="submit" className="btn btn-register">
+         <div className="btn-cont">
+        <button type="submit" className="btn-register">
           Enviar
         </button>
+        </div>
       </form>
+    </div>
     </div>
     </div>
   );

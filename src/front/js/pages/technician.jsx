@@ -6,9 +6,11 @@ import {
   getInfoUser,
   getMessages,
   getServices,
-  loginUser,
+  getTechHiring,
 } from "../service/service";
 import "../../styles/technician.css";
+import Modal from "react-modal";
+import TechHiringCard from "../component/techHiringCard.jsx";
 
 export const Technician = () => {
   const navigate = useNavigate();
@@ -17,25 +19,38 @@ export const Technician = () => {
   const [services, setServices] = useState([]);
   const [selectRole, setselectRole] = useState("");
   const [state, setState] = useState({ email: "", password: "" });
+
+  const [modal, setModal] = useState(false);
+  const [hiring, setHiring] = useState([]);
+
+  const getHiringFromService = async () => {
+    const hirings = await getTechHiring();
+    setHiring(hirings);
+    console.log(hirings);
+  };
+
+  const openModal = () => {
+    setModal(true);
+  };
+  const closeModal = () => {
+    setModal(false);
+  };
   const [tech, setTech] = useState(null);
 
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = (conversations) => {
     const conversationsByFarmer = {};
-
     conversations.forEach((conversation) => {
       const farmerId = conversation.farmer_id;
       if (!conversationsByFarmer[farmerId]) {
         conversationsByFarmer[farmerId] = conversation;
       }
     });
-
     const uniqueConversations = Object.values(conversationsByFarmer);
     return uniqueConversations;
   };
   const paramsSet = async () => {
     const chooseRole = localStorage.getItem("role");
-
     if (chooseRole === "farmer") {
       setselectRole("farmer");
     }
@@ -71,12 +86,13 @@ export const Technician = () => {
     await infoUser();
     await fetchData();
     await paramsSet();
-    await getConversations();
+    await getHiringFromService();
+    //await getConversations();
   };
 
   useEffect(() => {
     loadAllData();
-  }, []);
+  }, [modal]);
 
   return (
     <div>
@@ -84,6 +100,9 @@ export const Technician = () => {
         <div className="navbar-content">
           <h2 className="logo">LOGO</h2>
           <div className="navbar-right">
+            <a className="navbar-link" onClick={openModal}>
+              Mis contrataciones
+            </a>
             <a className="navbar-link" href="#conversations">
               Mis conversaciones
             </a>
@@ -168,6 +187,34 @@ export const Technician = () => {
           )}
         </div>
       </div>
+      <Modal
+        isOpen={modal}
+        onRequestClose={closeModal}
+        contentLabel="ModalhiringTech"
+        tabIndex="1"
+        ariaHideApp={false}
+      >
+        <div className="viewHiringModal">
+          <h2>Hola {name}, estas son tus contrataciones:</h2>
+          {hiring.length > 0 ? (
+            hiring.map((element, index) => (
+              <TechHiringCard
+                key={index}
+                id={element.id}
+                crop_type={element.crop_name}
+                tech_name={element.tech_name}
+                crop_id={element.crop_id}
+                farmer_id={element.farmer_id}
+                tech_id={element.technician_id}
+                service={element.service_id}
+                status={element.status}
+              />
+            ))
+          ) : (
+            <h3>No tienes contrataciones</h3>
+          )}
+        </div>
+      </Modal>
     </div>
   );
 };
