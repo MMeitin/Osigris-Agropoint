@@ -131,8 +131,8 @@ export const ConversView = () => {
         <div className="navbar-content">
           <h2 className="logo">LOGO</h2>
           <div className="navbar-right">
-            <a className="navbar-link" href="#conversations">
-              Mis conversaciones
+            <a className="navbar-link" href="#conversations" onClick={() => navigate(`/farmer`)}>
+              Perfil
             </a>
             <div className="dropdown">
               <span className="user-label">Nombre de usuario</span>
@@ -149,13 +149,9 @@ export const ConversView = () => {
                 className="dropdown-menu"
                 aria-labelledby="dropdownMenuButton"
               >
+                
                 <li>
-                  <a className="dropdown-item" href="#">
-                    Ajustes
-                  </a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#">
+                  <a className="dropdown-item" href="#"onClick={() => navigate(`/farmer`)}>
                     Ir al perfil
                   </a>
                 </li>
@@ -231,12 +227,13 @@ export const ConversView = () => {
           )}
         <div className="send-input">
           <input
+          className="messagebox"
             type="text"
             value={newMessageContent}
             onChange={handleChange}
             placeholder="Escribe tu mensaje..."
           />
-          <button onClick={handleSendMessage}>Enviar</button>
+          <button onClick={handleSendMessage} className="sendbutton">Enviar</button>
         </div>
       </div>
     </div>
