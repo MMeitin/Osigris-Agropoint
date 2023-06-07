@@ -19,9 +19,10 @@ export const Technician = () => {
   const [services, setServices] = useState([]);
   const [selectRole, setselectRole] = useState("");
   const [state, setState] = useState({ email: "", password: "" });
-
+  const [tech, setTech] = useState(null);
   const [modal, setModal] = useState(false);
   const [hiring, setHiring] = useState([]);
+  const [description, setDescription] = useState("")
 
   const getHiringFromService = async () => {
     const hirings = await getTechHiring();
@@ -35,7 +36,7 @@ export const Technician = () => {
   const closeModal = () => {
     setModal(false);
   };
-  const [tech, setTech] = useState(null);
+  
 
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = (conversations) => {
@@ -69,6 +70,7 @@ export const Technician = () => {
     const user = await getInfoUser(token);
     const tech = await getInfoTech(user["id"], token);
     setTech(tech);
+    setDescription(tech['description'])
     setName(tech["name"] + " " + tech["sur_name"]);
   };
 
@@ -156,12 +158,13 @@ export const Technician = () => {
             <span>Técnico agrícola</span>
           </h3>
           <p>
-            Gran experiencia en todo tipos de cultivo. Especialista en leñosas.
-            Contáctame para saber más.
+            <strong>Tu descripcion:</strong><br/>
+            { description}
           </p>
           {services.map((service) => (
             <div key={service.id}>
-              <h3>{service.name}</h3>
+              <strong>Tus servicios: </strong>
+              <p>{ service.name}</p>
             </div>
           ))}
         </div>

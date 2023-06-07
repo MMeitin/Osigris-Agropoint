@@ -44,7 +44,6 @@ export const RegTech = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("From handleSubmit --> ", state);
     await registerTech(state);
     navigate("/technician")
   };
@@ -186,7 +185,8 @@ export const RegTech = () => {
           <option>País Vasco</option>
           <option>Valencia</option>
         </select>
-        <label htmlFor="description">Descripción de mis servicios</label>
+        <label htmlFor="description">Descripción de mis servicios</label><br/>
+        <i>Recuerda que es importante! tienes 300 carácteres</i>
         <input
           type="text"
           className="form-control"

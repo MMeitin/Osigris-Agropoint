@@ -33,7 +33,8 @@ def post_user(body, role):
     elif role == 'tech':
         new_tech = TechRepository.add_tech(body, new_user.id)
         print("Hy TECH")
-        new_serv = ServRepository.create_serv(new_user.id, body)
+        tech_id = TechRepository.get_idtech_by_user_owner(new_user.id)
+        new_serv = ServRepository.create_serv(tech_id, body)
         new_token = create_access_token(identity=new_user.serialize())
         return {"token": new_token, "role": new_user.role}
         

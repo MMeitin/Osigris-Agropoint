@@ -18,11 +18,13 @@
   color: #2c9131;
 }
 .regbody {
-  
   display: flex;
   justify-content: center; 
   align-items: center;
-  
+}
+.regbody label{
+  font-size:20px;
+  line-height:30px;
 }
 .formularioTech{
   justify-content: center;
