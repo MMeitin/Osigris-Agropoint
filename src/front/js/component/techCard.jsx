@@ -64,7 +64,7 @@ const TechCard = (props) => {
 
       await sendMessage(messageData);
     } else {
-      const existingConversation = conversations.filter(
+      const existingConversation = conversations.find(
         (conversation) => conversation.technician_id === props.technician_id
       );
 
