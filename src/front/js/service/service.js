@@ -184,6 +184,26 @@ export const getMessages = async () => {
   }
 };
 
+export const getServicesFromHiring = async (tech_id) => {
+  try{
+    const token = localStorage.getItem("token");
+    const serviceData = await fetch(`${URL}/api/serv/${tech_id}`,{
+      method:'GET',
+      headers : {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+    })
+    if(!serviceData.ok){
+      return "Un Fallo en el Fetch!"
+    }
+    const response = await serviceData.json();
+    return response;
+  }catch(error){
+    console.log("Uops Error", error)
+  }
+}
+
 export const getServices = async () => {
   try {
     const token = localStorage.getItem("token");
@@ -287,9 +307,10 @@ export const modifyFarmer = async (farmerId, body, token) => {
 export const postHiring = async (body) => {
   const token = localStorage.getItem("token");
   const raw = JSON.stringify(body);
+  console.log("From service --> ", raw)
   try {
     const req = await fetch(`${URL}/api/hiring/`, {
-      method: "POST",
+      method: 'POST',
       body: raw,
       headers: {
         Authorization: `Bearer ${token}`,

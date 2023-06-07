@@ -63,9 +63,9 @@ export const FarmerView = () => {
   const getInfo = async () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
-    setIdFarmer(user["id"]);
     const farmer = await getInfoFarmer(user["id"], token);
     setName(farmer["name"] + " " + farmer["sur_name"]);
+    setIdFarmer(farmer["id"]);
   };
 
   const getCrop = async () => {

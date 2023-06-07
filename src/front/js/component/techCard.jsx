@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { sendMessage, getMessages, postHiring } from "../service/service";
+import { sendMessage, getMessages, postHiring, getServicesFromHiring } from "../service/service";
 import "../../styles/techCard_style.css";
 import Cropcard from "../component/cropCard.jsx";
 import Modal from "react-modal";
@@ -22,20 +22,26 @@ const TechCard = (props) => {
     status:"pending"
   });
 
-  const handleChangeHiring = ({target}) => {
+  const handleChangeHiring = async ({target}) => {
     if(target.name === "crop_id"){
       const cId = parseInt(target.value)
       const crop = cropsFarmer.filter(crop => crop.id === parseInt(cId))
       setHiring({...hiring, crop_id: cId, crop_name: crop[0].crop_type})  
     }
     if(target.name === "service_id"){
-      const sId = parseInt(target.value)
-      setHiring({...hiring, [target.name]: sId})
+      const ser_id = await getServFromHiring()
+      setHiring({...hiring, [target.name]: ser_id})
     }
+  }
+
+  const getServFromHiring = async () => {
+    const service = await getServicesFromHiring(techId)
+    return service[0].id
   }
 
   const handleSubmitHiring = async (e) => {
     e.preventDefault()
+    console.log("Body hiring to POST --->",hiring)
     await postHiring(hiring);
   }
 
@@ -144,7 +150,7 @@ const TechCard = (props) => {
             
             <select className="form-control" id="services" name="service_id">
               <option>Selecciona un servicio...</option>
-              <option value={1}>Cuaderno de campo</option>
+              <option value={techId}>Cuaderno de campo</option>
             </select>
             <button className="btn-warning" type="submit" onClick={handleSubmitHiring}>Contratar</button>
           </form>

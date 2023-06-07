@@ -14,6 +14,7 @@ def get_all_tech_hiring(id_tech):
 
 ## POST HIRING
 def post_hiring(body):
+    print("HIRING FROM REPOSITORY -->", body)
     hiring = Hiring(body['crop_name'], body['tech_name'],body['crop_id'], body['service_id'], body['farmer_id'],body['technician_id'],body['status'])
     db.session.add(hiring)
     db.session.commit()
@@ -22,6 +23,5 @@ def post_hiring(body):
 ## PUT HIRING
 def put_hiring(hiring):
     hiring_put = hiring
-    print("FROM REPOSITORY -----> ", hiring_put)
     db.session.commit()
     return hiring_put.serialize()
