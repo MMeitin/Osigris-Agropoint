@@ -20,7 +20,7 @@ export const ModTech = () => {
     num_ropo: "",
   });
   const goperfil = () => {
-    navigate("/technician");
+    navigate("/");
   }
   const logOut = () => {
     localStorage.clear();
@@ -63,7 +63,7 @@ export const ModTech = () => {
     
     try {
       await modifyTech(idTech, state, token);
-      goperfil()
+      
     } catch (err) {
       
       console.log(err);
