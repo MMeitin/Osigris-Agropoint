@@ -14,7 +14,7 @@ const AddCropModal = ({ isOpen, onRequestClose, onSave, editingCrop }) => {
   return (
     <Modal ariaHideApp={false} isOpen={isOpen} onRequestClose={onRequestClose}>
       <h2>{editingCrop ? "Editar cultivo" : "Agregar nuevo cultivo"}</h2>
-      <CropForm onSave={onSave} crop={editingCrop} />
+      <CropForm onSave={onSave} crop={editingCrop} isEditing={editingCrop ? true : false} />
       <button onClick={onRequestClose}>Cerrar</button>
     </Modal>
   );

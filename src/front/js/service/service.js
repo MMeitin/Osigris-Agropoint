@@ -40,10 +40,10 @@ export const addFarm = async (newFarm) => {
   }
 };
 
-export const modifyFarm = async (id_crop, body) => {
+export const modifyFarm = async (body) => {
   try{
     const token = localStorage.getItem("token");
-    const resp = await fetch(`${URL}/api/crop/${id_crop}`,{
+    const resp = await fetch(`${URL}/api/crop/${body['id']}`,{
       method:'PUT',
       headers: {
         Authorization: `Bearer ${token}`,

@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 
-const CropForm = ({ crop, onSave }) => {
+const CropForm = ({ crop, onSave, isEditing }) => {
+  const [cropId, setCropId] = useState(crop ? crop.id : "")
   const [cropType, setCropType] = useState(crop ? crop.crop_type : "");
   const [description, setDescription] = useState(crop ? crop.description : "");
   const [dimensionHa, setDimensionHa] = useState(crop ? crop.dimension_ha : "");
+  const isPutMethod = isEditing;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid =
+      validateField(cropId)
       validateField(cropType) &&
       validateField(description) &&
       validateField(dimensionHa);
 
     if (isValid) {
       onSave({
+        id: cropId,
         crop_type: cropType,
         description: description,
         dimension_ha: dimensionHa,
@@ -24,10 +28,14 @@ const CropForm = ({ crop, onSave }) => {
   };
 
   const validateField = (value) => {
-    if (value.trim() === "") {
-      return false;
-    }
-    return true;
+    if(!isPutMethod){
+      if (value.trim() === "") {
+        return false;
+      }
+      return true;
+    }else{
+      return true
+    }    
   };
 
   return (

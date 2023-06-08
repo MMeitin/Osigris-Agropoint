@@ -49,17 +49,25 @@ export const FarmerView = () => {
   }
 
   const toggleCreateCrop = (crop = null) => {
-    console.log("From toggleCreateCrop when editing--> ", crop)
     setEditingCrop(crop);
     setIsModalOpen(true);
   };
 
   const handleAddNewCrop = async (cropData) => {
-    try {
-      await addFarm(cropData);
-    } catch (error) {
-      console.log("Error al agregar el nuevo cultivo", error);
-    }
+    if(editingCrop){
+      try{
+        console.log("From handleAddNewCrop --> ",cropData)
+        await modifyFarm(cropData)
+      }catch(error){
+        console.log("Error al modificar el cultivo", error)
+      }
+    }else{
+      try {
+        await addFarm(cropData);
+      } catch (error) {
+        console.log("Error al agregar el nuevo cultivo", error);
+      }
+    }  
   };
 
   const getInfo = async () => {
