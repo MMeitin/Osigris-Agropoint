@@ -11,7 +11,7 @@ const CropForm = ({ crop, onSave, isEditing }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const isValid =
-      validateField(cropId)
+      //validateField(cropId)
       validateField(cropType) &&
       validateField(description) &&
       validateField(dimensionHa);

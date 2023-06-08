@@ -49,8 +49,9 @@ export const FarmerView = () => {
   }
 
   const toggleCreateCrop = (crop = null) => {
-    setEditingCrop(crop);
-    setIsModalOpen(true);
+    crop == null ?  setIsModalOpen(true) : setEditingCrop(crop) && setIsModalOpen(true)
+    //setEditingCrop(crop);
+    //setIsModalOpen(true);
   };
 
   const handleAddNewCrop = async (cropData) => {
