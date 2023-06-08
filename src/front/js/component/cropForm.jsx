@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { deleteFarm } from "../service/service";
 
 const CropForm = ({ crop, onSave, isEditing }) => {
   const [cropId, setCropId] = useState(crop ? crop.id : "")
@@ -38,6 +39,10 @@ const CropForm = ({ crop, onSave, isEditing }) => {
     }    
   };
 
+  const deleteCrop = async () => {
+    await deleteFarm(cropId);
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <input
@@ -59,6 +64,10 @@ const CropForm = ({ crop, onSave, isEditing }) => {
         onChange={(e) => setDimensionHa(e.target.value)}
       />
       <button type="submit">{crop ? "Editar cultivo" : "Crear cultivo"}</button>
+      <div className="form-delete-button d-flex flex-column">
+        <i>¡Asegurate que quieres eliminar este campo antes!</i>
+        <button className="btn-danger w-25" onClick={deleteCrop}>Eliminar</button>
+      </div>
     </form>
   );
 };

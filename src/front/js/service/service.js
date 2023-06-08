@@ -58,6 +58,27 @@ export const modifyFarm = async (body) => {
   }
 }
 
+export const deleteFarm = async (crop_id) => {
+  try{
+    const token = localStorage.getItem("token");
+    const resp = await fetch(`${URL}/api/crop/${crop_id}`,{
+      method:'DELETE',
+      headers:{
+        Authorization: `Bearer ${token}`,
+        ...HEADERS
+      },
+    });
+    if(resp.ok){
+      console.log("Campo eliminado con exito!")
+      return "campo eliminado", resp
+    }else{
+      console.log("Tenemos un error")
+    }
+  }catch(err){
+    console.log("Error al eliminar", err);
+  }
+}
+
 export const loginUser = async (user) => {
   try {
     const res = await fetch(`${URL}/api/user/login`, {
