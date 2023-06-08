@@ -4,6 +4,7 @@ import { useState } from "react";
 import { addFarm } from "../service/service";
 import logo from "../../img/logo.png";
 import "../../styles/addFarm.css";
+
 export const AddFarm = () => {
   const [farm, setFarm] = useState({
     crop_type: "",

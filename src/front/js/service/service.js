@@ -40,6 +40,24 @@ export const addFarm = async (newFarm) => {
   }
 };
 
+export const modifyFarm = async (id_crop, body) => {
+  try{
+    const token = localStorage.getItem("token");
+    const resp = await fetch(`${URL}/api/crop/${id_crop}`,{
+      method:'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS 
+      },
+      body: JSON.stringify(body)
+    });
+    return await resp.json();
+  }catch(err){
+    console.log("Error el modificar el campo", err)
+    return err
+  }
+}
+
 export const loginUser = async (user) => {
   try {
     const res = await fetch(`${URL}/api/user/login`, {

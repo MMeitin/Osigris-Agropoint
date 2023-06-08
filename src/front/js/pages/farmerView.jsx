@@ -11,7 +11,8 @@ import {
   getAllTech,
   filterTechByField,
   getHiring,
-  addFarm
+  addFarm,
+  modifyFarm
 } from "../service/service";
 import Modal from "react-modal";
 import HiringCard from "../component/hiringCard.jsx";
@@ -48,6 +49,7 @@ export const FarmerView = () => {
   }
 
   const toggleCreateCrop = (crop = null) => {
+    console.log("From toggleCreateCrop when editing--> ", crop)
     setEditingCrop(crop);
     setIsModalOpen(true);
   };
