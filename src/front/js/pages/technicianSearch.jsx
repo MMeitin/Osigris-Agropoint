@@ -62,15 +62,15 @@ export const TechnicianSearch = () => {
           <h2>LOGO</h2>
         </div>
         <div className="d-flex col justify-content-end p-2">
-          <a className="navbar-brand mb-0 h1 p-2 px-5" href="#section1">
-            Quienes somos
-          </a>
-          <a className="navbar-brand mb-0 h1 p-2 px-5" href="#services">
-            Servicios
-          </a>
-          <a className="navbar-brand mb-0 h1 p-2 px-5" href="#questions">
-            Preguntas frecuentes
-          </a>
+        <a
+              className="navbar-link"
+              href="#"
+              onClick={() =>
+                navigate("/")
+              }
+            >
+              Home
+            </a>
           <button
             className="btn-navbar"
             data-bs-toggle="modal"

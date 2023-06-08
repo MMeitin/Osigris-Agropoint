@@ -40,8 +40,15 @@ export const Technician = () => {
 
   //FILTRO LAS CONVERSACIONES POR FARMER_ID
   const getUniqueConversationsByFarmer = (conversations) => {
+    
     const conversationsByFarmer = {};
-    conversations.forEach((conversation) => {
+    
+    if (conversations === 0) {
+      return [];
+    }
+    else{
+      
+      conversations.forEach((conversation) => {
       const farmerId = conversation.farmer_id;
       if (!conversationsByFarmer[farmerId]) {
         conversationsByFarmer[farmerId] = conversation;
@@ -49,6 +56,8 @@ export const Technician = () => {
     });
     const uniqueConversations = Object.values(conversationsByFarmer);
     return uniqueConversations;
+     }
+    
   };
   const paramsSet = async () => {
     const chooseRole = localStorage.getItem("role");
@@ -61,8 +70,17 @@ export const Technician = () => {
   };
   const getConversations = async () => {
     const data = await getMessages();
-    const uniqueConversations = getUniqueConversationsByFarmer(data);
-    setConversations(uniqueConversations);
+  
+    if (Array.isArray(data)) {
+      if (data.length > 0) {
+        const uniqueConversations = getUniqueConversationsByFarmer(data);
+        setConversations(uniqueConversations);
+      } else {
+        setConversations([]);
+      }
+    } else {
+      setConversations([]);
+    }
   };
 
   const infoUser = async () => {

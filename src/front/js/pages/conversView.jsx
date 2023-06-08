@@ -82,10 +82,14 @@ export const ConversView = () => {
   //Cojo solo el nombre de la persona de todos los mensajes
   const getConversations = async () => {
     const data = await getMessages();
-    if (targetName) {
-      setInitialTabName(targetName);
+    let uniqueConversations;
+  
+    if (Array.isArray(data) && data.length > 0) {
+      uniqueConversations = getUniqueConversationsByTarget(data);
+    } else {
+      uniqueConversations = [];
     }
-    const uniqueConversations = getUniqueConversationsByTarget(data);
+  
     setUniqueparam(uniqueConversations);
   };
   //Cojo todas las conversaciones
@@ -101,8 +105,10 @@ export const ConversView = () => {
     navigate("/");
   };
   useEffect(() => {
-    if (targetName && uniqueparam.length > 0 && firstTime === true) {
-      const index = uniqueparam.findIndex((item) => item.name === targetName);
+    if (targetName && uniqueparam.length > 0) {
+      const index = uniqueparam.findIndex(
+        (item) => item.name === targetName
+      );
       if (index !== -1) {
         setSelectedTab(index);
         if (role === "tech") {
@@ -110,7 +116,6 @@ export const ConversView = () => {
         } else {
           setSelectedTarget(uniqueparam[index].technician_id);
         }
-        setfirstTime(false);
       }
     }
   }, [targetName, role, uniqueparam]);

@@ -93,7 +93,7 @@ export const getInfoUser = async (token) => {
 };
 
 export const getInfoFarmer = async (id_user, token) => {
-  console.log("El id del user", id_user);
+  
 
   try {
     const res = await fetch(`${URL}/api/farmer/${id_user}`, {
@@ -103,7 +103,7 @@ export const getInfoFarmer = async (id_user, token) => {
         ...HEADERS,
       },
     });
-    console.log("entra");
+    
     const data = await res.json();
     return data;
   } catch (err) {
@@ -285,6 +285,10 @@ export const modifyTech = async (technicianId, body, token) => {
   try {
     const resp = await fetch(`${URL}/api/tech/${technicianId}`, {
       method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        ...HEADERS,
+      },
       body: JSON.stringify(body),
       redirect: "follow",
     });
@@ -355,7 +359,7 @@ export const getHiring = async () => {
       },
     });
     const data = await resp.json();
-    console.log("Tenemos la Data del Hiring", data);
+    
     return data;
   }catch(err){
     console.log("Error en el get hiring")
