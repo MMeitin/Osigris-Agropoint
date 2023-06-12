@@ -56,6 +56,8 @@ export const RegFarmer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = new FormData();
+
     await registerFarmer(state);
     navigate("/farmer");
   };

@@ -8,16 +8,18 @@ class Farmer(db.Model):
     ccaa = db.Column(db.String(40), nullable=False)
     company = db.Column(db.String(50))
     pac_num = db.Column(db.String(150), unique=True)
+    avatar = db.Column(db.String(250), unique=True, nullable=True)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
 
-    def __init__(self,name, sur_name, country, ccaa, company, pac_num, user_id):
+    def __init__(self,name, sur_name, country, ccaa, company, pac_num, avatar ,user_id):
         self.name = name
         self.sur_name = sur_name
         self.country = country
         self.ccaa = ccaa
         self.company = company
         self.pac_num = pac_num
+        self.avatar = avatar
         self.user_owner = user_id
 
     def serialize(self):
@@ -29,6 +31,7 @@ class Farmer(db.Model):
             "ccaa": self.ccaa,
             "company": self.company,
             "pac_num": self.pac_num,
+            "avatar":self.avatar,
             "user_owner":self.user_owner
         }
     
