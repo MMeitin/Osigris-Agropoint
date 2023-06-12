@@ -37,7 +37,17 @@ export const RegFarmer = () => {
   }
 
   const handleImageSource = ({target}) => {
-      
+      if(target.files){
+        setFile(target.files[0])
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if(reader.readyState === 2){
+            console.log("result", reader.result)
+            setFileURL(reader.result)
+          }
+        };
+        reader.readAsDataURL(target.files[0])
+      }
   }
 
   const handleChange = ({ target }) => {
@@ -64,7 +74,7 @@ export const RegFarmer = () => {
       </div>
       <form
         className="formularioFarm"
-        onChange={handleChange}
+        onChange={handleChange && handleImageSource}
         onSubmit={handleSubmit}
       >
         <label htmlFor="email">Correo electrónico</label>
@@ -225,7 +235,7 @@ export const RegFarmer = () => {
         <div className="inputImage d-flex flex-column">
           <label>Sube tu foto de perfil</label>
           <img className="visual-img w-50 h-25" src={fileURL}/>
-          <input type="file" onChange={handleImageSource}></input>
+          <input type="file"></input>
         </div>
         <div className="btn-cont">
         <button type="submit" className="btn-register">
