@@ -21,6 +21,9 @@ export const RegFarmer = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alertTimeout, setAlertTimeout] = useState(null);
+  const [file, setFile] = useState("");
+  const [fileURL, setFileURL] = useState("");
+
 
   function validatePassword() {
     if (password !== confirmPassword) {
@@ -33,9 +36,9 @@ export const RegFarmer = () => {
     }
   }
 
-  useEffect(() => {
-    return () => clearTimeout(alertTimeout);
-  }, [alertTimeout]);
+  const handleImageSource = ({target}) => {
+      
+  }
 
   const handleChange = ({ target }) => {
     setState({ ...state, [target.name]: target.value });
@@ -46,6 +49,10 @@ export const RegFarmer = () => {
     await registerFarmer(state);
     navigate("/farmer");
   };
+
+  useEffect(() => {
+    return () => clearTimeout(alertTimeout);
+  }, [alertTimeout]);
 
   return (
     <div className="regbody">
@@ -215,6 +222,11 @@ export const RegFarmer = () => {
           placeholder="Introduce el número de tu PAC..."
           name="pac_num"
         />
+        <div className="inputImage d-flex flex-column">
+          <label>Sube tu foto de perfil</label>
+          <img className="visual-img w-50 h-25" src={fileURL}/>
+          <input type="file" onChange={handleImageSource}></input>
+        </div>
         <div className="btn-cont">
         <button type="submit" className="btn-register">
           Enviar
