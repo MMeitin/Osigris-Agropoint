@@ -147,12 +147,11 @@ export const getInfoTech = async (id_user, token) => {
 };
 
 export const registerTech = async (newUser) => {
-  const raw = JSON.stringify(newUser);
   try {
     const resp = await fetch(`${URL}/api/user/signup/tech/`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: raw,
+      //headers: { "Content-Type": "application/json" },
+      body: newUser,
       redirect: "follow",
     });
     const data = await resp.json();

@@ -22,6 +22,8 @@ export const RegTech = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showAlert, setShowAlert] = useState(false);
   const [alertTimeout, setAlertTimeout] = useState(null);
+  const [file, setFile] = useState("");
+  const [fileURL, setFileURL] = useState("");
 
   function validatePassword() {
     if (password !== confirmPassword) {
@@ -34,20 +36,49 @@ export const RegTech = () => {
     }
   }
 
-  useEffect(() => {
-    return () => clearTimeout(alertTimeout);
-  }, [alertTimeout]);
+  const handleImageSource = ({target}) => {
+      if(target.files){
+        setFile(target.files[0])
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          if(reader.readyState === 2){
+            console.log("result", reader.result)
+            setFileURL(reader.result)
+          }
+        };
+        reader.readAsDataURL(target.files[0])
+      }
+  }
 
   const handleChange = ({ target }) => {
+     if(target.files){
+      handleImageSource({target})
+    }
     setState({ ...state, [target.name]: target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await registerTech(state);
+    const form = new FormData();
+    form.append("email", state.email)
+    form.append("password", password)
+    form.append("name", state.name)
+    form.append("sur_name", state.sur_name)
+    form.append("description", state.description)
+    form.append("phone_number", state.phone_number)
+    form.append("country", state.country)
+    form.append("ccaa", state.ccaa)
+    form.append("speciality", state.speciality)
+    form.append("num_ropo", state.num_ropo)
+    form.append("avatar", file)
+    
+    await registerTech(form);
     navigate("/technician")
   };
 
+  useEffect(() => {
+    return () => clearTimeout(alertTimeout);
+  }, [alertTimeout]);
   return (
     <div className="regbody">
       <div className="background-image"></div>
@@ -222,6 +253,11 @@ export const RegTech = () => {
           name="num_ropo"
           required
         />
+        <div className="inputImage d-flex flex-column">
+          <label>Sube tu foto de perfil</label>
+          <img className="visual-img w-50 h-25" src={fileURL}/>
+          <input type="file"></input>
+        </div>
         <div className="btn-cont">
         <button type="submit" className="btn-register">
           Enviar

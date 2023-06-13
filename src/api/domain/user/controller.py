@@ -34,7 +34,9 @@ def post_user(body, avatar, role):
         return {"token": new_token, "role": new_user.role}
         
     elif role == 'tech':
-        new_tech = TechRepository.add_tech(body, new_user.id)
+        img = upload(avatar)
+        url_image = img['secure_url']
+        new_tech = TechRepository.add_tech(body,url_image, new_user.id)
         print("Hy TECH")
         tech_id = TechRepository.get_idtech_by_user_owner(new_user.id)
         new_serv = ServRepository.create_serv(tech_id, body)

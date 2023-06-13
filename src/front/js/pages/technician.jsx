@@ -23,6 +23,7 @@ export const Technician = () => {
   const [modal, setModal] = useState(false);
   const [hiring, setHiring] = useState([]);
   const [description, setDescription] = useState("")
+  const [urlImage, setUrlImage] = useState("")
 
   const getHiringFromService = async () => {
     const hirings = await getTechHiring();
@@ -87,7 +88,9 @@ export const Technician = () => {
     const token = localStorage.getItem("token");
     const user = await getInfoUser(token);
     const tech = await getInfoTech(user["id"], token);
+    console.log(tech)
     setTech(tech);
+    setUrlImage(tech['avatar'])
     setDescription(tech['description'])
     setName(tech["name"] + " " + tech["sur_name"]);
   };
@@ -135,7 +138,8 @@ export const Technician = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i className="user fa-solid fa-user"></i>
+                {/*<i className="user fa-solid fa-user"></i>*/}
+                <img className="img-url w-25 h-25 rounded-circle" src={urlImage}/>
               </button>
               <ul
                 className="dropdown-menu"

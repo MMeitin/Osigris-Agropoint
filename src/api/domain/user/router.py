@@ -10,18 +10,17 @@ api = Blueprint("api/user", __name__)
 # SIGNUP USER TECH
 @api.route('/signup/tech', methods=['POST'])
 def register_tech():
-    body = request.get_json()
+    body = request.form.to_dict()
+    avatar = request.files['avatar']
     print(body)
-    user = Controller.post_user(body, "tech")
+    user = Controller.post_user(body,avatar, "tech")
     return jsonify(user), 200
 
 # SIGNUP USER FARMER
 @api.route('/signup/farmer', methods=['POST'])
 def register_farmer():
     body = request.form.to_dict()
-    print("Body --> ", body)
     avatar = request.files['avatar']
-    print('avatar -->', avatar)
     user = Controller.post_user(body, avatar, "farmer")
     return jsonify(user), 200
 

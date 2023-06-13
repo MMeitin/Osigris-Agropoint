@@ -11,11 +11,12 @@ class Technician(db.Model):
     ccaa = db.Column(db.String(40), nullable=False)
     speciality = db.Column(db.String(120), nullable=False)
     num_ropo = db.Column(db.Integer, unique=True)
+    avatar = db.Column(db.String(250), unique=True, nullable=True)
     user_owner = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship("User")
     
     
-    def __init__(self, name, sur_name, description, phone_number, country, ccaa, speciality, num_ropo, user_id):
+    def __init__(self, name, sur_name, description, phone_number, country, ccaa, speciality, num_ropo, avatar, user_id):
         self.name = name
         self.sur_name = sur_name
         self.description = description
@@ -24,6 +25,7 @@ class Technician(db.Model):
         self.ccaa = ccaa
         self.speciality = speciality
         self.num_ropo = num_ropo
+        self.avatar = avatar
         self.user_owner = user_id
 
     def serialize(self):
@@ -36,5 +38,6 @@ class Technician(db.Model):
             "country": self.country,
             "ccaa": self.ccaa,
             "speciality": self.speciality,
-            "num_ropo": self.num_ropo
+            "num_ropo": self.num_ropo,
+            "avatar": self.avatar
         }
