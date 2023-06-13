@@ -5,12 +5,12 @@ const HEADERS = {
 };
 
 export const registerFarmer = async (newUser) => {
-  const raw = JSON.stringify(newUser);
+  console.log("From service --> ", newUser)
   try {
     const resp = await fetch(`${URL}/api/user/signup/farmer/`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: raw,
+      //headers: { "Content-Type": "application/json" },
+      body: newUser,
       redirect: "follow",
     });
     const data = await resp.json();

@@ -51,14 +51,25 @@ export const RegFarmer = () => {
   }
 
   const handleChange = ({ target }) => {
+    if(target.files){
+      handleImageSource({target})
+    }
     setState({ ...state, [target.name]: target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = new FormData();
-
-    await registerFarmer(state);
+    form.append("email", state.email);
+    form.append("password", password)
+    form.append("name", state.name);
+    form.append("sur_name", state.sur_name);
+    form.append("country", state.country);
+    form.append("ccaa", state.ccaa);
+    form.append("company", state.company);
+    form.append("pac_num", state.pac_num);
+    form.append("avatar", file)
+    await registerFarmer(form);
     navigate("/farmer");
   };
 
@@ -76,7 +87,7 @@ export const RegFarmer = () => {
       </div>
       <form
         className="formularioFarm"
-        onChange={handleChange && handleImageSource}
+        onChange={handleChange}
         onSubmit={handleSubmit}
       >
         <label htmlFor="email">Correo electrónico</label>

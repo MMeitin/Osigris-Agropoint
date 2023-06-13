@@ -1,8 +1,8 @@
 from api.models.index import db, Farmer, Technician
 
 ## POST FARMER
-def add_farmer(body, user_id):
-    new_farmer = Farmer(body["name"],body["sur_name"],body['country'], body['ccaa'], body['company'],  body['pac_num'], user_id)
+def add_farmer(body, url_image, user_id):
+    new_farmer = Farmer(body["name"],body["sur_name"],body['country'], body['ccaa'], body['company'], body['pac_num'], url_image, user_id)
     db.session.add(new_farmer)
     db.session.commit()
     return new_farmer

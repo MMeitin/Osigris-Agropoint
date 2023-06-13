@@ -18,8 +18,11 @@ def register_tech():
 # SIGNUP USER FARMER
 @api.route('/signup/farmer', methods=['POST'])
 def register_farmer():
-    body = request.get_json()
-    user = Controller.post_user(body, "farmer")
+    body = request.form.to_dict()
+    print("Body --> ", body)
+    avatar = request.files['avatar']
+    print('avatar -->', avatar)
+    user = Controller.post_user(body, avatar, "farmer")
     return jsonify(user), 200
 
 ##LOGIN USER

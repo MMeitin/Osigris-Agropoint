@@ -20,7 +20,7 @@ import api.domain.serv.router as serv_router
 import api.domain.hiring.router as hiring_router
 from flask_jwt_extended import JWTManager
 from datetime import timedelta
-
+import cloudinary
 
 
 ENV = os.getenv("FLASK_ENV")
@@ -28,9 +28,23 @@ static_file_dir = os.path.join(
     os.path.dirname(os.path.realpath(__file__)), "../public/"
 )
 app = Flask(__name__)
+
+# JWT token
 jwt = JWTManager(app)
 app.config["JWT_SECRET_KEY"] = "super-secret"
 app.url_map.strict_slashes = False
+
+# CLoudinary
+app.config['CLOUD_NAME'] = os.environ.get('CLOUD_NAME')
+app.config['CLOUD_API_KEY'] = os.environ.get('CLOUD_API_KEY')
+app.config['CLOUD_API_SECRET'] = os.environ.get('CLOUD_API_SECRET')
+
+cloudinary.config(
+    cloud_name = app.config['CLOUD_NAME'],
+    api_key = app.config['CLOUD_API_KEY'],
+    api_secret = app.config['CLOUD_API_SECRET'],
+    secure = True
+)
 
 # Configurar JWT para que expire en 60 minutos
 app.config['JWT_EXPIRATION_DELTA'] = timedelta(minutes=60)
