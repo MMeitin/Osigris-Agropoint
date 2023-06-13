@@ -33,6 +33,7 @@ export const FarmerView = () => {
   });
   const [modalStatus, setModalStatus] = useState(false);
   const [hiring, setHiring] = useState([]);
+  const [urlImage, setUrlImage] = useState("")
 
   const openModal = () => {
     getHiringFromService();
@@ -50,8 +51,6 @@ export const FarmerView = () => {
 
   const toggleCreateCrop = (crop = null) => {
     crop == null ?  setIsModalOpen(true) : setEditingCrop(crop) && setIsModalOpen(true)
-    //setEditingCrop(crop);
-    //setIsModalOpen(true);
   };
 
   const handleAddNewCrop = async (cropData) => {
@@ -76,6 +75,7 @@ export const FarmerView = () => {
     const user = await getInfoUser(token);
     const farmer = await getInfoFarmer(user["id"], token);
     setName(farmer["name"] + " " + farmer["sur_name"]);
+    setUrlImage(farmer['avatar'])
     setIdFarmer(farmer["id"]);
   };
 
@@ -155,7 +155,8 @@ export const FarmerView = () => {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i className="user fa-solid fa-user"></i>
+                {/*<i className="user fa-solid fa-user"></i>*/}
+                <img className="img-url w-25 h-25 rounded-circle" src={urlImage}/>
               </button>
               <ul
                 className="dropdown-menu"

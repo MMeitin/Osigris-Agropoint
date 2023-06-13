@@ -114,8 +114,6 @@ export const getInfoUser = async (token) => {
 };
 
 export const getInfoFarmer = async (id_user, token) => {
-  
-
   try {
     const res = await fetch(`${URL}/api/farmer/${id_user}`, {
       method: "GET",
