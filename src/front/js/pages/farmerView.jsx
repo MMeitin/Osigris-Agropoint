@@ -296,6 +296,7 @@ export const FarmerView = () => {
                 speciality={element.speciality}
                 technician_id={element.id}
                 role={element.role}
+                avatar={element.avatar}
                 cropList={crops}
                 farmer_id={idFarmer}
               />

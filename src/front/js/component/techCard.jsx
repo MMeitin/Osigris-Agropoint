@@ -21,6 +21,7 @@ const TechCard = (props) => {
     technician_id: techId,
     status:"pending"
   });
+  const [avatarURL, setAvatarURL] = useState(props.avatar);
 
   const handleChangeHiring = async ({target}) => {
     if(target.name === "crop_id"){
@@ -92,7 +93,7 @@ const TechCard = (props) => {
   return (
     <div className="tech_card card ">
       <img  className="techcard-img"
-        src="https://previews.123rf.com/images/wavebreakmediamicro/wavebreakmediamicro1610/wavebreakmediamicro161001127/63630595-pareja-granjero-feliz-celebraci%C3%B3n-de-las-verduras-de-hoja-en-el-mercado-local.jpg"
+        src={avatarURL}
         alt="imgTech"
       />
       <div className="tech-card-body d-flex">
