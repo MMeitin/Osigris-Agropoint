@@ -16,9 +16,13 @@
 }
 .BotLink{
   font-family: Roboto, sans-serif;
-  font-weight: 20;
+  font-weight: 9;
+  appearance: none;
+  background-color: transparent;
+  border: none;
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 25px;
+  padding: 0;
   color: green;
 }
 .form-group label{

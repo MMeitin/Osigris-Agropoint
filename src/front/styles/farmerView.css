@@ -19,6 +19,10 @@
 .titulo-farmer span{
   color: #e9c46a;
 }
+.section1-farmer span{
+  color: hsl(118, 56%, 29%);
+}
+
 .logo {
   width: 50%;
   height: 50%;
@@ -28,7 +32,18 @@
 .btnProfile {
   color: hsl(118, 56%, 29%);
 }
-
+.card_img-farmer{
+  margin-left: 5rem;
+  margin: 3rem;
+  width: 20rem;
+  height: 20rem;
+}
+.section1-farmer{
+  margin-top: 5rem;
+  background: linear-gradient(90deg, rgba(231,215,146,1) 0%, rgba(0,212,255,0) 100%);
+  border-radius: 5rem;
+  display: flex;
+}
 .titulo-misTech {
   margin-top: 2rem;
   border-bottom: 2px solid #2c9131;
