@@ -4,7 +4,7 @@ import "../../styles/home.css";
 
 const Cropcard = (props) => {
   return (
-    <div className="crop_card card m-3" onClick={props.onClick}>
+    <div className="crop_card card m-5" onClick={props.onClick}>
       <img
         src="https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638892233/EducationHub/photos/crops-growing-in-thailand.jpg"
         className="cropcard-img-left"

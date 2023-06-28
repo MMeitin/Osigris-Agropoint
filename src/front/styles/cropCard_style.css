@@ -4,12 +4,19 @@
   } */
 
 .crop_card {
-    background-color: transparent;
-    border: 2px solid #2c9131;
-    width: 16rem;
-    height: fit-content;
-    border-radius: 10%;
-    transition: all 0.2s ease-in-out;
+  height: fit-content;
+  border-radius: 10%;
+  
+  transition: all 0.2s ease-in-out;
+  color:black;
+  overflow: hidden;
+  
+  background-color: transparent;
+  border: none;
+  width: 15rem; 
+  box-shadow: -3px 5px 12px 3px rgba(0,0,0,0.11);
+  margin: 5rem;
+  transition: all 0.2s ease-in-out;
   }
 .card_conver:hover {
     background-color: #e9c46a;

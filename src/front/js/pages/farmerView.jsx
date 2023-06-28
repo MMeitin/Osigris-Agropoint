@@ -12,11 +12,10 @@ import {
   filterTechByField,
   getHiring,
   addFarm,
-  modifyFarm
+  modifyFarm,
 } from "../service/service";
 import Modal from "react-modal";
 import HiringCard from "../component/hiringCard.jsx";
-
 
 export const FarmerView = () => {
   const navigate = useNavigate();
@@ -33,41 +32,46 @@ export const FarmerView = () => {
   });
   const [modalStatus, setModalStatus] = useState(false);
   const [hiring, setHiring] = useState([]);
-  const [urlImage, setUrlImage] = useState("")
+  const [urlImage, setUrlImage] = useState("");
+  const [comunity, setcomunity] = useState("");
+  const [company, setcompany] = useState("");
+  const [cropLength, setcropLength] = useState("");
 
   const openModal = () => {
     getHiringFromService();
-    setModalStatus(true)
-  }
+    setModalStatus(true);
+  };
 
   const closeModal = () => {
-    setModalStatus(false)
-  }
+    setModalStatus(false);
+  };
 
   const getHiringFromService = async () => {
     const hirings = await getHiring();
     setHiring(hirings);
-  }
+  };
 
   const toggleCreateCrop = (crop = null) => {
-    crop == null ?  setIsModalOpen(true) : setEditingCrop(crop) && setIsModalOpen(true)
+    crop == null
+      ? setIsModalOpen(true)
+      : setEditingCrop(crop) && setIsModalOpen(true);
   };
 
   const handleAddNewCrop = async (cropData) => {
-    if(editingCrop){
-      try{
-        console.log("From handleAddNewCrop --> ",cropData)
-        await modifyFarm(cropData)
-      }catch(error){
-        console.log("Error al modificar el cultivo", error)
+    if (editingCrop) {
+      try {
+        console.log("From handleAddNewCrop --> ", cropData);
+        await modifyFarm(cropData);
+      } catch (error) {
+        console.log("Error al modificar el cultivo", error);
       }
-    }else{
+    } else {
       try {
         await addFarm(cropData);
       } catch (error) {
         console.log("Error al agregar el nuevo cultivo", error);
       }
-    }  
+    }
   };
 
   const getInfo = async () => {
@@ -75,13 +79,17 @@ export const FarmerView = () => {
     const user = await getInfoUser(token);
     const farmer = await getInfoFarmer(user["id"], token);
     setName(farmer["name"] + " " + farmer["sur_name"]);
-    setUrlImage(farmer['avatar'])
+    setUrlImage(farmer["avatar"]);
+    setcomunity(farmer["ccaa"]);
     setIdFarmer(farmer["id"]);
+    setcompany(farmer["company"]);
   };
 
   const getCrop = async () => {
     const data = await getInfoCrop();
     setCrops(data);
+    const numcrops = crops.length;
+    setcropLength(numcrops);
   };
 
   const getTech = async () => {
@@ -122,7 +130,10 @@ export const FarmerView = () => {
   useEffect(() => {
     loadAllData();
   }, []);
-
+  useEffect(() => {
+    const numcrops = crops.length;
+    setcropLength(numcrops);
+  }, [crops]);
   return (
     <div className="farmerViewContainer">
       {/* NAVBAR */}
@@ -135,7 +146,7 @@ export const FarmerView = () => {
             </a>
             <a className="navbar-link-farmer" href="#conversations">
               Técnicos disponibles
-              </a>
+            </a>
             <a className="navbar-link" onClick={openModal}>
               Mis contrataciones
             </a>
@@ -156,7 +167,10 @@ export const FarmerView = () => {
                 aria-expanded="false"
               >
                 {/*<i className="user fa-solid fa-user"></i>*/}
-                <img className="img-url w-25 h-25 rounded-circle" src={urlImage}/>
+                <img
+                  className="img-url w-25 h-25 rounded-circle"
+                  src={urlImage}
+                />
               </button>
               <ul
                 className="dropdown-menu"
@@ -193,7 +207,30 @@ export const FarmerView = () => {
           onSave={handleAddNewCrop}
           editingCrop={editingCrop}
         />
-        <h1 className="titulo-farmer">AREA <span>PERSONAL</span></h1>
+
+        <div className="section1-farmer container " id="section1">
+          <div className="card_img-farmer h-500 col-4 d-flex  ">
+            <img
+              className="img1  w-100 h-100 object-fit-cover"
+              src={urlImage}
+              alt="Imagen de la sección 1"
+            />
+          </div>
+          <div className="textos-tech  col-5 d-flex  ">
+            <h1 className="titulo1">{name}</h1>
+            <h3 className="company-farm">
+              <span>{company}</span>
+            </h3>
+            <p>
+              <strong>Ubicación : </strong>
+              <span>{comunity}</span>
+            </p>
+            <p>
+              <strong>Nº de cultivos : </strong>
+              <span>{cropLength}</span>
+            </p>
+          </div>
+        </div>
         <div className="misCultivos col-12">
           <h1 className="titulo-miscultivos ps-5 ">Mis Cultivos</h1>
           <div className="cropCard_container justify-content-center">
@@ -306,28 +343,33 @@ export const FarmerView = () => {
           )}
         </div>
       </div>
-      <Modal 
+      <Modal
         isOpen={modalStatus}
         onRequestClose={closeModal}
         contentLabel="ViewHirings"
-        ariaHideApp={false}>
-          <div className="viewHiringModal">
-            <h2>Hola {name}, estas son tus contrataciones</h2>
-            <div className="hiringBody">
-              {
-                hiring.length > 0 ? (hiring.map((element, index) => (
-                  <HiringCard
+        ariaHideApp={false}
+      >
+        <div className="viewHiringModal">
+          <h2>Hola {name}, estas son tus contrataciones</h2>
+          <div className="hiringBody">
+            {hiring.length > 0 ? (
+              hiring.map((element, index) => (
+                <HiringCard
                   key={index}
                   crop_type={element.crop_name}
                   service={element.service_id}
                   tech={element.tech_name}
                   status={element.status}
-                    />
-                ))) : <h3>No tienes contrataciones activas</h3>
-              }
-            </div>
-            <button className="btn" onClick={closeModal}>Cerrar Ventana</button>
+                />
+              ))
+            ) : (
+              <h3>No tienes contrataciones activas</h3>
+            )}
           </div>
+          <button className="btn" onClick={closeModal}>
+            Cerrar Ventana
+          </button>
+        </div>
       </Modal>
     </div>
   );
